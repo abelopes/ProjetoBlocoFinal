@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditAlunoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditAlunoLabel_cpf}" for="cpf" />
+                    <h:inputText id="cpf" value="#{alunoController.selected.cpf}" title="#{bundle.EditAlunoTitle_cpf}" />
+                    <h:outputLabel value="#{bundle.EditAlunoLabel_dataNascimento}" for="dataNascimento" />
+                    <h:inputText id="dataNascimento" value="#{alunoController.selected.dataNascimento}" title="#{bundle.EditAlunoTitle_dataNascimento}" />
+                    <h:outputLabel value="#{bundle.EditAlunoLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{alunoController.selected.email}" title="#{bundle.EditAlunoTitle_email}" />
+                    <h:outputLabel value="#{bundle.EditAlunoLabel_identidade}" for="identidade" />
+                    <h:inputText id="identidade" value="#{alunoController.selected.identidade}" title="#{bundle.EditAlunoTitle_identidade}" />
+                    <h:outputLabel value="#{bundle.EditAlunoLabel_matricula}" for="matricula" />
+                    <h:inputText id="matricula" value="#{alunoController.selected.matricula}" title="#{bundle.EditAlunoTitle_matricula}" />
+                    <h:outputLabel value="#{bundle.EditAlunoLabel_nomeMae}" for="nomeMae" />
+                    <h:inputText id="nomeMae" value="#{alunoController.selected.nomeMae}" title="#{bundle.EditAlunoTitle_nomeMae}" />
+                    <h:outputLabel value="#{bundle.EditAlunoLabel_sexo}" for="sexo" />
+                    <h:inputText id="sexo" value="#{alunoController.selected.sexo}" title="#{bundle.EditAlunoTitle_sexo}" />
+                    <h:outputLabel value="#{bundle.EditAlunoLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{alunoController.selected.id}" title="#{bundle.EditAlunoTitle_id}" />
+                    <h:outputLabel value="#{bundle.EditAlunoLabel_nome}" for="nome" />
+                    <h:inputText id="nome" value="#{alunoController.selected.nome}" title="#{bundle.EditAlunoTitle_nome}" />
+                </h:panelGrid>
+                <h:commandLink action="#{alunoController.update}" value="#{bundle.EditAlunoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditAlunoViewLink}"/>
+                <br />
+                <h:commandLink action="#{alunoController.prepareList}" value="#{bundle.EditAlunoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditAlunoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

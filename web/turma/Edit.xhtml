@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTurmaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTurmaLabel_professor}" for="professor" />
+                    <h:selectOneMenu id="professor" value="#{turmaController.selected.professor}" title="#{bundle.EditTurmaTitle_professor}" >
+                        <f:selectItems value="#{professorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTurmaLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{turmaController.selected.id}" title="#{bundle.EditTurmaTitle_id}" />
+                    <h:outputLabel value="#{bundle.EditTurmaLabel_fim}" for="fim" />
+                    <h:inputText id="fim" value="#{turmaController.selected.fim}" title="#{bundle.EditTurmaTitle_fim}" />
+                    <h:outputLabel value="#{bundle.EditTurmaLabel_inicio}" for="inicio" />
+                    <h:inputText id="inicio" value="#{turmaController.selected.inicio}" title="#{bundle.EditTurmaTitle_inicio}" />
+                </h:panelGrid>
+                <h:commandLink action="#{turmaController.update}" value="#{bundle.EditTurmaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTurmaViewLink}"/>
+                <br />
+                <h:commandLink action="#{turmaController.prepareList}" value="#{bundle.EditTurmaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditTurmaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
