@@ -5,6 +5,8 @@ import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.util.Pa
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -179,11 +181,25 @@ public class RespostaController implements Serializable {
     }
 
     public SelectItem[] getItemsAvailableSelectMany() {
-        return JsfUtil.getSelectItems(ejbFacade.findAll(), false);
+        try {
+            return JsfUtil.getSelectItems(ejbFacade.findAll(), false);
+        } catch (IllegalArgumentException ex) {
+            Logger.getLogger(RespostaController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(RespostaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     public SelectItem[] getItemsAvailableSelectOne() {
-        return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
+        try {
+            return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
+        } catch (IllegalArgumentException ex) {
+            Logger.getLogger(RespostaController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(RespostaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     public Resposta getResposta(java.lang.Integer id) {
