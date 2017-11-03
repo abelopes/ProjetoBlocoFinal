@@ -14,40 +14,40 @@ import javax.persistence.Table;
 @Table(name = "CURSO")
 public class Curso {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
-	private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
+    private Integer id;
 
-	@Column(name = "NOME", length = 150)
-	private String nome;
+    @Column(name = "NOME", length = 150)
+    private String nome;
 
-	@OneToMany(mappedBy = "curso")
-	private List<Bloco> blocos;
+    @OneToMany(mappedBy = "curso")
+    private List<Bloco> blocos;
 
-	public Integer getId() {
-		return id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public String getNome() {
-		return nome;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public List<Bloco> getBlocos() {
-		return blocos;
-	}
+    public List<Bloco> getBlocos() {
+        return blocos;
+    }
 
-	public void setBlocos(List<Bloco> blocos) {
-		this.blocos = blocos;
-	}
+    public void setBlocos(List<Bloco> blocos) {
+        this.blocos = blocos;
+    }
 
     @Override
     public String toString() {
