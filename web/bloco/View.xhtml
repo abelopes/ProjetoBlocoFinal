@@ -20,7 +20,7 @@
                     <h:outputText value="#{bundle.ViewBlocoLabel_nome}"/>
                     <h:outputText value="#{blocoController.selected.nome}" title="#{bundle.ViewBlocoTitle_nome}"/>
                     <h:outputText value="#{bundle.ViewBlocoLabel_curso}"/>
-                    <h:outputText value="#{blocoController.selected.curso}" title="#{bundle.ViewBlocoTitle_curso}"/>
+                    <h:outputText value="#{blocoController.selected.curso.nome}" title="#{bundle.ViewBlocoTitle_curso}"/>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{blocoController.destroyAndView}" value="#{bundle.ViewBlocoDestroyLink}"/>
