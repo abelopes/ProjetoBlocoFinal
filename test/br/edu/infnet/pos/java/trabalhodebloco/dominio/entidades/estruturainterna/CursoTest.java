@@ -26,4 +26,27 @@ public class CursoTest {
         assertEquals(NOME_VALIDO, curso.toString());
     }
 
+    @Test
+    public void oMetodoEqualsDeveConsiderarOsIdsDasEntidades() {
+        final Integer ID_A = 42;
+        Curso a = new Curso();
+        a.setId(ID_A);
+
+        final Integer ID_B = 42;
+        Curso b = new Curso();
+        b.setId(ID_B);
+
+        assertTrue(a.equals(b));
+    }
+    
+    @Test
+    public void oMetodoEqualsDeveRetornarFalseQuandoUmObjetoNuloForPassado() {
+        assertFalse(new Curso().equals(null));        
+    }
+    
+    @Test
+    public void oMetodoEqualsDeveRetornarFalseQuandoUmObjetoPassadoNaoForCurso() {
+        assertFalse(new Curso().equals(new Object()));
+    }
+
 }

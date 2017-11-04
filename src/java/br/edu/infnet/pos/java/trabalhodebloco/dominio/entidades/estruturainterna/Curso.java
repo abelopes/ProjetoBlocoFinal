@@ -17,7 +17,7 @@ public class Curso implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID") 
+    @Column(name = "ID")
     private Integer id;
 
     @Column(name = "NOME", length = 150)
@@ -53,6 +53,11 @@ public class Curso implements Serializable {
     @Override
     public String toString() {
         return this.getNome();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return (obj != null) && (obj instanceof Curso) && (((Curso) obj).getId() == getId());
     }
 
 }
