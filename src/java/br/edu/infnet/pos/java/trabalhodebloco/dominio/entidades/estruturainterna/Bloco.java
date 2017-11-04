@@ -1,5 +1,6 @@
 package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -14,53 +15,53 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "BLOCO")
-public class Bloco {
+public class Bloco implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
-	private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
+    private Integer id;
 
-	@Column(name = "NOME", length = 150)
-	private String nome;
+    @Column(name = "NOME", length = 150)
+    private String nome;
 
-	@OneToMany(mappedBy = "bloco")
-	private List<Modulo> modulos;
+    @OneToMany(mappedBy = "bloco")
+    private List<Modulo> modulos;
 
-	@ManyToOne
-	@JoinColumn(name = "ID_CURSO")
-	private Curso curso;
+    @ManyToOne
+    @JoinColumn(name = "ID_CURSO")
+    private Curso curso;
 
-	public Integer getId() {
-		return id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public String getNome() {
-		return nome;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public List<Modulo> getModulos() {
-		return modulos;
-	}
+    public List<Modulo> getModulos() {
+        return modulos;
+    }
 
-	public void setModulos(List<Modulo> modulos) {
-		this.modulos = modulos;
-	}
+    public void setModulos(List<Modulo> modulos) {
+        this.modulos = modulos;
+    }
 
-	public Curso getCurso() {
-		return curso;
-	}
+    public Curso getCurso() {
+        return curso;
+    }
 
-	public void setCurso(Curso curso) {
-		this.curso = curso;
-	}
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+    }
 
 }

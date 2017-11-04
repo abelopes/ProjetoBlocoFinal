@@ -1,5 +1,6 @@
 package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -14,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "MODULO")
-public class Modulo {
+public class Modulo implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

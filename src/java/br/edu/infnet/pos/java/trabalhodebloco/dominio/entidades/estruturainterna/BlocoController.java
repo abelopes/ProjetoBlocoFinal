@@ -22,8 +22,10 @@ public class BlocoController implements Serializable {
 
     private Bloco current;
     private DataModel items = null;
+
     @EJB
     private br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.BlocoFacade ejbFacade;
+
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

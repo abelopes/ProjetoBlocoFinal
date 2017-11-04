@@ -1,5 +1,6 @@
 package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -16,7 +17,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "TURMA")
-public class Turma {
+public class Turma implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

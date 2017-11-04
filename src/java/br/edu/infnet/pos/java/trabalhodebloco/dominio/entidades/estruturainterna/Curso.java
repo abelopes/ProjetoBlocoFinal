@@ -1,5 +1,6 @@
 package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -12,11 +13,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "CURSO")
-public class Curso {
+public class Curso implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "ID") 
     private Integer id;
 
     @Column(name = "NOME", length = 150)

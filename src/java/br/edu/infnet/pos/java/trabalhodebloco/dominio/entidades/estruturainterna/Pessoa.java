@@ -1,5 +1,6 @@
 package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
@@ -14,7 +15,7 @@ import javax.persistence.Table;
 @Table(name = "PESSOA")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "TIPO_PESSOA")
-public abstract class Pessoa {
+public abstract class Pessoa implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

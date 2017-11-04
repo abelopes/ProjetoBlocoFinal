@@ -27,5 +27,5 @@ public class BlocoFacade extends AbstractFacade<Bloco> {
     public BlocoFacade() {
         super(Bloco.class);
     }
-    
+
 }
