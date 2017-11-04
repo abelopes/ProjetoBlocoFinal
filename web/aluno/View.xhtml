@@ -15,24 +15,32 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewAlunoLabel_cpf}"/>
-                    <h:outputText value="#{alunoController.selected.cpf}" title="#{bundle.ViewAlunoTitle_cpf}"/>
-                    <h:outputText value="#{bundle.ViewAlunoLabel_dataNascimento}"/>
-                    <h:outputText value="#{alunoController.selected.dataNascimento}" title="#{bundle.ViewAlunoTitle_dataNascimento}"/>
-                    <h:outputText value="#{bundle.ViewAlunoLabel_email}"/>
-                    <h:outputText value="#{alunoController.selected.email}" title="#{bundle.ViewAlunoTitle_email}"/>
-                    <h:outputText value="#{bundle.ViewAlunoLabel_identidade}"/>
-                    <h:outputText value="#{alunoController.selected.identidade}" title="#{bundle.ViewAlunoTitle_identidade}"/>
-                    <h:outputText value="#{bundle.ViewAlunoLabel_matricula}"/>
-                    <h:outputText value="#{alunoController.selected.matricula}" title="#{bundle.ViewAlunoTitle_matricula}"/>
-                    <h:outputText value="#{bundle.ViewAlunoLabel_nomeMae}"/>
-                    <h:outputText value="#{alunoController.selected.nomeMae}" title="#{bundle.ViewAlunoTitle_nomeMae}"/>
-                    <h:outputText value="#{bundle.ViewAlunoLabel_sexo}"/>
-                    <h:outputText value="#{alunoController.selected.sexo}" title="#{bundle.ViewAlunoTitle_sexo}"/>
                     <h:outputText value="#{bundle.ViewAlunoLabel_id}"/>
                     <h:outputText value="#{alunoController.selected.id}" title="#{bundle.ViewAlunoTitle_id}"/>
+                    
                     <h:outputText value="#{bundle.ViewAlunoLabel_nome}"/>
                     <h:outputText value="#{alunoController.selected.nome}" title="#{bundle.ViewAlunoTitle_nome}"/>
+                    
+                    <h:outputText value="#{bundle.ViewAlunoLabel_email}"/>
+                    <h:outputText value="#{alunoController.selected.email}" title="#{bundle.ViewAlunoTitle_email}"/>
+                    
+                    <h:outputText value="#{bundle.ViewAlunoLabel_dataNascimento}"/>
+                    <h:outputText value="#{alunoController.selected.dataNascimento}" title="#{bundle.ViewAlunoTitle_dataNascimento}"/>
+                    
+                    <h:outputText value="#{bundle.ViewAlunoLabel_nomeMae}"/>
+                    <h:outputText value="#{alunoController.selected.nomeMae}" title="#{bundle.ViewAlunoTitle_nomeMae}"/>
+                    
+                    <h:outputText value="#{bundle.ViewAlunoLabel_sexo}"/>
+                    <h:outputText value="#{alunoController.selected.sexo}" title="#{bundle.ViewAlunoTitle_sexo}"/>
+                    
+                    <h:outputText value="#{bundle.ViewAlunoLabel_cpf}"/>
+                    <h:outputText value="#{alunoController.selected.cpf}" title="#{bundle.ViewAlunoTitle_cpf}"/>
+
+                    <h:outputText value="#{bundle.ViewAlunoLabel_identidade}"/>
+                    <h:outputText value="#{alunoController.selected.identidade}" title="#{bundle.ViewAlunoTitle_identidade}"/>
+                    
+                    <h:outputText value="#{bundle.ViewAlunoLabel_matricula}"/>
+                    <h:outputText value="#{alunoController.selected.matricula}" title="#{bundle.ViewAlunoTitle_matricula}"/>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{alunoController.destroyAndView}" value="#{bundle.ViewAlunoDestroyLink}"/>

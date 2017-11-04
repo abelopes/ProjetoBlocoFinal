@@ -15,24 +15,32 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateAlunoLabel_cpf}" for="cpf" />
-                    <h:inputText id="cpf" value="#{alunoController.selected.cpf}" title="#{bundle.CreateAlunoTitle_cpf}" />
-                    <h:outputLabel value="#{bundle.CreateAlunoLabel_dataNascimento}" for="dataNascimento" />
-                    <h:inputText id="dataNascimento" value="#{alunoController.selected.dataNascimento}" title="#{bundle.CreateAlunoTitle_dataNascimento}" />
-                    <h:outputLabel value="#{bundle.CreateAlunoLabel_email}" for="email" />
-                    <h:inputText id="email" value="#{alunoController.selected.email}" title="#{bundle.CreateAlunoTitle_email}" />
-                    <h:outputLabel value="#{bundle.CreateAlunoLabel_identidade}" for="identidade" />
-                    <h:inputText id="identidade" value="#{alunoController.selected.identidade}" title="#{bundle.CreateAlunoTitle_identidade}" />
-                    <h:outputLabel value="#{bundle.CreateAlunoLabel_matricula}" for="matricula" />
-                    <h:inputText id="matricula" value="#{alunoController.selected.matricula}" title="#{bundle.CreateAlunoTitle_matricula}" />
-                    <h:outputLabel value="#{bundle.CreateAlunoLabel_nomeMae}" for="nomeMae" />
-                    <h:inputText id="nomeMae" value="#{alunoController.selected.nomeMae}" title="#{bundle.CreateAlunoTitle_nomeMae}" />
-                    <h:outputLabel value="#{bundle.CreateAlunoLabel_sexo}" for="sexo" />
-                    <h:inputText id="sexo" value="#{alunoController.selected.sexo}" title="#{bundle.CreateAlunoTitle_sexo}" />
                     <h:outputLabel value="#{bundle.CreateAlunoLabel_id}" for="id" />
                     <h:inputText id="id" value="#{alunoController.selected.id}" title="#{bundle.CreateAlunoTitle_id}" readonly="true" />
+                    
                     <h:outputLabel value="#{bundle.CreateAlunoLabel_nome}" for="nome" />
-                    <h:inputText id="nome" value="#{alunoController.selected.nome}" title="#{bundle.CreateAlunoTitle_nome}" />
+                    <h:inputText id="nome" value="#{alunoController.selected.nome}" title="#{bundle.CreateAlunoTitle_nome}" />                   
+                    
+                    <h:outputLabel value="#{bundle.CreateAlunoLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{alunoController.selected.email}" title="#{bundle.CreateAlunoTitle_email}" />
+                    
+                    <h:outputLabel value="#{bundle.CreateAlunoLabel_dataNascimento}" for="dataNascimento" />
+                    <h:inputText id="dataNascimento" value="#{alunoController.selected.dataNascimento}" title="#{bundle.CreateAlunoTitle_dataNascimento}" />
+                    
+                    <h:outputLabel value="#{bundle.CreateAlunoLabel_nomeMae}" for="nomeMae" />
+                    <h:inputText id="nomeMae" value="#{alunoController.selected.nomeMae}" title="#{bundle.CreateAlunoTitle_nomeMae}" />
+                    
+                    <h:outputLabel value="#{bundle.CreateAlunoLabel_sexo}" for="sexo" />
+                    <h:inputText id="sexo" value="#{alunoController.selected.sexo}" title="#{bundle.CreateAlunoTitle_sexo}" />
+                    
+                    <h:outputLabel value="#{bundle.CreateAlunoLabel_cpf}" for="cpf" />
+                    <h:inputText id="cpf" value="#{alunoController.selected.cpf}" title="#{bundle.CreateAlunoTitle_cpf}" />
+                    
+                    <h:outputLabel value="#{bundle.CreateAlunoLabel_identidade}" for="identidade" />
+                    <h:inputText id="identidade" value="#{alunoController.selected.identidade}" title="#{bundle.CreateAlunoTitle_identidade}" />
+                    
+                    <h:outputLabel value="#{bundle.CreateAlunoLabel_matricula}" for="matricula" />
+                    <h:inputText id="matricula" value="#{alunoController.selected.matricula}" title="#{bundle.CreateAlunoTitle_matricula}" />
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{alunoController.create}" value="#{bundle.CreateAlunoSaveLink}" />
