@@ -2,6 +2,7 @@ package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturaintern
 
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.util.JsfUtil;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.util.PaginationHelper;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.enums.Sexo;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -22,8 +23,10 @@ public class AlunoController implements Serializable {
 
     private Aluno current;
     private DataModel items = null;
+
     @EJB
     private br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.AlunoFacade ejbFacade;
+
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
@@ -228,6 +231,10 @@ public class AlunoController implements Serializable {
             }
         }
 
+    }
+
+    public Sexo[] getSexos() {
+        return Sexo.values();
     }
 
 }
