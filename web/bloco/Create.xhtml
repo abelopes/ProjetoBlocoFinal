@@ -16,7 +16,7 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.CreateBlocoLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{blocoController.selected.id}" title="#{bundle.CreateBlocoTitle_id}" />
+                    <h:inputText id="id" value="#{blocoController.selected.id}" title="#{bundle.CreateBlocoTitle_id}" readonly="true" />
                     <h:outputLabel value="#{bundle.CreateBlocoLabel_nome}" for="nome" />
                     <h:inputText id="nome" value="#{blocoController.selected.nome}" title="#{bundle.CreateBlocoTitle_nome}" />
                     <h:outputLabel value="#{bundle.CreateBlocoLabel_curso}" for="curso" />

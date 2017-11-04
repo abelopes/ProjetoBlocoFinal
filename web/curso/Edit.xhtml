@@ -16,7 +16,7 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.EditCursoLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{cursoController.selected.id}" title="#{bundle.EditCursoTitle_id}" />
+                    <h:inputText id="id" value="#{cursoController.selected.id}" title="#{bundle.EditCursoTitle_id}" readonly="true" />
                     <h:outputLabel value="#{bundle.EditCursoLabel_nome}" for="nome" />
                     <h:inputText id="nome" value="#{cursoController.selected.nome}" title="#{bundle.EditCursoTitle_nome}" />
                 </h:panelGrid>
