@@ -22,48 +22,6 @@
                     <h:dataTable value="#{alunoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAlunoTitle_cpf}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.cpf}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAlunoTitle_dataNascimento}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.dataNascimento}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAlunoTitle_email}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.email}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAlunoTitle_identidade}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.identidade}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAlunoTitle_matricula}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.matricula}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAlunoTitle_nomeMae}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.nomeMae}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAlunoTitle_sexo}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.sexo}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAlunoTitle_id}"/>
                             </f:facet>
                             <h:outputText value="#{item.id}"/>
@@ -73,6 +31,12 @@
                                 <h:outputText value="#{bundle.ListAlunoTitle_nome}"/>
                             </f:facet>
                             <h:outputText value="#{item.nome}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAlunoTitle_email}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.email}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">

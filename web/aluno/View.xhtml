@@ -25,7 +25,9 @@
                     <h:outputText value="#{alunoController.selected.email}" title="#{bundle.ViewAlunoTitle_email}"/>
                     
                     <h:outputText value="#{bundle.ViewAlunoLabel_dataNascimento}"/>
-                    <h:outputText value="#{alunoController.selected.dataNascimento}" title="#{bundle.ViewAlunoTitle_dataNascimento}"/>
+                    <h:outputText value="#{alunoController.selected.dataNascimento}" title="#{bundle.ViewAlunoTitle_dataNascimento}">
+                        <f:converter converterId="br.edu.infnet.pos.java.trabalhodebloco.infra.converter.JsfLocalDateConverter" />
+                    </h:outputText>
                     
                     <h:outputText value="#{bundle.ViewAlunoLabel_nomeMae}"/>
                     <h:outputText value="#{alunoController.selected.nomeMae}" title="#{bundle.ViewAlunoTitle_nomeMae}"/>
