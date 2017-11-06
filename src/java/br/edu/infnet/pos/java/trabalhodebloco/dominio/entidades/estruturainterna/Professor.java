@@ -12,27 +12,32 @@ import javax.persistence.OneToMany;
 @DiscriminatorValue(value = "PROFESSOR")
 public class Professor extends Pessoa {
 
-	@Lob
-	@Column(name = "CURRICULO_RESUMIDO")
-	private String curriculoResumido;
+    @Lob
+    @Column(name = "CURRICULO_RESUMIDO")
+    private String curriculoResumido;
 
-	@OneToMany(mappedBy = "professor")
-	private List<Turma> turmas;
+    @OneToMany(mappedBy = "professor")
+    private List<Turma> turmas;
 
-	public String getCurriculoResumido() {
-		return curriculoResumido;
-	}
+    public String getCurriculoResumido() {
+        return curriculoResumido;
+    }
 
-	public void setCurriculoResumido(String curriculoResumido) {
-		this.curriculoResumido = curriculoResumido;
-	}
+    public void setCurriculoResumido(String curriculoResumido) {
+        this.curriculoResumido = curriculoResumido;
+    }
 
-	public List<Turma> getTurmas() {
-		return turmas;
-	}
+    public List<Turma> getTurmas() {
+        return turmas;
+    }
 
-	public void setTurmas(List<Turma> turmas) {
-		this.turmas = turmas;
-	}
+    public void setTurmas(List<Turma> turmas) {
+        this.turmas = turmas;
+    }
+
+    @Override
+    public String toString() {
+        return getNome();
+    }
 
 }
