@@ -28,6 +28,11 @@ public class JsfLocalDateConverterTest {
         assertTrue(dataConvertida instanceof LocalDate);
         assertEquals(LocalDate.of(1985, Month.SEPTEMBER, 12), dataConvertida);
     }
+    
+    @Test
+    public void deveAceitarStringVaziaAoConverter() {
+        assertNull(converter.getAsObject(null, null, ""));
+    }
 
     @Test
     public void deveConverterLocalDateParaString12Set1985() {
