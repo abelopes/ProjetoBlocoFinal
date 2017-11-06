@@ -15,14 +15,21 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewTurmaLabel_professor}"/>
-                    <h:outputText value="#{turmaController.selected.professor}" title="#{bundle.ViewTurmaTitle_professor}"/>
                     <h:outputText value="#{bundle.ViewTurmaLabel_id}"/>
                     <h:outputText value="#{turmaController.selected.id}" title="#{bundle.ViewTurmaTitle_id}"/>
-                    <h:outputText value="#{bundle.ViewTurmaLabel_fim}"/>
-                    <h:outputText value="#{turmaController.selected.fim}" title="#{bundle.ViewTurmaTitle_fim}"/>
+                    
                     <h:outputText value="#{bundle.ViewTurmaLabel_inicio}"/>
-                    <h:outputText value="#{turmaController.selected.inicio}" title="#{bundle.ViewTurmaTitle_inicio}"/>
+                    <h:outputText value="#{turmaController.selected.inicio}" title="#{bundle.ViewTurmaTitle_inicio}">
+                        <f:converter converterId="br.edu.infnet.pos.java.trabalhodebloco.infra.converter.JsfLocalDateConverter" />
+                    </h:outputText>
+                    
+                    <h:outputText value="#{bundle.ViewTurmaLabel_fim}"/>
+                    <h:outputText value="#{turmaController.selected.fim}" title="#{bundle.ViewTurmaTitle_fim}">
+                        <f:converter converterId="br.edu.infnet.pos.java.trabalhodebloco.infra.converter.JsfLocalDateConverter" />
+                    </h:outputText>
+                    
+                    <h:outputText value="#{bundle.ViewTurmaLabel_professor}"/>
+                    <h:outputText value="#{turmaController.selected.professor}" title="#{bundle.ViewTurmaTitle_professor}"/>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{turmaController.destroyAndView}" value="#{bundle.ViewTurmaDestroyLink}"/>
@@ -36,7 +43,6 @@
                 <br />
                 <br />
                 <h:link outcome="/index" value="#{bundle.ViewTurmaIndexLink}"/>
-
             </h:form>
         </ui:define>
     </ui:composition>
