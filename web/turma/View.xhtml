@@ -29,7 +29,7 @@
                     </h:outputText>
                     
                     <h:outputText value="#{bundle.ViewTurmaLabel_professor}"/>
-                    <h:outputText value="#{turmaController.selected.professor}" title="#{bundle.ViewTurmaTitle_professor}"/>
+                    <h:outputText value="#{turmaController.selected.professor.nome}" title="#{bundle.ViewTurmaTitle_professor}"/>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{turmaController.destroyAndView}" value="#{bundle.ViewTurmaDestroyLink}"/>
