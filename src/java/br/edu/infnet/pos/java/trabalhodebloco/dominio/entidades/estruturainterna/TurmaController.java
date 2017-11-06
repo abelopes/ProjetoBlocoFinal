@@ -22,8 +22,10 @@ public class TurmaController implements Serializable {
 
     private Turma current;
     private DataModel items = null;
+    
     @EJB
     private br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.TurmaFacade ejbFacade;
+    
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

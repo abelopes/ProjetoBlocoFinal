@@ -40,4 +40,9 @@ public class Professor extends Pessoa {
         return getNome();
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj) && (obj instanceof Professor);
+    }
+
 }

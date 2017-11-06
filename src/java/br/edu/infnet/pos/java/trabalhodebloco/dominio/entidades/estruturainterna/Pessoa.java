@@ -41,4 +41,8 @@ public abstract class Pessoa implements Serializable {
         this.nome = nome;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        return (obj != null) && (obj instanceof Pessoa) && (getId().equals(((Pessoa) obj).getId()));
+    }
 }
