@@ -22,27 +22,31 @@
                     <h:dataTable value="#{turmaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTurmaTitle_professor}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.professor}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTurmaTitle_id}"/>
                             </f:facet>
                             <h:outputText value="#{item.id}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTurmaTitle_fim}"/>
+                                <h:outputText value="#{bundle.ListTurmaTitle_professor}"/>
                             </f:facet>
-                            <h:outputText value="#{item.fim}"/>
+                            <h:outputText value="#{item.professor.nome}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTurmaTitle_inicio}"/>
                             </f:facet>
-                            <h:outputText value="#{item.inicio}"/>
+                            <h:outputText value="#{item.inicio}">
+                                <f:converter converterId="br.edu.infnet.pos.java.trabalhodebloco.infra.converter.JsfLocalDateConverter" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTurmaTitle_fim}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fim}">
+                                <f:converter converterId="br.edu.infnet.pos.java.trabalhodebloco.infra.converter.JsfLocalDateConverter" />
+                            </h:outputText>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
