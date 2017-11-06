@@ -31,9 +31,11 @@
                     
                     <h:outputLabel value="#{bundle.EditAlunoLabel_nomeMae}" for="nomeMae" />
                     <h:inputText id="nomeMae" value="#{alunoController.selected.nomeMae}" title="#{bundle.EditAlunoTitle_nomeMae}" />
-                    
+
                     <h:outputLabel value="#{bundle.EditAlunoLabel_sexo}" for="sexo" />
-                    <h:inputText id="sexo" value="#{alunoController.selected.sexo}" title="#{bundle.EditAlunoTitle_sexo}" />
+                    <h:selectOneMenu id="sexo" value="#{alunoController.selected.sexo}" title="#{bundle.EditAlunoTitle_sexo}">
+                        <f:selectItems value="#{alunoController.sexos}" var="sexo" itemValue="#{sexo}" itemLabel="#{sexo.descricao}" />   
+                    </h:selectOneMenu>
                     
                     <h:outputLabel value="#{bundle.EditAlunoLabel_cpf}" for="cpf" />
                     <h:inputText id="cpf" value="#{alunoController.selected.cpf}" title="#{bundle.EditAlunoTitle_cpf}" />
