@@ -20,7 +20,7 @@
                         <f:selectItems value="#{professorController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
                     <h:outputLabel value="#{bundle.EditTurmaLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{turmaController.selected.id}" title="#{bundle.EditTurmaTitle_id}" />
+                    <h:inputText id="id" value="#{turmaController.selected.id}" title="#{bundle.EditTurmaTitle_id}" readonly="true" />
                     <h:outputLabel value="#{bundle.EditTurmaLabel_fim}" for="fim" />
                     <h:inputText id="fim" value="#{turmaController.selected.fim}" title="#{bundle.EditTurmaTitle_fim}" />
                     <h:outputLabel value="#{bundle.EditTurmaLabel_inicio}" for="inicio" />
