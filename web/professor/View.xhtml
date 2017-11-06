@@ -15,12 +15,14 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewProfessorLabel_curriculoResumido}"/>
-                    <h:outputText value="#{professorController.selected.curriculoResumido}" title="#{bundle.ViewProfessorTitle_curriculoResumido}"/>
                     <h:outputText value="#{bundle.ViewProfessorLabel_id}"/>
                     <h:outputText value="#{professorController.selected.id}" title="#{bundle.ViewProfessorTitle_id}"/>
+                    
                     <h:outputText value="#{bundle.ViewProfessorLabel_nome}"/>
                     <h:outputText value="#{professorController.selected.nome}" title="#{bundle.ViewProfessorTitle_nome}"/>
+                    
+                    <h:outputText value="#{bundle.ViewProfessorLabel_curriculoResumido}"/>
+                    <h:outputText value="#{professorController.selected.curriculoResumido}" title="#{bundle.ViewProfessorTitle_curriculoResumido}"/>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{professorController.destroyAndView}" value="#{bundle.ViewProfessorDestroyLink}"/>

@@ -15,12 +15,14 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateProfessorLabel_curriculoResumido}" for="curriculoResumido" />
-                    <h:inputTextarea rows="4" cols="30" id="curriculoResumido" value="#{professorController.selected.curriculoResumido}" title="#{bundle.CreateProfessorTitle_curriculoResumido}" />
                     <h:outputLabel value="#{bundle.CreateProfessorLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{professorController.selected.id}" title="#{bundle.CreateProfessorTitle_id}" />
+                    <h:inputText id="id" value="#{professorController.selected.id}" title="#{bundle.CreateProfessorTitle_id}" readonly="true" />
+                    
                     <h:outputLabel value="#{bundle.CreateProfessorLabel_nome}" for="nome" />
                     <h:inputText id="nome" value="#{professorController.selected.nome}" title="#{bundle.CreateProfessorTitle_nome}" />
+                    
+                    <h:outputLabel value="#{bundle.CreateProfessorLabel_curriculoResumido}" for="curriculoResumido" />
+                    <h:inputTextarea rows="4" cols="30" id="curriculoResumido" value="#{professorController.selected.curriculoResumido}" title="#{bundle.CreateProfessorTitle_curriculoResumido}" />
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{professorController.create}" value="#{bundle.CreateProfessorSaveLink}" />
