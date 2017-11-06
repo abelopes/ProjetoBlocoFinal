@@ -10,4 +10,7 @@ Software para avaliação da instituição por seus alunos usando a escala de **
 
  - [Netbeans 8.2](https://netbeans.org/downloads/)
  - [MySQL 5.7](https://dev.mysql.com/downloads/mysql/)
+	 - Crie uma base chamada **projeto_bloco_final**
  - [Hibernate: 5.2.10.Final](http://hibernate.org/orm/releases/5.2/)
+
+***Obs.:*** clique nos links para baixar as dependências.
