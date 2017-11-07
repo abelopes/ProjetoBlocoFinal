@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
@@ -25,127 +24,125 @@ import javax.persistence.ManyToMany;
 @Entity
 @Table(name = "AVALIACAO")
 public class Avaliacao implements Serializable {
-         private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue
-        //(strategy = GenerationType.IDENTITY)
-	//@Column(name = "ID")
-	private Integer id;
 
-	@Lob
-	@Column(name = "COMENTARIOS_E_SUGESTOES")
-	private String comentariosESugestoes;
+    private static final long serialVersionUID = 1L;
 
-	@Column(name = "DT_FIM")
-	private LocalDate fim;
+    @Id
+    @GeneratedValue
+    private Integer id;
 
-	@Column(name = "DT_INICIO")
-	private LocalDate inicio;
+    @Lob
+    @Column(name = "COMENTARIOS_E_SUGESTOES")
+    private String comentariosESugestoes;
 
-	@Column(name = "OBJETIVO", length = 200)
-	private String objetivo;
+    @Column(name = "DT_FIM")
+    private LocalDate fim;
 
-	@Transient
-	private Formulario formulario;
+    @Column(name = "DT_INICIO")
+    private LocalDate inicio;
 
-	@Transient
-	private Mensagem mensagem;
+    @Column(name = "OBJETIVO", length = 200)
+    private String objetivo;
 
-	@Transient
-	private List<Turma> turmas;
-
-	@Transient
-	private List<Questao> questoes;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getComentariosESugestoes() {
-		return comentariosESugestoes;
-	}
-
-	public void setComentariosESugestoes(String comentariosESugestoes) {
-		this.comentariosESugestoes = comentariosESugestoes;
-	}
-
-	public LocalDate getFim() {
-		return fim;
-	}
-
-	public void setFim(LocalDate fim) {
-		this.fim = fim;
-	}
-
-	public LocalDate getInicio() {
-		return inicio;
-	}
-
-	public void setInicio(LocalDate inicio) {
-		this.inicio = inicio;
-	}
-
-	public String getObjetivo() {
-		return objetivo;
-	}
-
-	public void setObjetivo(String objetivo) {
-		this.objetivo = objetivo;
-	}
-
-	public List<Turma> getTurmas() {
-		return turmas;
-	}
-
-	public void setTurmas(List<Turma> turmas) {
-		this.turmas = turmas;
-	}
-
-	public List<Questao> getQuestoes() {
-		return questoes;
-	}
-
-	public void setQuestoes(List<Questao> questoes) {
-		this.questoes = questoes;
-	}
-
-	public Formulario getFormulario() {
-		return formulario;
-	}
-
-	public void setFormulario(Formulario formulario) {
-		this.formulario = formulario;
-	}
-
-	public Mensagem getMensagem() {
-		return mensagem;
-	}
-
-	public void setMensagem(Mensagem mensagem) {
-		this.mensagem = mensagem;
-	}
-        
-   // private Set<Questao> questao = new HashSet<>();
-         
     @ManyToMany
     @JoinTable(name = "AVALIACAO_QUESTAO",
-    joinColumns = @JoinColumn(name = "id_avaliacao"),
-    inverseJoinColumns = @JoinColumn(name = "id_questao"))
+            joinColumns = @JoinColumn(name = "id_avaliacao"),
+            inverseJoinColumns = @JoinColumn(name = "id_questao"))
     private Set<Questao> questao = new HashSet<>();
-    
-    public Set<Questao> getCategoria() {
+
+    @Transient
+    private Formulario formulario;
+
+    @Transient
+    private Mensagem mensagem;
+
+    @Transient
+    private List<Turma> turmas;
+
+    @Transient
+    private List<Questao> questoes;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getComentariosESugestoes() {
+        return comentariosESugestoes;
+    }
+
+    public void setComentariosESugestoes(String comentariosESugestoes) {
+        this.comentariosESugestoes = comentariosESugestoes;
+    }
+
+    public LocalDate getFim() {
+        return fim;
+    }
+
+    public void setFim(LocalDate fim) {
+        this.fim = fim;
+    }
+
+    public LocalDate getInicio() {
+        return inicio;
+    }
+
+    public void setInicio(LocalDate inicio) {
+        this.inicio = inicio;
+    }
+
+    public String getObjetivo() {
+        return objetivo;
+    }
+
+    public void setObjetivo(String objetivo) {
+        this.objetivo = objetivo;
+    }
+
+    public List<Turma> getTurmas() {
+        return turmas;
+    }
+
+    public void setTurmas(List<Turma> turmas) {
+        this.turmas = turmas;
+    }
+
+    public List<Questao> getQuestoes() {
+        return questoes;
+    }
+
+    public void setQuestoes(List<Questao> questoes) {
+        this.questoes = questoes;
+    }
+
+    public Formulario getFormulario() {
+        return formulario;
+    }
+
+    public void setFormulario(Formulario formulario) {
+        this.formulario = formulario;
+    }
+
+    public Mensagem getMensagem() {
+        return mensagem;
+    }
+
+    public void setMensagem(Mensagem mensagem) {
+        this.mensagem = mensagem;
+    }
+
+    public Set<Questao> getQuestao() {
         return questao;
     }
 
-    public void setCategoria(Set<Questao> categoria) {
+    public void setQuestao(Set<Questao> categoria) {
         this.questao = categoria;
     }
-    
-     @Override
+
+    @Override
     public int hashCode() {
         int hash = 5;
         hash = 29 * hash + Objects.hashCode(this.id);
