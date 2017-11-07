@@ -16,7 +16,8 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.CreateQuestaoLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{questaoController.selected.id}" title="#{bundle.CreateQuestaoTitle_id}" />
+                    <h:inputText id="id" value="#{questaoController.selected.id}" title="#{bundle.CreateQuestaoTitle_id}" readonly="true" />
+                    
                     <h:outputLabel value="#{bundle.CreateQuestaoLabel_texto}" for="texto" />
                     <h:inputText id="texto" value="#{questaoController.selected.texto}" title="#{bundle.CreateQuestaoTitle_texto}" />
                 </h:panelGrid>
