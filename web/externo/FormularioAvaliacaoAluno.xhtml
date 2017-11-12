@@ -6,9 +6,47 @@
     <h:head>
         <title>Likert</title>
         <h:outputStylesheet library="bootstrap-3.3.7-dist" name="css/bootstrap.css"/>
+        <h:outputStylesheet library="css" name="customizacoes.css"/>
     </h:head>
     <h:body>
-        <h1>Avaliação - Aluno da Pós-Graduação</h1>
+        <h:form>
+            <div class="container">
+                <h1 class="text-center">Avaliação &#8212; Alunos da Pós-Graduação</h1>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <h:outputLabel for="nomeAluno" value="Aluno:" />
+                            <h:inputText id="nomeAluno" class="form-control" readonly="true" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <h:outputLabel for="cpfAluno" value="CPF:" />
+                            <h:inputText id="cpfAluno" class="form-control" readonly="true" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <h:outputLabel for="modulo" value="Módulo:"/>
+                            <h:inputText id="modulo" class="form-control" readonly="true" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <h:outputLabel for="professor" value="Professor:" />
+                            <h:inputText id="professor" class="form-control" readonly="true" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p class="text-indent-first-line">Por favor, preencha essa avaliação com toda atenção. Ela é muito importante para a melhoria contínua de seu curso. É através das avaliações que poderemos construir um curso cada vez melhor. O que é importante para você agora e para o valor de seu diploma no futuro.</p>
+                    </div>
+                </div>
+            </div>
+        </h:form>
         <h:outputScript library="jquery" name="jquery-3.2.1.js" />
         <h:outputScript library="bootstrap-3.3.7-dist" name="js/bootstrap.js" />
     </h:body>
