@@ -1,23 +1,20 @@
 package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa;
 
 import java.time.LocalDate;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.enviodeemail.Mensagem;
-import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.Turma;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import javax.persistence.JoinColumn;
 import java.io.Serializable;
+import javax.persistence.GenerationType;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
@@ -25,10 +22,11 @@ import javax.persistence.ManyToMany;
 @Table(name = "AVALIACAO")
 public class Avaliacao implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
+    private static final long serialVersionUID = 7138098198142465498L;
+    
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private Integer id;
 
     @Lob
@@ -49,18 +47,6 @@ public class Avaliacao implements Serializable {
             joinColumns = @JoinColumn(name = "id_avaliacao"),
             inverseJoinColumns = @JoinColumn(name = "id_questao"))
     private Set<Questao> questao = new HashSet<>();
-
-    @Transient
-    private Formulario formulario;
-
-    @Transient
-    private Mensagem mensagem;
-
-    @Transient
-    private List<Turma> turmas;
-
-    @Transient
-    private List<Questao> questoes;
 
     public Integer getId() {
         return id;
@@ -100,38 +86,6 @@ public class Avaliacao implements Serializable {
 
     public void setObjetivo(String objetivo) {
         this.objetivo = objetivo;
-    }
-
-    public List<Turma> getTurmas() {
-        return turmas;
-    }
-
-    public void setTurmas(List<Turma> turmas) {
-        this.turmas = turmas;
-    }
-
-    public List<Questao> getQuestoes() {
-        return questoes;
-    }
-
-    public void setQuestoes(List<Questao> questoes) {
-        this.questoes = questoes;
-    }
-
-    public Formulario getFormulario() {
-        return formulario;
-    }
-
-    public void setFormulario(Formulario formulario) {
-        this.formulario = formulario;
-    }
-
-    public Mensagem getMensagem() {
-        return mensagem;
-    }
-
-    public void setMensagem(Mensagem mensagem) {
-        this.mensagem = mensagem;
     }
 
     public Set<Questao> getQuestao() {
