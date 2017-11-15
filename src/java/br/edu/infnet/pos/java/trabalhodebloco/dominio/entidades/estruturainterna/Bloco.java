@@ -64,4 +64,14 @@ public class Bloco implements Serializable {
         this.curso = curso;
     }
 
+    @Override
+    public String toString() {
+        return getNome();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return (obj instanceof Bloco) && ((Bloco) obj).getId().equals(getId());
+    }
+
 }

@@ -19,77 +19,79 @@ import javax.persistence.Table;
 @Table(name = "TURMA")
 public class Turma implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
-	private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
+    private Integer id;
 
-	@Column(name = "DT_INICIO")
-	private LocalDate inicio;
+    @Column(name = "DT_INICIO")
+    private LocalDate inicio;
 
-	@Column(name = "DT_FIM")
-	private LocalDate fim;
+    @Column(name = "DT_FIM")
+    private LocalDate fim;
 
-	@ManyToOne
-	@JoinColumn(name = "ID_PROFESSOR")
-	private Professor professor;
+    @ManyToOne
+    @JoinColumn(name = "ID_PROFESSOR")
+    private Professor professor;
 
-	@ManyToMany
-	@JoinTable(name = "TURMA_MODULO", joinColumns = { @JoinColumn(name = "ID_TURMA") }, inverseJoinColumns = {
-			@JoinColumn(name = "ID_MODULO") })
-	private List<Modulo> modulos;
+    @ManyToMany
+    @JoinTable(name = "TURMA_MODULO", joinColumns = {
+        @JoinColumn(name = "ID_TURMA")}, inverseJoinColumns = {
+        @JoinColumn(name = "ID_MODULO")})
+    private List<Modulo> modulos;
 
-	@ManyToMany
-	@JoinTable(name = "TURMA_ALUNO", joinColumns = { @JoinColumn(name = "ID_TURMA") }, inverseJoinColumns = {
-			@JoinColumn(name = "ID_ALUNO") })
-	private List<Aluno> alunos;
-        
-	public Professor getProfessor() {
-		return professor;
-	}
+    @ManyToMany
+    @JoinTable(name = "TURMA_ALUNO", joinColumns = {
+        @JoinColumn(name = "ID_TURMA")}, inverseJoinColumns = {
+        @JoinColumn(name = "ID_ALUNO")})
+    private List<Aluno> alunos;
 
-	public void setProfessor(Professor professor) {
-		this.professor = professor;
-	}
+    public Professor getProfessor() {
+        return professor;
+    }
 
-	public List<Aluno> getAlunos() {
-		return alunos;
-	}
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
+    }
 
-	public void setAlunos(List<Aluno> alunos) {
-		this.alunos = alunos;
-	}
+    public List<Aluno> getAlunos() {
+        return alunos;
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    public void setAlunos(List<Aluno> alunos) {
+        this.alunos = alunos;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public LocalDate getFim() {
-		return fim;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setFim(LocalDate fim) {
-		this.fim = fim;
-	}
+    public LocalDate getFim() {
+        return fim;
+    }
 
-	public LocalDate getInicio() {
-		return inicio;
-	}
+    public void setFim(LocalDate fim) {
+        this.fim = fim;
+    }
 
-	public void setInicio(LocalDate inicio) {
-		this.inicio = inicio;
-	}
+    public LocalDate getInicio() {
+        return inicio;
+    }
 
-	public List<Modulo> getModulos() {
-		return modulos;
-	}
+    public void setInicio(LocalDate inicio) {
+        this.inicio = inicio;
+    }
 
-	public void setModulos(List<Modulo> modulos) {
-		this.modulos = modulos;
-	}
+    public List<Modulo> getModulos() {
+        return modulos;
+    }
+
+    public void setModulos(List<Modulo> modulos) {
+        this.modulos = modulos;
+    }
 
 }
