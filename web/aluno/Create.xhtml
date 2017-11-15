@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -13,48 +14,70 @@
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateAlunoLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{alunoController.selected.id}" title="#{bundle.CreateAlunoTitle_id}" readonly="true" />
-
-                    <h:outputLabel value="#{bundle.CreateAlunoLabel_nome}" for="nome" />
-                    <h:inputText id="nome" value="#{alunoController.selected.nome}" title="#{bundle.CreateAlunoTitle_nome}" />                   
-
+            
+              <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-4 col-md-offset-4 col-sm-offset-3 col-xs-offset-0">
+                <div style="margin: 0 -450px">
+          
+               <h:form  style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
+                    <div style="text-align: center;position: absolute;width: 100%;top:-30px">
+                        <span style="border: 3px solid #e0e0e0;color:#e0e0e0;border-radius: 30px;padding: 5px 7px;background: #fafafa;" class="fa fa-3x fa-user-secret"></span>
+                    </div>
+                  
+                <b:panelGrid columns="2">
+                  <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <h:outputLabel value="#{bundle.CreateAlunoLabel_id}" for="id" />
+                        </div>
+                  <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                    <b:inputText id="id" value="#{alunoController.selected.id}" title="#{bundle.CreateAlunoTitle_id}" readonly="true" />
+                  </div>
+                  </div>
+                   <div class="row">
+                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                      
+                       <h:outputLabel value="#{bundle.CreateAlunoLabel_nome}" for="nome" />
+                       <b:inputText id="nome" value="#{alunoController.selected.nome}" title="#{bundle.CreateAlunoTitle_nome}" />                   
+                    
+                     </div>
+                       <!--div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">  
+                       <b:inputText id="nome" value="#{alunoController.selected.nome}" title="#{bundle.CreateAlunoTitle_nome}" />                   
+                       </div-->
+                   </div>
                     <h:outputLabel value="#{bundle.CreateAlunoLabel_email}" for="email" />
-                    <h:inputText id="email" value="#{alunoController.selected.email}" title="#{bundle.CreateAlunoTitle_email}" />
+                    <b:inputText id="email" value="#{alunoController.selected.email}" title="#{bundle.CreateAlunoTitle_email}" />
 
                     <h:outputLabel value="#{bundle.CreateAlunoLabel_dataNascimento}" for="dataNascimento" />
-                    <h:inputText id="dataNascimento" value="#{alunoController.selected.dataNascimento}" title="#{bundle.CreateAlunoTitle_dataNascimento}">
+                    <b:inputText id="dataNascimento" value="#{alunoController.selected.dataNascimento}" title="#{bundle.CreateAlunoTitle_dataNascimento}">
                         <f:converter converterId="br.edu.infnet.pos.java.trabalhodebloco.infra.converter.JsfLocalDateConverter" />
-                    </h:inputText>
+                    </b:inputText>
 
                     <h:outputLabel value="#{bundle.CreateAlunoLabel_nomeMae}" for="nomeMae" />
-                    <h:inputText id="nomeMae" value="#{alunoController.selected.nomeMae}" title="#{bundle.CreateAlunoTitle_nomeMae}" />
+                    <b:inputText id="nomeMae" value="#{alunoController.selected.nomeMae}" title="#{bundle.CreateAlunoTitle_nomeMae}" />
 
                     <h:outputLabel value="#{bundle.CreateAlunoLabel_sexo}" for="sexo" />
-                    <h:selectOneMenu id="sexo" value="#{alunoController.selected.sexo}" title="#{bundle.CreateAlunoTitle_sexo}">
+                    <b:selectOneMenu id="sexo" value="#{alunoController.selected.sexo}" title="#{bundle.CreateAlunoTitle_sexo}">
                         <f:selectItems value="#{alunoController.sexos}" var="sexo" itemValue="#{sexo}" itemLabel="#{sexo.descricao}" />   
-                    </h:selectOneMenu>
+                    </b:selectOneMenu>
 
                     <h:outputLabel value="#{bundle.CreateAlunoLabel_cpf}" for="cpf" />
-                    <h:inputText id="cpf" value="#{alunoController.selected.cpf}" title="#{bundle.CreateAlunoTitle_cpf}" />
+                    <b:inputText id="cpf" value="#{alunoController.selected.cpf}" title="#{bundle.CreateAlunoTitle_cpf}" />
 
                     <h:outputLabel value="#{bundle.CreateAlunoLabel_identidade}" for="identidade" />
-                    <h:inputText id="identidade" value="#{alunoController.selected.identidade}" title="#{bundle.CreateAlunoTitle_identidade}" />
+                    <b:inputText id="identidade" value="#{alunoController.selected.identidade}" title="#{bundle.CreateAlunoTitle_identidade}" />
 
                     <h:outputLabel value="#{bundle.CreateAlunoLabel_matricula}" for="matricula" />
-                    <h:inputText id="matricula" value="#{alunoController.selected.matricula}" title="#{bundle.CreateAlunoTitle_matricula}" />
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{alunoController.create}" value="#{bundle.CreateAlunoSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{alunoController.prepareList}" value="#{bundle.CreateAlunoShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateAlunoIndexLink}"/>
+                    <b:inputText id="matricula" value="#{alunoController.selected.matricula}" title="#{bundle.CreateAlunoTitle_matricula}" />
+                </b:panelGrid>
+       
+                <div class="container">
+                <b:commandButton action="#{alunoController.create}" value="#{bundle.CreateAlunoSaveLink}" />
+                <b:commandButton action="#{alunoController.prepareList}" value="#{bundle.CreateAlunoShowAllLink}" immediate="true"/>
+                <b:button outcome="/index" value="#{bundle.CreateAlunoIndexLink}"/>
+                </div>
+                
             </h:form>
+                </div>
+              </div>
         </ui:define>
     </ui:composition>
 

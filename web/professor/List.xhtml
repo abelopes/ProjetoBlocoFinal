@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -19,36 +20,34 @@
                     <h:outputText value="#{professorController.pagination.pageFirstItem + 1}..#{professorController.pagination.pageLastItem + 1}/#{professorController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{professorController.previous}" value="#{bundle.Previous} #{professorController.pagination.pageSize}" rendered="#{professorController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{professorController.next}" value="#{bundle.Next} #{professorController.pagination.pageSize}" rendered="#{professorController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{professorController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
+                    <b:dataTable value="#{professorController.items}" var="item"  style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
+                       <b:column style="width:1%;text-align:left;">      <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProfessorTitle_id}"/>
                             </f:facet>
                             <h:outputText value="#{item.id}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
+                        </b:column>
+                        <b:column style="width:88%;text-align:left;">
+                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProfessorTitle_nome}"/>
                             </f:facet>
                             <h:outputText value="#{item.nome}"/>
-                        </h:column>
+                        </b:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{professorController.prepareView}" value="#{bundle.ListProfessorViewLink}"/>
+                            <h:commandLink action="#{professorController.prepareView}" class="fa fa-2x fa-eye"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{professorController.prepareEdit}" value="#{bundle.ListProfessorEditLink}"/>
+                            <h:commandLink action="#{professorController.prepareEdit}" class="fa fa-2x fa-pencil"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{professorController.destroy}" value="#{bundle.ListProfessorDestroyLink}"/>
+                            <h:commandLink action="#{professorController.destroy}" class="fa fa-2x fa-trash"/>
                         </h:column>
-                    </h:dataTable>
+                    </b:dataTable>
                 </h:panelGroup>
-                <br />
-                <h:commandLink action="#{professorController.prepareCreate}" value="#{bundle.ListProfessorCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListProfessorIndexLink}"/>
+                <div style="text-align: center; float: right;margin-bottom: 0px">
+                <b:commandButton action="#{professorController.prepareCreate}" value="#{bundle.ListProfessorCreateLink}" style="color: #ffffff;background-color: #166056;border-color: #166056;margin-right: 5px;"/>
+                <b:button outcome="/index" value="#{bundle.ListProfessorIndexLink}" style="color: #ffffff;background-color: #166056;border-color: #166056"/>
+                </div>
             </h:form>
         </ui:define>
     </ui:composition>

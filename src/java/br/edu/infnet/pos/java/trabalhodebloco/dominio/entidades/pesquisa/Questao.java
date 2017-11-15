@@ -43,4 +43,10 @@ public class Questao {
 		this.texto = texto;
 	}
 
+            @Override
+    public String toString() {
+        return this.getTexto();
+    }
+        
+        
 }

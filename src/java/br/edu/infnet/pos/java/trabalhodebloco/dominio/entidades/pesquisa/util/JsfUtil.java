@@ -23,19 +23,9 @@ public class JsfUtil {
         
         
         for (Object x : entities) {
-            Class<?> clazz = x.getClass();
-            Field field = clazz.getDeclaredFields() [1];
-            
-           
-            
-            String str1 = (String) field.get(items);
-           // items[i++] = new SelectItem(field.toString());
-            items[i++] = new SelectItem(str1.toString());
+            items[i++] = new SelectItem(x, x.toString());
             
         }
-
-    
-        
         return items;
     }
 
