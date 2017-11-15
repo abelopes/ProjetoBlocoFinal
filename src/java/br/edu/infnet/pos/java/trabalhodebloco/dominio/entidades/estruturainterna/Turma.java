@@ -19,6 +19,8 @@ import javax.persistence.Table;
 @Table(name = "TURMA")
 public class Turma implements Serializable {
 
+    private static final long serialVersionUID = -8916695384405405035L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")

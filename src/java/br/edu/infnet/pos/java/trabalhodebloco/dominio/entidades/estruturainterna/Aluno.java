@@ -14,6 +14,8 @@ import br.edu.infnet.pos.java.trabalhodebloco.dominio.enums.Sexo;
 @DiscriminatorValue(value = "ALUNO")
 public class Aluno extends Pessoa {
 
+    private static final long serialVersionUID = 2320565831084162687L;
+
     @Column(name = "CPF", length = 11)
     private String cpf;
 

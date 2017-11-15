@@ -17,6 +17,8 @@ import javax.persistence.Table;
 @DiscriminatorColumn(name = "TIPO_PESSOA")
 public abstract class Pessoa implements Serializable {
 
+    private static final long serialVersionUID = 7232265190143484142L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")

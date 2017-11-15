@@ -17,6 +17,8 @@ import javax.persistence.Table;
 @Table(name = "MODULO")
 public class Modulo implements Serializable {
 
+    private static final long serialVersionUID = 9207840456436410986L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")

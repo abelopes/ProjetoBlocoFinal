@@ -17,6 +17,8 @@ import javax.persistence.Table;
 @Table(name = "BLOCO")
 public class Bloco implements Serializable {
 
+    private static final long serialVersionUID = 1017015769925917614L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
