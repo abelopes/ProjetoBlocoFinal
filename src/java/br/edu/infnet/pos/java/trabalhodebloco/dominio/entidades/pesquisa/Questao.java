@@ -18,6 +18,15 @@ public class Questao extends Entidade {
     private static final long serialVersionUID = -512868865480632740L;
 
     private List<Resposta> respostas;
+    private Avaliacao avaliacao;
+
+    public Avaliacao getAvaliacao() {
+        return avaliacao;
+    }
+
+    public void setAvaliacao(Avaliacao avaliacao) {
+        this.avaliacao = avaliacao;
+    }
 
     public List<Resposta> getRespostas() {
         return respostas;

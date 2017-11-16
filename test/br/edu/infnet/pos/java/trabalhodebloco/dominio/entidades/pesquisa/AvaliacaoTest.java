@@ -38,4 +38,14 @@ public class AvaliacaoTest extends TesteEntidade {
         assertEquals(ID_RESPOSTA, avaliacao.getRespostas().get(0).getId());
     }
 
+    @Test
+    public void umaAvaliacaoPodeTerVariasQuestoesPropostas() {
+        final Integer ID_QUESTAO = 656773;
+        Questao questao = new Questao();
+        questao.setId(ID_QUESTAO);
+        List<Questao> questoes = new ArrayList<>();
+        questoes.add(questao);
+        avaliacao.setQuestoes(questoes);
+        assertEquals(ID_QUESTAO, avaliacao.getQuestoes().get(0).getId());
+    }
 }
