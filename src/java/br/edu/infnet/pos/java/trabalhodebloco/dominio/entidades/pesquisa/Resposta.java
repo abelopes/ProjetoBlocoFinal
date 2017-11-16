@@ -21,6 +21,15 @@ public class Resposta extends Entidade {
 
     private Aluno aluno;
     private Avaliacao avaliacao;
+    private Questao questao;
+
+    public Questao getQuestao() {
+        return questao;
+    }
+
+    public void setQuestao(Questao questao) {
+        this.questao = questao;
+    }
 
     public Aluno getAluno() {
         return aluno;

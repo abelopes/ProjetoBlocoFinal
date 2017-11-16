@@ -9,12 +9,23 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "QUESTAO")
 public class Questao extends Entidade {
 
     private static final long serialVersionUID = -512868865480632740L;
+
+    private List<Resposta> respostas;
+
+    public List<Resposta> getRespostas() {
+        return respostas;
+    }
+
+    public void setRespostas(List<Resposta> respostas) {
+        this.respostas = respostas;
+    }
 
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)

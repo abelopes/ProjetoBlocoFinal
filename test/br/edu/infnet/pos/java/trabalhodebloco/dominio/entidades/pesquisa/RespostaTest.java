@@ -44,4 +44,13 @@ public class RespostaTest extends TesteEntidade {
         assertEquals(ID_AVALIACAO, resposta.getAvaliacao().getId());
     }
 
+    
+    @Test
+    public void aRespostaDeveSerDeUmaDeterminadaQuestao() {
+        final Integer ID_QUESTAO = 737383;
+        Questao questao = new Questao();
+        questao.setId(ID_QUESTAO);
+        resposta.setQuestao(questao);
+        assertEquals(ID_QUESTAO, resposta.getQuestao().getId());
+    }
 }
