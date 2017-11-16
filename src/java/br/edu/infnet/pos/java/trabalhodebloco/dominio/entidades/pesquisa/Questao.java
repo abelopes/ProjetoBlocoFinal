@@ -20,6 +20,15 @@ public class Questao extends Entidade {
     private List<Resposta> respostas;
     private Avaliacao avaliacao;
     private TipoQuestao tipo;
+    private String texto;
+
+    public String getTexto() {
+        return texto;
+    }
+
+    public void setTexto(String texto) {
+        this.texto = texto;
+    }
 
     public TipoQuestao getTipo() {
         return tipo;

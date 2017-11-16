@@ -26,7 +26,7 @@ public class QuestaoTest extends TesteEntidade {
     public void deveValidarOID() {
         super.deveValidarOID(questao);
     }
-    
+
     @Test
     public void umaQuestaoPodeTerVariasRespostasAssociadas() {
         final Integer ID_RESPOSTA = 9937837;
@@ -37,7 +37,7 @@ public class QuestaoTest extends TesteEntidade {
         questao.setRespostas(respostas);
         assertEquals(ID_RESPOSTA, questao.getRespostas().get(0).getId());
     }
-    
+
     @Test
     public void umaQuestaoDeveSerDeUmaAvaliacao() {
         Avaliacao avaliacao = new Avaliacao();
@@ -46,10 +46,17 @@ public class QuestaoTest extends TesteEntidade {
         questao.setAvaliacao(avaliacao);
         assertEquals(ID_AVALIACAO, questao.getAvaliacao().getId());
     }
-    
+
     @Test
     public void todaQuestaoDeveTerUmTipo() {
         questao.setTipo(TipoQuestao.LIKERT);
         assertEquals(TipoQuestao.LIKERT, questao.getTipo());
+    }
+
+    @Test
+    public void aQuestaoDeveTerUmTexto() {
+        final String TEXTO_QUESTAO = "O professor contribuiu para o meu aprendizado?";
+        questao.setTexto(TEXTO_QUESTAO);
+        assertEquals(TEXTO_QUESTAO, questao.getTexto());
     }
 }
