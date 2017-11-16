@@ -1,5 +1,6 @@
 package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna;
 
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.util.Entidade;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -15,25 +16,12 @@ import javax.persistence.Table;
 @Table(name = "PESSOA")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "TIPO_PESSOA")
-public abstract class Pessoa implements Serializable {
+public abstract class Pessoa extends Entidade {
 
     private static final long serialVersionUID = 7232265190143484142L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private Integer id;
-
     @Column(name = "NOME", length = 150)
     private String nome;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getNome() {
         return nome;
