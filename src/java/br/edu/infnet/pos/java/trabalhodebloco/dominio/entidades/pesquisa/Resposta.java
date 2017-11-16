@@ -18,6 +18,17 @@ import javax.persistence.ManyToOne;
 public class Resposta extends Entidade {
 
     private static final long serialVersionUID = -319862261811464750L;
+    
+    private Aluno aluno;
+    
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;    
+    }
+    
 //
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)

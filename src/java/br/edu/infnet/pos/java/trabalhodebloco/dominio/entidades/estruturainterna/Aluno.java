@@ -1,5 +1,6 @@
 package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna;
 
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.Resposta;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -39,6 +40,16 @@ public class Aluno extends Pessoa {
 
     @ManyToMany(mappedBy = "alunos")
     private List<Turma> turmas;
+    
+    private List<Resposta> respostas;
+
+    public List<Resposta> getRespostas() {
+        return respostas;
+    }
+
+    public void setRespostas(List<Resposta> respostas) {
+        this.respostas = respostas;
+    }
 
     public List<Turma> getTurmas() {
         return turmas;
