@@ -19,6 +19,15 @@ public class Questao extends Entidade {
 
     private List<Resposta> respostas;
     private Avaliacao avaliacao;
+    private TipoQuestao tipo;
+
+    public TipoQuestao getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoQuestao tipo) {
+        this.tipo = tipo;
+    }
 
     public Avaliacao getAvaliacao() {
         return avaliacao;

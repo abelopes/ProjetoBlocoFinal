@@ -46,4 +46,10 @@ public class QuestaoTest extends TesteEntidade {
         questao.setAvaliacao(avaliacao);
         assertEquals(ID_AVALIACAO, questao.getAvaliacao().getId());
     }
+    
+    @Test
+    public void todaQuestaoDeveTerUmTipo() {
+        questao.setTipo(TipoQuestao.LIKERT);
+        assertEquals(TipoQuestao.LIKERT, questao.getTipo());
+    }
 }
