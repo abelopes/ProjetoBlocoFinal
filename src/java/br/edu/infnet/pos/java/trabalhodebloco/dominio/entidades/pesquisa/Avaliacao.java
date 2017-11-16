@@ -15,6 +15,7 @@ import java.util.Objects;
 import java.util.Set;
 import javax.persistence.JoinColumn;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.GenerationType;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -24,6 +25,16 @@ import javax.persistence.ManyToMany;
 public class Avaliacao extends Entidade {
 
     private static final long serialVersionUID = 7138098198142465498L;
+
+    private List<Resposta> respostas;
+
+    public List<Resposta> getRespostas() {
+        return respostas;
+    }
+
+    public void setRespostas(List<Resposta> respostas) {
+        this.respostas = respostas;
+    }
 
 //    @Lob
 //    @Column(name = "COMENTARIOS_E_SUGESTOES")

@@ -34,5 +34,14 @@ public class RespostaTest extends TesteEntidade {
         resposta.setAluno(aluno);
         assertEquals(nomeAluno, resposta.getAluno().getNome());
     }
+    
+    @Test
+    public void aRespostaDeveTerUmaAvaliacaoAssociada() {
+        final Integer ID_AVALIACAO = 35345;
+        Avaliacao avaliacao = new Avaliacao();
+        avaliacao.setId(ID_AVALIACAO);
+        resposta.setAvaliacao(avaliacao);
+        assertEquals(ID_AVALIACAO, resposta.getAvaliacao().getId());
+    }
 
 }
