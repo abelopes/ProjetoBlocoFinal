@@ -2,6 +2,7 @@ package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturaintern
 
 import br.edu.infnet.pos.java.trabalhodebloco.test.util.TesteEntidade;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.Resposta;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.RespostaLikert;
 import java.util.List;
 import java.util.ArrayList;
 import org.junit.After;
@@ -31,7 +32,7 @@ public class AlunoTest extends TesteEntidade {
     @Test
     public void umAlunoPodeResponderNPerguntas() {
         final Integer ID_RESPOSTA = 53;
-        Resposta resposta = new Resposta();
+        Resposta resposta = new RespostaLikert();
         resposta.setId(ID_RESPOSTA);
         List<Resposta> respostas = new ArrayList<>();
         respostas.add(resposta);

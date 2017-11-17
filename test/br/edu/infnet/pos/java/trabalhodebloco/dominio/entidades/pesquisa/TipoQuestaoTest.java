@@ -9,7 +9,7 @@ public class TipoQuestaoTest {
 
     @Test
     public void osValoresDaEnumDevemSerCorretos() {
-        assertEquals(TipoQuestao.values().length, 2);
+        assertEquals(2, TipoQuestao.values().length);
         assertEquals("Likert", TipoQuestao.LIKERT.getDescricao());
         assertEquals("Textual", TipoQuestao.TEXTUAL.getDescricao());
     }

@@ -30,7 +30,7 @@ public class QuestaoTest extends TesteEntidade {
     @Test
     public void umaQuestaoPodeTerVariasRespostasAssociadas() {
         final Integer ID_RESPOSTA = 9937837;
-        Resposta resposta = new Resposta();
+        Resposta resposta = new RespostaLikert();
         resposta.setId(ID_RESPOSTA);
         List<Resposta> respostas = new ArrayList<>();
         respostas.add(resposta);

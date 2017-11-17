@@ -1,6 +1,8 @@
 package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa;
 
 import br.edu.infnet.pos.java.trabalhodebloco.test.util.TesteEntidade;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
@@ -30,7 +32,7 @@ public class AvaliacaoTest extends TesteEntidade {
     @Test
     public void umaAvaliacaoPodeTerVariasRespostas() {
         final Integer ID_RESPOSTA = 3772934;
-        Resposta resposta = new Resposta();
+        Resposta resposta = new RespostaLikert();
         resposta.setId(ID_RESPOSTA);
         List<Resposta> respostas = new ArrayList<>();
         respostas.add(resposta);
@@ -47,5 +49,33 @@ public class AvaliacaoTest extends TesteEntidade {
         questoes.add(questao);
         avaliacao.setQuestoes(questoes);
         assertEquals(ID_QUESTAO, avaliacao.getQuestoes().get(0).getId());
+    }
+    
+    @Test
+    public void deveTerInicio() {
+        final LocalDateTime dataHoraInicio = LocalDateTime.now();
+        avaliacao.setInicio(dataHoraInicio);
+        assertEquals(dataHoraInicio, avaliacao.getInicio());
+    }
+    
+    @Test
+    public void deveTerFim() {
+        final LocalDateTime fim = LocalDateTime.now();
+        avaliacao.setFim(fim);
+        assertEquals(fim, avaliacao.getFim());
+    }
+    
+    @Test
+    public void deveTerObjetivo() {
+        final String objetivo = "Este é o objetivo da avaliação";
+        avaliacao.setObjetivo(objetivo);
+        assertEquals(objetivo, avaliacao.getObjetivo());
+    }
+    
+    @Test
+    public void deveTerOUmCodigoAlfanumerico() {
+        final String codigoAlfanumerico = "A2FASDFAS2DAFJGJ";
+        avaliacao.setCodigoAlfanumerico(codigoAlfanumerico);
+        assertEquals(codigoAlfanumerico, avaliacao.getCodigoAlfanumerico());
     }
 }

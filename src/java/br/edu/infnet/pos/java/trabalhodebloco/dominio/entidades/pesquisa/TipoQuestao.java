@@ -5,7 +5,7 @@ public enum TipoQuestao {
     LIKERT("Likert"),
     TEXTUAL("Textual");
 
-    private String descricao;
+    private final String descricao;
 
     TipoQuestao(String descricao) {
         this.descricao = descricao;

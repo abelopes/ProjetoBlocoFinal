@@ -13,7 +13,21 @@ public class RespostaTest extends TesteEntidade {
 
     @Before
     public void setUp() {
-        resposta = new Resposta();
+        resposta = new Resposta() {
+
+            private static final long serialVersionUID = 3109256773218160485L;
+
+            @Override
+            public Object getValor() {
+                return null;
+            }
+
+            @Override
+            public void setValor(Object valor) {
+                // Não faça nada.
+            }
+
+        };
     }
 
     @After
@@ -25,7 +39,7 @@ public class RespostaTest extends TesteEntidade {
     public void deveValidarOID() {
         super.deveValidarOID(resposta);
     }
-    
+
     @Test
     public void aRespostaDeveSerRespondidaPorUmAluno() {
         final String nomeAluno = "Carter McCarthy";
@@ -34,7 +48,7 @@ public class RespostaTest extends TesteEntidade {
         resposta.setAluno(aluno);
         assertEquals(nomeAluno, resposta.getAluno().getNome());
     }
-    
+
     @Test
     public void aRespostaDeveTerUmaAvaliacaoAssociada() {
         final Integer ID_AVALIACAO = 35345;
@@ -44,7 +58,6 @@ public class RespostaTest extends TesteEntidade {
         assertEquals(ID_AVALIACAO, resposta.getAvaliacao().getId());
     }
 
-    
     @Test
     public void aRespostaDeveSerDeUmaDeterminadaQuestao() {
         final Integer ID_QUESTAO = 737383;

@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.enums.Sexo;
+import javax.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue(value = "ALUNO")
@@ -41,6 +42,7 @@ public class Aluno extends Pessoa {
     @ManyToMany(mappedBy = "alunos")
     private List<Turma> turmas;
     
+    @OneToMany(mappedBy = "aluno")
     private List<Resposta> respostas;
 
     public List<Resposta> getRespostas() {

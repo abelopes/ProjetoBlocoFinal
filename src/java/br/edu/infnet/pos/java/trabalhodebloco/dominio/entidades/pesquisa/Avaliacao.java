@@ -15,10 +15,12 @@ import java.util.Objects;
 import java.util.Set;
 import javax.persistence.JoinColumn;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
 import javax.persistence.GenerationType;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 @Table(name = "AVALIACAO")
@@ -26,8 +28,56 @@ public class Avaliacao extends Entidade {
 
     private static final long serialVersionUID = 7138098198142465498L;
 
+    @OneToMany(mappedBy = "avaliacao")
     private List<Resposta> respostas;
+
+    @OneToMany(mappedBy = "avaliacao")
     private List<Questao> questoes;
+
+    @Column(name = "DATA_HORA_INICIO")
+    private LocalDateTime inicio;
+
+    @Column(name = "DATA_HORA_FIM")
+    private LocalDateTime fim;
+
+    @Lob
+    @Column(name = "OBJETIVO")
+    private String objetivo;
+
+    @Column(name = "CODIGO_ALFANUMERICO", unique = true)
+    private String codigoAlfanumerico;
+
+    public String getCodigoAlfanumerico() {
+        return codigoAlfanumerico;
+    }
+
+    public void setCodigoAlfanumerico(String codigoAlfanumerico) {
+        this.codigoAlfanumerico = codigoAlfanumerico;
+    }
+
+    public String getObjetivo() {
+        return objetivo;
+    }
+
+    public void setObjetivo(String objetivo) {
+        this.objetivo = objetivo;
+    }
+
+    public LocalDateTime getFim() {
+        return fim;
+    }
+
+    public void setFim(LocalDateTime fim) {
+        this.fim = fim;
+    }
+
+    public LocalDateTime getInicio() {
+        return inicio;
+    }
+
+    public void setInicio(LocalDateTime inicio) {
+        this.inicio = inicio;
+    }
 
     public List<Questao> getQuestoes() {
         return questoes;
@@ -45,88 +95,4 @@ public class Avaliacao extends Entidade {
         this.respostas = respostas;
     }
 
-//    @Lob
-//    @Column(name = "COMENTARIOS_E_SUGESTOES")
-//    private String comentariosESugestoes;
-//
-//    @Column(name = "DT_FIM")
-//    private LocalDate fim;
-//
-//    @Column(name = "DT_INICIO")
-//    private LocalDate inicio;
-//
-//    @Column(name = "OBJETIVO", length = 200)
-//    private String objetivo;
-//
-//    @ManyToMany
-//    @JoinTable(name = "AVALIACAO_QUESTAO",
-//            joinColumns = @JoinColumn(name = "id_avaliacao"),
-//            inverseJoinColumns = @JoinColumn(name = "id_questao"))
-//    private Set<Questao> questao = new HashSet<>();
-//
-//
-//    public String getComentariosESugestoes() {
-//        return comentariosESugestoes;
-//    }
-//
-//    public void setComentariosESugestoes(String comentariosESugestoes) {
-//        this.comentariosESugestoes = comentariosESugestoes;
-//    }
-//
-//    public LocalDate getFim() {
-//        return fim;
-//    }
-//
-//    public void setFim(LocalDate fim) {
-//        this.fim = fim;
-//    }
-//
-//    public LocalDate getInicio() {
-//        return inicio;
-//    }
-//
-//    public void setInicio(LocalDate inicio) {
-//        this.inicio = inicio;
-//    }
-//
-//    public String getObjetivo() {
-//        return objetivo;
-//    }
-//
-//    public void setObjetivo(String objetivo) {
-//        this.objetivo = objetivo;
-//    }
-//
-//    public Set<Questao> getQuestao() {
-//        return questao;
-//    }
-//
-//    public void setQuestao(Set<Questao> categoria) {
-//        this.questao = categoria;
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        int hash = 5;
-//        hash = 29 * hash + Objects.hashCode(this.id);
-//        return hash;
-//    }
-//
-//    @Override
-//    public boolean equals(Object obj) {
-//        if (this == obj) {
-//            return true;
-//        }
-//        if (obj == null) {
-//            return false;
-//        }
-//        if (getClass() != obj.getClass()) {
-//            return false;
-//        }
-//        final Avaliacao other = (Avaliacao) obj;
-//        if (!Objects.equals(this.id, other.id)) {
-//            return false;
-//        }
-//        return true;
-//    }
 }
