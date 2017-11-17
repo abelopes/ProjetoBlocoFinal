@@ -1,25 +1,13 @@
 package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa;
 
-import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
-import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.enviodeemail.Mensagem;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.util.Entidade;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
-import javax.persistence.JoinColumn;
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
-import javax.persistence.GenerationType;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity

@@ -2,15 +2,9 @@ package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa;
 
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.util.Entidade;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.Aluno;
-import br.edu.infnet.pos.java.trabalhodebloco.dominio.enums.Likert;
-import java.io.Serializable;
-import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorValue;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
@@ -18,7 +12,7 @@ import javax.persistence.ManyToOne;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(columnDefinition = "TIPO_RESPOSTA")
+@DiscriminatorColumn(columnDefinition = "TIPO_RESPOSTA", discriminatorType = DiscriminatorType.STRING)
 public abstract class Resposta<T> extends Entidade {
 
     private static final long serialVersionUID = -319862261811464750L;
