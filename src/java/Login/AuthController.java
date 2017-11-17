@@ -14,12 +14,18 @@ import javax.inject.Named;
 import Facade.UserFacade;
 import Facade.JsfUtil;
 import Model.User;
+import Model.UserController;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.Aluno;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.AlunoController;
 import static java.util.concurrent.ThreadLocalRandom.current;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.convert.Converter;
+import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
+import javax.persistence.Id;
 
 /**
  *
@@ -39,6 +45,8 @@ public class AuthController implements Serializable {
     
     private String username;
     private String password;
+    private String email;
+    private AlunoController  aluno;
 
     public AuthController() {
     }
@@ -50,6 +58,7 @@ public class AuthController implements Serializable {
         }
         return current;
     }
+        
 
 
  
@@ -85,11 +94,16 @@ public class AuthController implements Serializable {
             return null;
         } else {
             User cr = new User();
-            Aluno al = new Aluno();
+            
+        
+      
+            //String x  =null;
+            //x = al.getNome();
             cr.setUsername(username);
             cr.setPlainPassword(password);
-            cr.setAluno(al);
-            cr.setStatus(selectedItemIndex);
+            cr.setEmail(email);
+            cr.setAluno(aluno.getAluno(selectedItemIndex));
+            cr.setStatus(0);
             userFacade.edit(cr);
             JsfUtil.addErrorMessage("Suas informações foram registradas com sucesso");
             FacesContext context = FacesContext.getCurrentInstance();
@@ -124,4 +138,66 @@ public class AuthController implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+     public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+     public AlunoController getAluno() {
+        return aluno;
+    }
+     
+    
+
+    public void setAluno (AlunoController aluno) {
+        this.aluno = aluno;
+    }
+    
+    @FacesConverter(forClass = Aluno.class)
+    public static class AlunoControllerConverter implements Converter {
+
+        @Override
+        public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
+            if (value == null || value.length() == 0) {
+                return null;
+            }
+            AlunoController controller = (AlunoController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "alunoController");
+            return controller.getAluno(getKey(value));
+        }
+
+        java.lang.Integer getKey(String value) {
+            java.lang.Integer key;
+            key = Integer.valueOf(value);
+            return key;
+        }
+
+        String getStringKey(java.lang.Integer value) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(value);
+            return sb.toString();
+        }
+
+        @Override
+        public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
+            if (object == null) {
+                return null;
+            }
+            if (object instanceof Aluno) {
+                Aluno o = (Aluno) object;
+                return getStringKey(o.getId());
+            } else {
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Aluno.class.getName());
+            }
+        }
+
+    }
+ 
+    
 }
+
+

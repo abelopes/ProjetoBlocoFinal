@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -19,42 +20,41 @@
                     <h:outputText value="#{alunoController.pagination.pageFirstItem + 1}..#{alunoController.pagination.pageLastItem + 1}/#{alunoController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{alunoController.previous}" value="#{bundle.Previous} #{alunoController.pagination.pageSize}" rendered="#{alunoController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{alunoController.next}" value="#{bundle.Next} #{alunoController.pagination.pageSize}" rendered="#{alunoController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{alunoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
+                    <b:dataTable value="#{alunoController.items}" var="item"  style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
+                          <b:column style="width:1%;text-align:left;">
+                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAlunoTitle_id}"/>
                             </f:facet>
                             <h:outputText value="#{item.id}"/>
-                        </h:column>
-                        <h:column>
+                        </b:column>
+                        <b:column style="width:44%;text-align:left;">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAlunoTitle_nome}"/>
                             </f:facet>
                             <h:outputText value="#{item.nome}"/>
-                        </h:column>
-                        <h:column>
+                        </b:column>
+                        <b:column style="width:44%;text-align:left;">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAlunoTitle_email}"/>
                             </f:facet>
                             <h:outputText value="#{item.email}"/>
-                        </h:column>
+                        </b:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{alunoController.prepareView}" value="#{bundle.ListAlunoViewLink}"/>
+                            <h:commandLink action="#{alunoController.prepareView}" class="fa fa-2x fa-eye"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{alunoController.prepareEdit}" value="#{bundle.ListAlunoEditLink}"/>
+                            <h:commandLink action="#{alunoController.prepareEdit}" class="fa fa-2x fa-pencil"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{alunoController.destroy}" value="#{bundle.ListAlunoDestroyLink}"/>
+                            <h:commandLink action="#{alunoController.destroy}" class="fa fa-2x fa-trash"/>
                         </h:column>
-                    </h:dataTable>
+                    </b:dataTable>
                 </h:panelGroup>
-                <br />
-                <h:commandLink action="#{alunoController.prepareCreate}" value="#{bundle.ListAlunoCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListAlunoIndexLink}"/>
+                <div style="text-align: center; float: right">
+                <b:commandButton action="#{alunoController.prepareCreate}" value="#{bundle.ListAlunoCreateLink}" style="color: #ffffff;background-color: #166056;border-color: #166056;margin-right: 5px;"/>
+                <b:button outcome="/index" value="#{bundle.ListAlunoIndexLink}" style="color: #ffffff;background-color: #166056;border-color: #166056;margin-right: 5px;"/>
+                </div>
             </h:form>
         </ui:define>
     </ui:composition>

@@ -3,14 +3,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+       xmlns:b="http://bootsfaces.net/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.ListTurmaTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
+            <b:form styleClass="jsfcrud_list_form">
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
@@ -19,53 +20,53 @@
                     <h:outputText value="#{turmaController.pagination.pageFirstItem + 1}..#{turmaController.pagination.pageLastItem + 1}/#{turmaController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{turmaController.previous}" value="#{bundle.Previous} #{turmaController.pagination.pageSize}" rendered="#{turmaController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{turmaController.next}" value="#{bundle.Next} #{turmaController.pagination.pageSize}" rendered="#{turmaController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{turmaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
+                    <b:dataTable value="#{turmaController.items}" var="item"  style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
+                         <b:column style="width:1%;text-align:left;">
+                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTurmaTitle_id}"/>
                             </f:facet>
                             <h:outputText value="#{item.id}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
+                        </b:column>
+                         <b:column style="width:44%;text-align:left;">
+                           <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTurmaTitle_professor}"/>
                             </f:facet>
                             <h:outputText value="#{item.professor.nome}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
+                        </b:column>
+                        <b:column style="width:22%;text-align:left;">
+                           <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTurmaTitle_inicio}"/>
                             </f:facet>
                             <h:outputText value="#{item.inicio}">
                                 <f:converter converterId="br.edu.infnet.pos.java.trabalhodebloco.infra.converter.JsfLocalDateConverter" />
                             </h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
+                        </b:column>
+                        <b:column style="width:22%;text-align:left;">
+                           <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTurmaTitle_fim}"/>
                             </f:facet>
                             <h:outputText value="#{item.fim}">
                                 <f:converter converterId="br.edu.infnet.pos.java.trabalhodebloco.infra.converter.JsfLocalDateConverter" />
                             </h:outputText>
-                        </h:column>
+                        </b:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{turmaController.prepareView}" value="#{bundle.ListTurmaViewLink}"/>
+                            <h:commandLink action="#{turmaController.prepareView}" class="fa fa-2x fa-eye"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{turmaController.prepareEdit}" value="#{bundle.ListTurmaEditLink}"/>
+                            <h:commandLink action="#{turmaController.prepareEdit}" class="fa fa-2x fa-pencil"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{turmaController.destroy}" value="#{bundle.ListTurmaDestroyLink}"/>
+                            <h:commandLink action="#{turmaController.destroy}" class="fa fa-2x fa-trash"/>
                         </h:column>
-                    </h:dataTable>
+                    </b:dataTable>
                 </h:panelGroup>
-                <br />
-                <h:commandLink action="#{turmaController.prepareCreate}" value="#{bundle.ListTurmaCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListTurmaIndexLink}"/>
-            </h:form>
+                  <div style="text-align: center; float: right">
+                <b:commandButton action="#{turmaController.prepareCreate}" value="#{bundle.ListTurmaCreateLink}" style="color: #ffffff;background-color: #166056;border-color: #166056;margin-right: 5px;"/>
+                <b:button outcome="/index" value="#{bundle.ListTurmaIndexLink}" style="color: #ffffff;background-color: #166056;border-color: #166056;margin-right: 5px;"/>
+                </div>
+            </b:form>
+
         </ui:define>
     </ui:composition>
 

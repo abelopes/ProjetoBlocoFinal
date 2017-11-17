@@ -1,10 +1,14 @@
 package Model;
 
+import Login.AuthController;
 import Model.util.JsfUtil;
 import Model.util.PaginationHelper;
+import java.io.IOException;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -15,17 +19,28 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import Facade.UserFacade;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.AlunoController;
+import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 
 @Named("userController")
-@SessionScoped
+@RequestScoped
+//@SessionScoped
+//@ViewScoped
 public class UserController implements Serializable {
 
     private User current;
     private DataModel items = null;
     @EJB
     private Facade.UserFacade ejbFacade;
+    private UserFacade userFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+     private String username;
+    private String password;
+    private String email;
+    private AlunoController  aluno;
 
     public UserController() {
     }
@@ -79,14 +94,59 @@ public class UserController implements Serializable {
 
     public String create() {
         try {
+            current.setUsername(username);
+            current.setPlainPassword(password);
+            current.setEmail(email);
+            current.setStatus(0);
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserCreated"));
+           JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserCreated"));
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
         }
     }
+    
+    
+    /*  public String create() {
+        //check mobile and password is not empty
+        if (username == null
+                || username.isEmpty()
+                || password == null
+                || password.isEmpty()) {
+            Facade.JsfUtil.addErrorMessage("O nome de usuário e a senha não podem estar vazios");
+            return null;
+        }
+        //check is first time to register
+        User existEntity = userFacade.findByUsername(username);
+        if (existEntity != null) {
+            Facade.JsfUtil.addErrorMessage("Este nome de usuário já foi registrado");
+            return null;
+        } else {
+            User cr = new User();
+            
+        
+      
+            //String x  =null;
+            //x = al.getNome();
+            cr.setUsername(username);
+            cr.setPlainPassword(password);
+            cr.setEmail(email);
+            cr.setAluno(aluno.getSelected());
+            cr.setStatus(0);
+            userFacade.edit(cr);
+            Facade.JsfUtil.addErrorMessage("Suas informações foram registradas com sucesso");
+            FacesContext context = FacesContext.getCurrentInstance();
+            try {
+                context.getExternalContext().redirect("Create.xhtml");
+            } catch (IOException ex) {
+                Logger.getLogger(AuthController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return null;
+    }
+*/
+
 
     public String prepareEdit() {
         current = (User) getItems().getRowData();
@@ -189,6 +249,41 @@ public class UserController implements Serializable {
     public User getUser(java.lang.Integer id) {
         return ejbFacade.find(id);
     }
+    
+     public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+     public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+     public AlunoController getAluno() {
+        return aluno;
+    }
+     
+    
+
+    public void setAluno (AlunoController aluno) {
+        this.aluno = aluno;
+    }
+    
 
     @FacesConverter(forClass = User.class)
     public static class UserControllerConverter implements Converter {

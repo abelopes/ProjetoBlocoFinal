@@ -3,14 +3,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.ListUserTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
+            <b:form styleClass="jsfcrud_list_form">
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
@@ -19,79 +20,48 @@
                     <h:outputText value="#{userController.pagination.pageFirstItem + 1}..#{userController.pagination.pageLastItem + 1}/#{userController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{userController.previous}" value="#{bundle.Previous} #{userController.pagination.pageSize}" rendered="#{userController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{userController.next}" value="#{bundle.Next} #{userController.pagination.pageSize}" rendered="#{userController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{userController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
+                    <b:dataTable value="#{userController.items}" var="item"  style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
+                        <b:column style="width:1%;text-align:left;">
+                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListUserTitle_id}"/>
                             </f:facet>
                             <h:outputText value="#{item.id}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
+                        </b:column>
+                         <b:column style="width:44%;text-align:left;">
+                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListUserTitle_email}"/>
                             </f:facet>
                             <h:outputText value="#{item.email}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUserTitle_status}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.status}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
+                        </b:column>
+                         <b:column style="width:22%;text-align:left;">
+                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListUserTitle_username}"/>
                             </f:facet>
                             <h:outputText value="#{item.username}"/>
-                        </h:column>
-                        <!--h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUserTitle_password}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.password}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUserTitle_salt}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.salt}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUserTitle_roles}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.roles}"/>
-                        </h:column-->
-                        <h:column>
-                            <f:facet name="header">
+                        </b:column>
+                         <b:column style="width:22%;text-align:left;">
+                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListUserTitle_aluno}"/>
                             </f:facet>
                             <h:outputText value="#{item.aluno.nome}"/>
-                        </h:column>
-                        <!--h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUserTitle_plainPassword}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.plainPassword}"/>
-                        </h:column-->
+                        </b:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{userController.prepareView}" value="#{bundle.ListUserViewLink}"/>
+                            <h:commandLink action="#{userController.prepareView}" class="fa fa-2x fa-eye"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{userController.prepareEdit}" value="#{bundle.ListUserEditLink}"/>
+                            <h:commandLink action="#{userController.prepareEdit}" class="fa fa-2x fa-pencil"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{userController.destroy}" value="#{bundle.ListUserDestroyLink}"/>
+                            <h:commandLink action="#{userController.destroy}" class="fa fa-2x fa-trash"/>
                         </h:column>
-                    </h:dataTable>
+                    </b:dataTable>
                 </h:panelGroup>
-                <br />
-                <h:commandLink action="#{userController.prepareCreate}" value="#{bundle.ListUserCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListUserIndexLink}"/>
-            </h:form>
+                       <div style="text-align: center; float: right">
+                <b:commandButton action="#{userController.prepareCreate}" value="#{bundle.ListUserCreateLink}" style="color: #ffffff;background-color: #166056;border-color: #166056;margin-right: 5px;"/>
+                <b:button outcome="/index" value="#{bundle.ListUserIndexLink}" style="color: #ffffff;background-color: #166056;border-color: #166056;margin-right: 5px;"/>
+                       </div>
+            </b:form>
         </ui:define>
     </ui:composition>
 
