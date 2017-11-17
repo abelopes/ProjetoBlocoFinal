@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(columnDefinition = "TIPO_RESPOSTA", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING)
 public abstract class Resposta<T> extends Entidade {
 
     private static final long serialVersionUID = -319862261811464750L;
