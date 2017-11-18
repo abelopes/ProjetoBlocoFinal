@@ -31,6 +31,18 @@ public class Questao extends Entidade {
 
     @Column(name = "TEXTO", length = 200)
     private String texto;
+    
+    @ManyToOne
+    @JoinColumn(name = "ID_TOPICO")
+    private Topico topico;
+
+    public Topico getTopico() {
+        return topico;
+    }
+
+    public void setTopico(Topico topico) {
+        this.topico = topico;;
+    }
 
     public String getTexto() {
         return texto;

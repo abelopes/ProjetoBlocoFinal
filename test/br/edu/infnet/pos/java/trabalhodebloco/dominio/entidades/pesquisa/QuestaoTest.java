@@ -59,4 +59,13 @@ public class QuestaoTest extends TesteEntidade {
         questao.setTexto(TEXTO_QUESTAO);
         assertEquals(TEXTO_QUESTAO, questao.getTexto());
     }
+
+    @Test
+    public void aQuestaoDeveTerUmTopico() {
+        Topico topico = new Topico();
+        final Integer ID_TOPICO = 837942;
+        topico.setId(ID_TOPICO);
+        questao.setTopico(topico);
+        assertEquals(ID_TOPICO, questao.getTopico().getId());
+    }
 }

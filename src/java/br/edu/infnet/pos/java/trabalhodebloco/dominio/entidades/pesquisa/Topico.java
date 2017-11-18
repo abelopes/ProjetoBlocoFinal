@@ -3,10 +3,14 @@ package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.util.Entidade;
 import java.util.List;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "TOPICO")
 public class Topico extends Entidade {
 
     private static final long serialVersionUID = 3678988274148225422L;
