@@ -28,7 +28,7 @@ public class AvaliacaoTest extends TesteEntidade {
     public void deveValidarOID() {
         super.deveValidarOID(avaliacao);
     }
-    
+
     @Test
     public void umaAvaliacaoPodeTerVariasRespostas() {
         final Integer ID_RESPOSTA = 3772934;
@@ -41,41 +41,41 @@ public class AvaliacaoTest extends TesteEntidade {
     }
 
     @Test
-    public void umaAvaliacaoPodeTerVariasQuestoesPropostas() {
-        final Integer ID_QUESTAO = 656773;
-        Questao questao = new Questao();
-        questao.setId(ID_QUESTAO);
-        List<Questao> questoes = new ArrayList<>();
-        questoes.add(questao);
-        avaliacao.setQuestoes(questoes);
-        assertEquals(ID_QUESTAO, avaliacao.getQuestoes().get(0).getId());
-    }
-    
-    @Test
     public void deveTerInicio() {
         final LocalDateTime dataHoraInicio = LocalDateTime.now();
         avaliacao.setInicio(dataHoraInicio);
         assertEquals(dataHoraInicio, avaliacao.getInicio());
     }
-    
+
     @Test
     public void deveTerFim() {
         final LocalDateTime fim = LocalDateTime.now();
         avaliacao.setFim(fim);
         assertEquals(fim, avaliacao.getFim());
     }
-    
+
     @Test
     public void deveTerObjetivo() {
         final String objetivo = "Este é o objetivo da avaliação";
         avaliacao.setObjetivo(objetivo);
         assertEquals(objetivo, avaliacao.getObjetivo());
     }
-    
+
     @Test
     public void deveTerOUmCodigoAlfanumerico() {
         final String codigoAlfanumerico = "A2FASDFAS2DAFJGJ";
         avaliacao.setCodigoAlfanumerico(codigoAlfanumerico);
         assertEquals(codigoAlfanumerico, avaliacao.getCodigoAlfanumerico());
+    }
+
+    @Test
+    public void umaAvaliacaoPodeTerTopicos() {
+        final Integer ID_TOPICO = 656773;
+        Topico topico = new Topico();
+        topico.setId(ID_TOPICO);
+        List<Topico> topicos = new ArrayList<>();
+        topicos.add(topico);
+        avaliacao.setTopicos(topicos);
+        assertEquals(ID_TOPICO, avaliacao.getTopicos().get(0).getId());
     }
 }

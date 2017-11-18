@@ -20,7 +20,7 @@ public class Avaliacao extends Entidade {
     private List<Resposta> respostas;
 
     @OneToMany(mappedBy = "avaliacao")
-    private List<Questao> questoes;
+    private List<Topico> topicos;
 
     @Column(name = "DATA_HORA_INICIO")
     private LocalDateTime inicio;
@@ -34,6 +34,14 @@ public class Avaliacao extends Entidade {
 
     @Column(name = "CODIGO_ALFANUMERICO", unique = true)
     private String codigoAlfanumerico;
+
+    public List<Topico> getTopicos() {
+        return topicos;
+    }
+
+    public void setTopicos(List<Topico> topicos) {
+        this.topicos = topicos;
+    }
 
     public String getCodigoAlfanumerico() {
         return codigoAlfanumerico;
@@ -65,14 +73,6 @@ public class Avaliacao extends Entidade {
 
     public void setInicio(LocalDateTime inicio) {
         this.inicio = inicio;
-    }
-
-    public List<Questao> getQuestoes() {
-        return questoes;
-    }
-
-    public void setQuestoes(List<Questao> questoes) {
-        this.questoes = questoes;
     }
 
     public List<Resposta> getRespostas() {
