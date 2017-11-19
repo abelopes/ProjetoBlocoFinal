@@ -16,4 +16,4 @@ Software para avaliação da instituição por seus alunos usando a escala de **
 
 ## Diretórios do projeto
 
-	- Você deve colocar o conteúdo do projeto https://github.com/brucelucien/ProjetoBlocoFinalLibs dentro do diretório **lib** na raiz deste projeto.
+Você deve colocar o conteúdo do projeto https://github.com/brucelucien/ProjetoBlocoFinalLibs dentro do diretório **lib** na raiz deste projeto.
