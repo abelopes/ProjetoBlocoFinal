@@ -1,3 +1,9 @@
-/build/
-/dist/
-/nbproject/private/
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+lib/*
+!lib/.gitkeep
+!lib/leia_isso.txt
