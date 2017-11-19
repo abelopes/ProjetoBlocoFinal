@@ -6,3 +6,4 @@ nbdist/
 .nb-gradle/
 lib/*
 !lib/.gitkeep
+!lib/leia_isso.txt
