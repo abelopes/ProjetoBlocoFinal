@@ -14,6 +14,7 @@ Software para avaliação da instituição por seus alunos usando a escala de **
 
 ***Obs.:*** clique nos links para baixar as dependências.
 
-## Diretórios do projeto
+## Dependências
 
-Você deve colocar o conteúdo do projeto https://github.com/brucelucien/ProjetoBlocoFinalLibs dentro do diretório **lib** na raiz deste projeto.
+ - Você deve colocar o conteúdo do projeto https://github.com/brucelucien/ProjetoBlocoFinalLibs dentro do diretório **lib** na raiz deste projeto.
+ - **ATENÇÃO**: se você precisar adicionar novas bibliotecas ao projeto o faça também nesse repositório citado acima e, no Netbeans, faça uma referência com **caminho relativo**, que é uma opção do Netbeans quando incluímos novas libs ao projeto.
