@@ -27,7 +27,6 @@ public class UserFacade extends AbstractFacade<User> {
 
     public User findByUsername(String username) {
         try {
-            System.out.println("ddddddddddd"+username);
             return (User) em.createQuery("select U From User AS U WHERE U.username=:username").setParameter("username", username).setMaxResults(1).getSingleResult();
         } catch (Exception e) {
             e.printStackTrace();
