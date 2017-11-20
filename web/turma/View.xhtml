@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -14,35 +15,43 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewTurmaLabel_id}"/>
-                    <h:outputText value="#{turmaController.selected.id}" title="#{bundle.ViewTurmaTitle_id}"/>
-                    
-                    <h:outputText value="#{bundle.ViewTurmaLabel_inicio}"/>
-                    <h:outputText value="#{turmaController.selected.inicio}" title="#{bundle.ViewTurmaTitle_inicio}">
-                        <f:converter converterId="br.edu.infnet.pos.java.trabalhodebloco.infra.converter.JsfLocalDateConverter" />
-                    </h:outputText>
-                    
-                    <h:outputText value="#{bundle.ViewTurmaLabel_fim}"/>
-                    <h:outputText value="#{turmaController.selected.fim}" title="#{bundle.ViewTurmaTitle_fim}">
-                        <f:converter converterId="br.edu.infnet.pos.java.trabalhodebloco.infra.converter.JsfLocalDateConverter" />
-                    </h:outputText>
-                    
-                    <h:outputText value="#{bundle.ViewTurmaLabel_professor}"/>
-                    <h:outputText value="#{turmaController.selected.professor.nome}" title="#{bundle.ViewTurmaTitle_professor}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{turmaController.destroyAndView}" value="#{bundle.ViewTurmaDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewTurmaEditLink}"/>
-                <br />
-                <h:commandLink action="#{turmaController.prepareCreate}" value="#{bundle.ViewTurmaCreateLink}" />
-                <br />
-                <h:commandLink action="#{turmaController.prepareList}" value="#{bundle.ViewTurmaShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewTurmaIndexLink}"/>
+                <b:dataTable value="#{turmaController.selected}" var="item"  style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
+                    <b:column style="width:1%;text-align:left;">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ViewTurmaLabel_id}"/>
+                        </f:facet>
+                        <h:outputText value="#{turmaController.selected.id}" title="#{bundle.ViewTurmaTitle_id}"/>
+                    </b:column> 
+                    <b:column style="width:22%;text-align:left;">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ViewTurmaLabel_inicio}"/>
+                        </f:facet>
+                        <h:outputText value="#{turmaController.selected.inicio}" title="#{bundle.ViewTurmaTitle_inicio}">
+                            <f:converter converterId="br.edu.infnet.pos.java.trabalhodebloco.infra.converter.JsfLocalDateConverter" />
+                        </h:outputText>
+                    </b:column>
+                    <b:column style="width:22%;text-align:left;">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ViewTurmaLabel_fim}"/>
+                        </f:facet>
+                        <h:outputText value="#{turmaController.selected.fim}" title="#{bundle.ViewTurmaTitle_fim}">
+                            <f:converter converterId="br.edu.infnet.pos.java.trabalhodebloco.infra.converter.JsfLocalDateConverter" />
+                        </h:outputText>
+                    </b:column>
+                    <b:column style="width:44%;text-align:left;">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ViewTurmaLabel_professor}"/>
+                        </f:facet>
+                        <h:outputText value="#{turmaController.selected.professor.nome}" title="#{bundle.ViewTurmaTitle_professor}"/>
+                    </b:column>
+                </b:dataTable>
+                <div style="text-align: center; float: right">
+                    <b:commandButton action="#{turmaController.destroyAndView}" value="#{bundle.ViewTurmaDestroyLink}" class="btn btn-primary"/>
+                    <b:button outcome="Edit" value="#{bundle.ViewTurmaEditLink}" class="btn btn-primary"/>
+                    <b:commandButton action="#{turmaController.prepareCreate}" value="#{bundle.ViewTurmaCreateLink}"class="btn btn-primary"/>
+                    <b:commandButton action="#{turmaController.prepareList}" value="#{bundle.ViewTurmaShowAllLink}" class="btn btn-primary"/>
+                    <b:button outcome="/index" value="#{bundle.ViewTurmaIndexLink}" class="btn btn-primary"/>
+                </div>
             </h:form>
         </ui:define>
     </ui:composition>

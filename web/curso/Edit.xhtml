@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -13,23 +14,26 @@
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditCursoLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{cursoController.selected.id}" title="#{bundle.EditCursoTitle_id}" readonly="true" />
-                    <h:outputLabel value="#{bundle.EditCursoLabel_nome}" for="nome" />
-                    <h:inputText id="nome" value="#{cursoController.selected.nome}" title="#{bundle.EditCursoTitle_nome}" />
-                </h:panelGrid>
-                <h:commandLink action="#{cursoController.update}" value="#{bundle.EditCursoSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditCursoViewLink}"/>
-                <br />
-                <h:commandLink action="#{cursoController.prepareList}" value="#{bundle.EditCursoShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditCursoIndexLink}" />
-            </h:form>
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-4 col-md-offset-4 col-sm-offset-3 col-xs-offset-0">
+                <div style="margin: 0 -450px; text-align:right">
+                   <h:form  style="border: solid 3px #e0e0e0;padding-top:50px;border-radius: 5px;position: relative;max-width:100%;height:auto; width:100%">
+                        <div style="text-align: center;position: absolute;width: 100%;top:-50px">
+                            <span style="border: 3px solid #e0e0e0;color:#e0e0e0;border-radius: 30px;padding: 5px 7px;background: #fafafa;" class="fa fa-3x  fa-book"></span>
+                        </div>
+                     <h:panelGrid columns="2"  style="width: 50%">
+                            <h:outputLabel value="#{bundle.EditCursoLabel_nome}" for="nome" />
+                            <b:inputText id="nome" value="#{cursoController.selected.nome}" title="#{bundle.EditCursoTitle_nome}" />
+                        </h:panelGrid>
+                        <div style="margin-top: 40rem">
+                            <b:commandButton action="#{cursoController.update}" value="#{bundle.EditCursoSaveLink}" class="btn btn-primary" />
+                            <b:commandButton action="#{cursoController.prepareList}" value="#{bundle.EditCursoShowAllLink}" immediate="true" class="btn btn-primary"/>
+                            <b:button outcome="/index" value="#{bundle.EditCursoIndexLink}" class="btn btn-primary"/>
+                            <b:button outcome="View" value="#{bundle.EditCursoViewLink}" style="color: #ffffff;background-color: #166056;border-color: #166056;"/>
+                        </div>
+                    </h:form>
+
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 

@@ -3,14 +3,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.ListBlocoTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
+            <b:form styleClass="jsfcrud_list_form">
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
@@ -19,43 +20,42 @@
                     <h:outputText value="#{blocoController.pagination.pageFirstItem + 1}..#{blocoController.pagination.pageLastItem + 1}/#{blocoController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{blocoController.previous}" value="#{bundle.Previous} #{blocoController.pagination.pageSize}" rendered="#{blocoController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{blocoController.next}" value="#{bundle.Next} #{blocoController.pagination.pageSize}" rendered="#{blocoController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{blocoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
+                      <b:dataTable value="#{blocoController.items}" var="item"  style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
+                          <b:column style="width:1%;text-align:left;">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListBlocoTitle_id}"/>
                             </f:facet>
                             <h:outputText value="#{item.id}"/>
-                        </h:column>
-                        <h:column>
+                        </b:column>
+                        <b:column style="width:44%;text-align:left;">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListBlocoTitle_nome}"/>
                             </f:facet>
                             <h:outputText value="#{item.nome}"/>
-                        </h:column>
-                        <h:column>
+                        </b:column>
+                        <b:column style="width:44%;text-align:left;">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListBlocoTitle_curso}"/>
                             </f:facet>
                             <h:outputText value="#{item.curso.nome}"/>
-                        </h:column>
+                        </b:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{blocoController.prepareView}" value="#{bundle.ListBlocoViewLink}"/>
+                            <h:commandLink action="#{blocoController.prepareView}" class="fa fa-2x fa-eye"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{blocoController.prepareEdit}" value="#{bundle.ListBlocoEditLink}"/>
+                            <h:commandLink action="#{blocoController.prepareEdit}" class="fa fa-2x fa-pencil"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{blocoController.destroy}" value="#{bundle.ListBlocoDestroyLink}"/>
+                            <h:commandLink action="#{blocoController.destroy}" class="fa fa-2x fa-trash"/>
                         </h:column>
-                    </h:dataTable>
+                    </b:dataTable>
                 </h:panelGroup>
-                <br />
-                <h:commandLink action="#{blocoController.prepareCreate}" value="#{bundle.ListBlocoCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListBlocoIndexLink}"/>
-            </h:form>
+                <div style="text-align: center; float: right">
+                <b:commandButton action="#{blocoController.prepareCreate}" value="#{bundle.ListBlocoCreateLink}" class="btn btn-primary"/>
+                 <b:button outcome="/index" value="#{bundle.ListBlocoIndexLink}" class="btn btn-primary"/>
+                </div>
+            </b:form>
         </ui:define>
     </ui:composition>
 
