@@ -28,10 +28,59 @@ public class Avaliacao extends Entidade {
     @Column(name = "DATA_HORA_FIM")
     private LocalDateTime fim;
 
-
-    }
-
-}
     @Lob
     @Column(name = "OBJETIVO")
     private String objetivo;
+
+    @Column(name = "CODIGO_ALFANUMERICO", unique = true)
+    private String codigoAlfanumerico;
+
+    public List<Topico> getTopicos() {
+        return topicos;
+    }
+
+    public void setTopicos(List<Topico> topicos) {
+        this.topicos = topicos;
+    }
+
+    public String getCodigoAlfanumerico() {
+        return codigoAlfanumerico;
+    }
+
+    public void setCodigoAlfanumerico(String codigoAlfanumerico) {
+        this.codigoAlfanumerico = codigoAlfanumerico;
+    }
+
+    public String getObjetivo() {
+        return objetivo;
+    }
+
+    public void setObjetivo(String objetivo) {
+        this.objetivo = objetivo;
+    }
+
+    public LocalDateTime getFim() {
+        return fim;
+    }
+
+    public void setFim(LocalDateTime fim) {
+        this.fim = fim;
+    }
+
+    public LocalDateTime getInicio() {
+        return inicio;
+    }
+
+    public void setInicio(LocalDateTime inicio) {
+        this.inicio = inicio;
+    }
+
+    public List<Resposta> getRespostas() {
+        return respostas;
+    }
+
+    public void setRespostas(List<Resposta> respostas) {
+        this.respostas = respostas;
+    }
+
+}
