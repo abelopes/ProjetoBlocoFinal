@@ -1,3 +1,30 @@
+body {
+    background-color: #cccccc;
+}
+
 .text-indent-first-line {
     text-indent: 2em;
+}
+
+.btn,
+.btn-primary {
+    color: #ffffff !IMPORTANT;
+    background-color: #166056 !IMPORTANT;
+    border-color: #166056 !IMPORTANT;
+    margin-right: 5px !IMPORTANT;
+}
+
+.btn:hover,
+.btn-primary:hover {
+    background-color: #259688 !IMPORTANT;
+}
+
+.borda-login {
+    border: solid 3px #e0e0e0;
+    padding: 1em 1em 1em 1em;
+    border-radius: 5px;
+}
+
+.text-red {
+    color: #ff0000;
 }

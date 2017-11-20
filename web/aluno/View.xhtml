@@ -54,11 +54,11 @@
                     <b:inputText id="matricula" value="#{alunoController.selected.matricula}" title="#{bundle.EditAlunoTitle_matricula}" readonly="true"/>
                 </b:panelGrid>
              <div style="margin-top: 47rem;float: right">   
-                <b:commandButton action="#{alunoController.destroyAndView}" value="#{bundle.ViewAlunoDestroyLink}" style="color: #ffffff;background-color: #166056;border-color: #166056;margin-right: 5px;"/>
-                <b:button outcome="Edit" value="#{bundle.ViewAlunoEditLink}" style="color: #ffffff;background-color: #166056;border-color: #166056;margin-right: 5px;"/>
-                <b:commandButton action="#{alunoController.prepareCreate}" value="#{bundle.ViewAlunoCreateLink}" style="color: #ffffff;background-color: #166056;border-color: #166056;margin-right: 5px;" />
-                <b:commandButton action="#{alunoController.prepareList}" value="#{bundle.ViewAlunoShowAllLink}" style="color: #ffffff;background-color: #166056;border-color: #166056;margin-right: 5px;"/>
-                <b:button outcome="/index" value="#{bundle.ViewAlunoIndexLink}" style="color: #ffffff;background-color: #166056;border-color: #166056;margin-right: 5px;"/>
+                <b:commandButton action="#{alunoController.destroyAndView}" value="#{bundle.ViewAlunoDestroyLink}" class="btn btn-primary"/>
+                <b:button outcome="Edit" value="#{bundle.ViewAlunoEditLink}" class="btn btn-primary"/>
+                <b:commandButton action="#{alunoController.prepareCreate}" value="#{bundle.ViewAlunoCreateLink}" class="btn btn-primary" />
+                <b:commandButton action="#{alunoController.prepareList}" value="#{bundle.ViewAlunoShowAllLink}" class="btn btn-primary"/>
+                <b:button outcome="/index" value="#{bundle.ViewAlunoIndexLink}" class="btn btn-primary"/>
                </div>
             </h:form>
                 </div>

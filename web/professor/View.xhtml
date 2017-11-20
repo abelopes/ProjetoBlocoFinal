@@ -36,10 +36,10 @@
                   </b:column>
                 </b:dataTable>
                 <div style="text-align: center; float: right">
-                <b:commandButton action="#{professorController.destroyAndView}" value="#{bundle.ViewProfessorDestroyLink}" style="color: #ffffff;background-color: #166056;border-color: #166056;margin-right: 5px;"/>
-                <b:button outcome="Edit" value="#{bundle.ViewProfessorEditLink}" style="color: #ffffff;background-color: #166056;border-color: #166056;margin-right: 5px;"/>
-                <b:commandButton action="#{professorController.prepareCreate}" value="#{bundle.ViewProfessorCreateLink}"  style="color: #ffffff;background-color: #166056;border-color: #166056;margin-right: 5px;"/>
-                <b:commandButton action="#{professorController.prepareList}" value="#{bundle.ViewProfessorShowAllLink}" style="color: #ffffff;background-color: #166056;border-color: #166056;margin-right: 5px;"/>
+                <b:commandButton action="#{professorController.destroyAndView}" value="#{bundle.ViewProfessorDestroyLink}" class="btn btn-primary"/>
+                <b:button outcome="Edit" value="#{bundle.ViewProfessorEditLink}" class="btn btn-primary"/>
+                <b:commandButton action="#{professorController.prepareCreate}" value="#{bundle.ViewProfessorCreateLink}"  class="btn btn-primary"/>
+                <b:commandButton action="#{professorController.prepareList}" value="#{bundle.ViewProfessorShowAllLink}" class="btn btn-primary"/>
                 <b:button outcome="/index" value="#{bundle.ViewProfessorIndexLink}" style="color: #ffffff;background-color: #166056;"/>
                 </div>
             </h:form>
