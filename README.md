@@ -73,3 +73,7 @@ VALUES      (3,
              NULL); 
 </pre>
 
+## Manhas do Netbeans
+
+  - [Alt + Shift + O]: procurar qualquer arquivo do projeto;
+  - [Shift + Ctrl + F]: procurar por uma string qualquer nos arquivos do projeto.
