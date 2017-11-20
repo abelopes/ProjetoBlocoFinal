@@ -76,4 +76,9 @@ public class Questao extends Entidade {
         this.respostas = respostas;
     }
 
+    @Override
+    public String toString() {
+        return this.getTexto();
+    }
+
 }

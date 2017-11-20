@@ -68,4 +68,11 @@ public class QuestaoTest extends TesteEntidade {
         questao.setTopico(topico);
         assertEquals(ID_TOPICO, questao.getTopico().getId());
     }
+    
+    @Test
+    public void toStringDeveRetornarOTexto() {
+        final String texto = "Gostaria de cursar outros módulos com esse professor.";
+        questao.setTexto(texto);
+        assertEquals(texto, questao.toString());
+    }
 }
