@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Login;
+package br.edu.infnet.pos.java.trabalhodebloco.login;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -11,10 +11,10 @@ import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import Facade.UserFacade;
-import Facade.JsfUtil;
-import Model.User;
-import Model.UserController;
+import br.edu.infnet.pos.java.trabalhodebloco.facade.UserFacade;
+import br.edu.infnet.pos.java.trabalhodebloco.facade.JsfUtil;
+import br.edu.infnet.pos.java.trabalhodebloco.model.User;
+import br.edu.infnet.pos.java.trabalhodebloco.model.UserController;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.Aluno;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.AlunoController;
 import static java.util.concurrent.ThreadLocalRandom.current;

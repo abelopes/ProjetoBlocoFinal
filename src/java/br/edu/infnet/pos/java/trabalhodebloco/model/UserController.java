@@ -1,8 +1,8 @@
-package Model;
+package br.edu.infnet.pos.java.trabalhodebloco.model;
 
-import Login.AuthController;
-import Model.util.JsfUtil;
-import Model.util.PaginationHelper;
+import br.edu.infnet.pos.java.trabalhodebloco.login.AuthController;
+import br.edu.infnet.pos.java.trabalhodebloco.model.util.JsfUtil;
+import br.edu.infnet.pos.java.trabalhodebloco.model.util.PaginationHelper;
 import java.io.IOException;
 
 import java.io.Serializable;
@@ -19,7 +19,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
-import Facade.UserFacade;
+import br.edu.infnet.pos.java.trabalhodebloco.facade.UserFacade;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.AlunoController;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.view.ViewScoped;
@@ -33,7 +33,7 @@ public class UserController implements Serializable {
     private User current;
     private DataModel items = null;
     @EJB
-    private Facade.UserFacade ejbFacade;
+    private br.edu.infnet.pos.java.trabalhodebloco.facade.UserFacade ejbFacade;
     private UserFacade userFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
@@ -53,7 +53,7 @@ public class UserController implements Serializable {
         return current;
     }
 
-    private Facade.UserFacade getFacade() {
+    private br.edu.infnet.pos.java.trabalhodebloco.facade.UserFacade getFacade() {
         return ejbFacade;
     }
 

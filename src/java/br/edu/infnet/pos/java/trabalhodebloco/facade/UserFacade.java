@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Facade;
+package br.edu.infnet.pos.java.trabalhodebloco.facade;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import Model.User;
+import br.edu.infnet.pos.java.trabalhodebloco.model.User;
 
 @Stateless
 public class UserFacade extends AbstractFacade<User> {

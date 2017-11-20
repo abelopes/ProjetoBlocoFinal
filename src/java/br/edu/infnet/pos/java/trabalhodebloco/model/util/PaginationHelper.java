@@ -1,4 +1,4 @@
-package Model.util;
+package br.edu.infnet.pos.java.trabalhodebloco.model.util;
 
 import javax.faces.model.DataModel;
 
