@@ -76,4 +76,5 @@ VALUES      (3,
 ## Manhas do Netbeans
 
   - [Alt + Shift + O]: procurar qualquer arquivo do projeto;
-  - [Shift + Ctrl + F]: procurar por uma string qualquer nos arquivos do projeto.
+  - [Shift + Ctrl + F]: procurar por uma string qualquer nos arquivos do projeto;
+  - [Ctrl + O]: procurar por tipos.
