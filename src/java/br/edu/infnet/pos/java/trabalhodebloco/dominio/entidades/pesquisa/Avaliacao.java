@@ -8,6 +8,7 @@ import javax.persistence.Table;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.util.Entidade;
 import java.time.LocalDateTime;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -16,10 +17,10 @@ public class Avaliacao extends Entidade {
 
     private static final long serialVersionUID = 7138098198142465498L;
 
-    @OneToMany(mappedBy = "avaliacao")
+    @OneToMany(mappedBy = "avaliacao", cascade = CascadeType.PERSIST)
     private List<Resposta> respostas;
 
-    @OneToMany(mappedBy = "avaliacao")
+    @OneToMany(mappedBy = "avaliacao", cascade = CascadeType.PERSIST)
     private List<Topico> topicos;
 
     @Column(name = "DATA_HORA_INICIO")

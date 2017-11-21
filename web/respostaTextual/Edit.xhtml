@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditRespostaTextualTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditRespostaTextualLabel_valor}" for="valor" />
+                    <h:inputTextarea rows="4" cols="30" id="valor" value="#{respostaTextualController.selected.valor}" title="#{bundle.EditRespostaTextualTitle_valor}" />
+                    <h:outputLabel value="#{bundle.EditRespostaTextualLabel_valor}" for="valor" />
+                    <h:inputText id="valor" value="#{respostaTextualController.selected.valor}" title="#{bundle.EditRespostaTextualTitle_valor}" />
+                    <h:outputLabel value="#{bundle.EditRespostaTextualLabel_questao}" for="questao" />
+                    <h:selectOneMenu id="questao" value="#{respostaTextualController.selected.questao}" title="#{bundle.EditRespostaTextualTitle_questao}" >
+                        <f:selectItems value="#{questaoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditRespostaTextualLabel_aluno}" for="aluno" />
+                    <h:selectOneMenu id="aluno" value="#{respostaTextualController.selected.aluno}" title="#{bundle.EditRespostaTextualTitle_aluno}" >
+                        <f:selectItems value="#{alunoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditRespostaTextualLabel_avaliacao}" for="avaliacao" />
+                    <h:selectOneMenu id="avaliacao" value="#{respostaTextualController.selected.avaliacao}" title="#{bundle.EditRespostaTextualTitle_avaliacao}" >
+                        <f:selectItems value="#{avaliacaoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditRespostaTextualLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{respostaTextualController.selected.id}" title="#{bundle.EditRespostaTextualTitle_id}" />
+                </h:panelGrid>
+                <h:commandLink action="#{respostaTextualController.update}" value="#{bundle.EditRespostaTextualSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditRespostaTextualViewLink}"/>
+                <br />
+                <h:commandLink action="#{respostaTextualController.prepareList}" value="#{bundle.EditRespostaTextualShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditRespostaTextualIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

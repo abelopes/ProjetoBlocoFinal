@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTopicoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateTopicoLabel_avaliacao}" for="avaliacao" />
+                    <h:selectOneMenu id="avaliacao" value="#{topicoController.selected.avaliacao}" title="#{bundle.CreateTopicoTitle_avaliacao}" >
+                        <f:selectItems value="#{avaliacaoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateTopicoLabel_texto}" for="texto" />
+                    <h:inputText id="texto" value="#{topicoController.selected.texto}" title="#{bundle.CreateTopicoTitle_texto}" />
+                    <h:outputLabel value="#{bundle.CreateTopicoLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{topicoController.selected.id}" title="#{bundle.CreateTopicoTitle_id}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{topicoController.create}" value="#{bundle.CreateTopicoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{topicoController.prepareList}" value="#{bundle.CreateTopicoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateTopicoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

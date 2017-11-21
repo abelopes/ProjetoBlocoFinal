@@ -2,11 +2,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Likert</title>
         <h:outputStylesheet library="bootstrap-3.3.7-dist" name="css/bootstrap.css"/>
         <h:outputStylesheet library="css" name="customizacoes.css"/>
+        <f:metadata>
+            <f:viewParam name="id_aluno" value="#{formularioAvaliacaoAlunoController.idAluno}" required="true"></f:viewParam>
+        </f:metadata>
     </h:head>
     <h:body>
         <h:form>
@@ -44,10 +48,11 @@
                     <div class="col-sm-12">
                         <p class="text-indent-first-line">Por favor, preencha essa avaliação com toda atenção. Ela é muito importante para a melhoria contínua de seu curso. É através das avaliações que poderemos construir um curso cada vez melhor. O que é importante para você agora e para o valor de seu diploma no futuro.</p>
                     </div>
-                </div>
+                </div>               
                 <div class="row">
                     <div class="col-sm-12">
                         <h:commandLink action="#{formularioAvaliacaoAlunoController.criarAvaliacaoExemplo}" value="Criar formulário de exemplo" immediate="true" class="btn btn-primary" />
+                        <h:commandLink action="#{formularioAvaliacaoAlunoController.criarAlunoExemplo}" value="Criar aluno de exemplo" immediate="true" class="btn btn-primary" />
                     </div>
                 </div>
             </div>

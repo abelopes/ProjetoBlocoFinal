@@ -3,6 +3,7 @@ package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturaintern
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
+import javax.persistence.CascadeType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,17 +33,17 @@ public class Turma implements Serializable {
     @Column(name = "DT_FIM")
     private LocalDate fim;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "ID_PROFESSOR")
     private Professor professor;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "TURMA_MODULO", joinColumns = {
         @JoinColumn(name = "ID_TURMA")}, inverseJoinColumns = {
         @JoinColumn(name = "ID_MODULO")})
     private List<Modulo> modulos;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "TURMA_ALUNO", joinColumns = {
         @JoinColumn(name = "ID_TURMA")}, inverseJoinColumns = {
         @JoinColumn(name = "ID_ALUNO")})

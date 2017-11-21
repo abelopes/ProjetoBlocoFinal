@@ -2,6 +2,7 @@ package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa;
 
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.util.Entidade;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -22,7 +23,7 @@ public class Topico extends Entidade {
     @JoinColumn(name = "ID_AVALIACAO")
     private Avaliacao avaliacao;
 
-    @OneToMany(mappedBy = "topico")
+    @OneToMany(mappedBy = "topico", cascade = CascadeType.PERSIST)
     private List<Questao> questoes;
 
     public List<Questao> getQuestoes() {

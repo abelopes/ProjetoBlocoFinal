@@ -10,6 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.enums.Sexo;
+import javax.persistence.CascadeType;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -37,9 +40,10 @@ public class Aluno extends Pessoa {
     private String nomeMae;
 
     @Column(name = "SEXO")
+    @Enumerated(EnumType.STRING)
     private Sexo sexo;
 
-    @ManyToMany(mappedBy = "alunos")
+    @ManyToMany(mappedBy = "alunos", cascade = CascadeType.PERSIST)
     private List<Turma> turmas;
     
     @OneToMany(mappedBy = "aluno")

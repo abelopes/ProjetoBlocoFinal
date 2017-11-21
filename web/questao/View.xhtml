@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewQuestaoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewQuestaoLabel_topico}"/>
+                    <h:outputText value="#{questaoController.selected.topico}" title="#{bundle.ViewQuestaoTitle_topico}"/>
+                    <h:outputText value="#{bundle.ViewQuestaoLabel_texto}"/>
+                    <h:outputText value="#{questaoController.selected.texto}" title="#{bundle.ViewQuestaoTitle_texto}"/>
+                    <h:outputText value="#{bundle.ViewQuestaoLabel_tipo}"/>
+                    <h:outputText value="#{questaoController.selected.tipo}" title="#{bundle.ViewQuestaoTitle_tipo}"/>
+                    <h:outputText value="#{bundle.ViewQuestaoLabel_avaliacao}"/>
+                    <h:outputText value="#{questaoController.selected.avaliacao}" title="#{bundle.ViewQuestaoTitle_avaliacao}"/>
+                    <h:outputText value="#{bundle.ViewQuestaoLabel_id}"/>
+                    <h:outputText value="#{questaoController.selected.id}" title="#{bundle.ViewQuestaoTitle_id}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{questaoController.destroyAndView}" value="#{bundle.ViewQuestaoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewQuestaoEditLink}"/>
+                <br />
+                <h:commandLink action="#{questaoController.prepareCreate}" value="#{bundle.ViewQuestaoCreateLink}" />
+                <br />
+                <h:commandLink action="#{questaoController.prepareList}" value="#{bundle.ViewQuestaoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewQuestaoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
