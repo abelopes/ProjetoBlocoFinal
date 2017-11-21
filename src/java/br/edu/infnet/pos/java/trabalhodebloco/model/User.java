@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.infnet.pos.java.trabalhodebloco.model;
 
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.Aluno;
@@ -27,46 +22,50 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author davood
- */
 @Entity
 @Table(name = "User")
 @XmlRootElement
 public class User implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 7311826664216749542L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
+
     @Size(max = 100)
     @Column(name = "EMAIL")
     private String email;
-    
+
     @Size(max = 512)
     @Column(name = "PASSWORD")
     private String password;
+
     @Size(max = 255)
     @Column(name = "USERNAME")
     private String username;
+
     @Size(max = 512)
     @Column(name = "SALT")
     private String salt;
-    @Column(name="status")
+
+    @Column(name = "status")
     private Integer status;
+
     @ElementCollection
-    private Map<String,String> roles = new Hashtable<>();
+    private Map<String, String> roles = new Hashtable<>();
+
     @Transient
     private String plainPassword;
-    private Aluno aluno;
-   
-    
-    public boolean hasRole(String role){
+
+    private Aluno aluno; // TODO Não esquecer de definir um nome de coluna JPA aqui.
+
+    public boolean hasRole(String role) {
         return roles.containsKey(role);
     }
+
     public User() {
     }
 
@@ -97,7 +96,6 @@ public class User implements Serializable {
     public void setStatus(Integer status) {
         this.status = status;
     }
-    
 
     public void setEmail(String email) {
         this.email = email;
@@ -133,18 +131,17 @@ public class User implements Serializable {
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
-    
-        @OneToMany
-	@JoinColumn(name = "ID_ALUNO")
-	
-        
-        public Aluno getAluno() {
-		return aluno;
-	}
 
-	public void setAluno(Aluno aluno) {
-		this.aluno = aluno;
-	}
+    @OneToMany
+    @JoinColumn(name = "ID_ALUNO")
+
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
 
     @Override
     public boolean equals(Object object) {
@@ -171,8 +168,8 @@ public class User implements Serializable {
         }
     }
 
-    public boolean checkPassword(String plainPassword){
-        String pass=org.apache.commons.codec.digest.DigestUtils.shaHex(salt + "(" + plainPassword + ")" + salt);
+    public boolean checkPassword(String plainPassword) {
+        String pass = org.apache.commons.codec.digest.DigestUtils.shaHex(salt + "(" + plainPassword + ")" + salt);
         return pass.equals(password);
     }
 }
