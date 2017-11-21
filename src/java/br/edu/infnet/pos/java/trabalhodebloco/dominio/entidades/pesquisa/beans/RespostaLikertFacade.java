@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package temporario.bean;
+package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.beans;
 
-import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.RespostaTextual;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.RespostaLikert;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author Bruce Notario
  */
 @Stateless
-public class RespostaTextualFacade extends AbstractFacade<RespostaTextual> {
+public class RespostaLikertFacade extends AbstractFacade<RespostaLikert> {
 
     @PersistenceContext(unitName = "ProjetoBloco4PU")
     private EntityManager em;
@@ -25,8 +25,8 @@ public class RespostaTextualFacade extends AbstractFacade<RespostaTextual> {
         return em;
     }
 
-    public RespostaTextualFacade() {
-        super(RespostaTextual.class);
+    public RespostaLikertFacade() {
+        super(RespostaLikert.class);
     }
     
 }

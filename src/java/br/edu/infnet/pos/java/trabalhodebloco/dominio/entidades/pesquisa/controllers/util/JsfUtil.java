@@ -1,4 +1,4 @@
-package temporario.jsf.util;
+package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.controllers.util;
 
 import java.util.List;
 import javax.faces.application.FacesMessage;

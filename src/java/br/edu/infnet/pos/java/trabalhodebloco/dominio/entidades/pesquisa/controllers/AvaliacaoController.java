@@ -1,9 +1,9 @@
-package temporario.jsf;
+package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.controllers;
 
-import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.RespostaTextual;
-import temporario.jsf.util.JsfUtil;
-import temporario.jsf.util.PaginationHelper;
-import temporario.bean.RespostaTextualFacade;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.Avaliacao;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.controllers.util.JsfUtil;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.controllers.util.PaginationHelper;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.beans.AvaliacaoFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -18,29 +18,29 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@Named("respostaTextualController")
+@Named("avaliacaoController")
 @SessionScoped
-public class RespostaTextualController implements Serializable {
+public class AvaliacaoController implements Serializable {
 
-    private RespostaTextual current;
+    private Avaliacao current;
     private DataModel items = null;
     @EJB
-    private temporario.bean.RespostaTextualFacade ejbFacade;
+    private br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.beans.AvaliacaoFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public RespostaTextualController() {
+    public AvaliacaoController() {
     }
 
-    public RespostaTextual getSelected() {
+    public Avaliacao getSelected() {
         if (current == null) {
-            current = new RespostaTextual();
+            current = new Avaliacao();
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private RespostaTextualFacade getFacade() {
+    private AvaliacaoFacade getFacade() {
         return ejbFacade;
     }
 
@@ -68,13 +68,13 @@ public class RespostaTextualController implements Serializable {
     }
 
     public String prepareView() {
-        current = (RespostaTextual) getItems().getRowData();
+        current = (Avaliacao) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new RespostaTextual();
+        current = new Avaliacao();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -82,7 +82,7 @@ public class RespostaTextualController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("RespostaTextualCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("AvaliacaoCreated"));
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -91,7 +91,7 @@ public class RespostaTextualController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (RespostaTextual) getItems().getRowData();
+        current = (Avaliacao) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -99,7 +99,7 @@ public class RespostaTextualController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("RespostaTextualUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("AvaliacaoUpdated"));
             return "View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -108,7 +108,7 @@ public class RespostaTextualController implements Serializable {
     }
 
     public String destroy() {
-        current = (RespostaTextual) getItems().getRowData();
+        current = (Avaliacao) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -132,7 +132,7 @@ public class RespostaTextualController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("RespostaTextualDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("AvaliacaoDeleted"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -188,21 +188,21 @@ public class RespostaTextualController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    public RespostaTextual getRespostaTextual(java.lang.Integer id) {
+    public Avaliacao getAvaliacao(java.lang.Integer id) {
         return ejbFacade.find(id);
     }
 
-    @FacesConverter(forClass = RespostaTextual.class)
-    public static class RespostaTextualControllerConverter implements Converter {
+    @FacesConverter(forClass = Avaliacao.class)
+    public static class AvaliacaoControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            RespostaTextualController controller = (RespostaTextualController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "respostaTextualController");
-            return controller.getRespostaTextual(getKey(value));
+            AvaliacaoController controller = (AvaliacaoController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "avaliacaoController");
+            return controller.getAvaliacao(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -222,11 +222,11 @@ public class RespostaTextualController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof RespostaTextual) {
-                RespostaTextual o = (RespostaTextual) object;
+            if (object instanceof Avaliacao) {
+                Avaliacao o = (Avaliacao) object;
                 return getStringKey(o.getId());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + RespostaTextual.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Avaliacao.class.getName());
             }
         }
 

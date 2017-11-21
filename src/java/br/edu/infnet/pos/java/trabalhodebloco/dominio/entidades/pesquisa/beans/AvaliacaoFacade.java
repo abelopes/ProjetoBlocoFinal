@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package temporario.bean;
+package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.beans;
 
-import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.Questao;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.Avaliacao;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author Bruce Notario
  */
 @Stateless
-public class QuestaoFacade extends AbstractFacade<Questao> {
+public class AvaliacaoFacade extends AbstractFacade<Avaliacao> {
 
     @PersistenceContext(unitName = "ProjetoBloco4PU")
     private EntityManager em;
@@ -25,8 +25,8 @@ public class QuestaoFacade extends AbstractFacade<Questao> {
         return em;
     }
 
-    public QuestaoFacade() {
-        super(Questao.class);
+    public AvaliacaoFacade() {
+        super(Avaliacao.class);
     }
     
 }

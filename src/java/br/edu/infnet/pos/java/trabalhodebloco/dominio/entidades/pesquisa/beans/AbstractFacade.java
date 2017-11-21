@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package temporario.bean;
+package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.beans;
 
 import java.util.List;
 import javax.persistence.EntityManager;

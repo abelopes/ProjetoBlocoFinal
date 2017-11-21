@@ -1,9 +1,9 @@
-package temporario.jsf;
+package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.controllers;
 
-import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.RespostaLikert;
-import temporario.jsf.util.JsfUtil;
-import temporario.jsf.util.PaginationHelper;
-import temporario.bean.RespostaLikertFacade;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.RespostaTextual;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.controllers.util.JsfUtil;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.controllers.util.PaginationHelper;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.beans.RespostaTextualFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -18,29 +18,29 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@Named("respostaLikertController")
+@Named("respostaTextualController")
 @SessionScoped
-public class RespostaLikertController implements Serializable {
+public class RespostaTextualController implements Serializable {
 
-    private RespostaLikert current;
+    private RespostaTextual current;
     private DataModel items = null;
     @EJB
-    private temporario.bean.RespostaLikertFacade ejbFacade;
+    private br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.beans.RespostaTextualFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public RespostaLikertController() {
+    public RespostaTextualController() {
     }
 
-    public RespostaLikert getSelected() {
+    public RespostaTextual getSelected() {
         if (current == null) {
-            current = new RespostaLikert();
+            current = new RespostaTextual();
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private RespostaLikertFacade getFacade() {
+    private RespostaTextualFacade getFacade() {
         return ejbFacade;
     }
 
@@ -68,13 +68,13 @@ public class RespostaLikertController implements Serializable {
     }
 
     public String prepareView() {
-        current = (RespostaLikert) getItems().getRowData();
+        current = (RespostaTextual) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new RespostaLikert();
+        current = new RespostaTextual();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -82,7 +82,7 @@ public class RespostaLikertController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("RespostaLikertCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("RespostaTextualCreated"));
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -91,7 +91,7 @@ public class RespostaLikertController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (RespostaLikert) getItems().getRowData();
+        current = (RespostaTextual) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -99,7 +99,7 @@ public class RespostaLikertController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("RespostaLikertUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("RespostaTextualUpdated"));
             return "View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -108,7 +108,7 @@ public class RespostaLikertController implements Serializable {
     }
 
     public String destroy() {
-        current = (RespostaLikert) getItems().getRowData();
+        current = (RespostaTextual) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -132,7 +132,7 @@ public class RespostaLikertController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("RespostaLikertDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("RespostaTextualDeleted"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -188,21 +188,21 @@ public class RespostaLikertController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    public RespostaLikert getRespostaLikert(java.lang.Integer id) {
+    public RespostaTextual getRespostaTextual(java.lang.Integer id) {
         return ejbFacade.find(id);
     }
 
-    @FacesConverter(forClass = RespostaLikert.class)
-    public static class RespostaLikertControllerConverter implements Converter {
+    @FacesConverter(forClass = RespostaTextual.class)
+    public static class RespostaTextualControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            RespostaLikertController controller = (RespostaLikertController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "respostaLikertController");
-            return controller.getRespostaLikert(getKey(value));
+            RespostaTextualController controller = (RespostaTextualController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "respostaTextualController");
+            return controller.getRespostaTextual(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -222,11 +222,11 @@ public class RespostaLikertController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof RespostaLikert) {
-                RespostaLikert o = (RespostaLikert) object;
+            if (object instanceof RespostaTextual) {
+                RespostaTextual o = (RespostaTextual) object;
                 return getStringKey(o.getId());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + RespostaLikert.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + RespostaTextual.class.getName());
             }
         }
 

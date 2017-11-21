@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
-import temporario.bean.AvaliacaoFacade;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.beans.AvaliacaoFacade;
 
 @Named("formularioAvaliacaoAlunoController")
 @RequestScoped

@@ -1,9 +1,9 @@
-package temporario.jsf;
+package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.controllers;
 
-import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.Avaliacao;
-import temporario.jsf.util.JsfUtil;
-import temporario.jsf.util.PaginationHelper;
-import temporario.bean.AvaliacaoFacade;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.RespostaLikert;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.controllers.util.JsfUtil;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.controllers.util.PaginationHelper;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.beans.RespostaLikertFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -18,29 +18,29 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@Named("avaliacaoController")
+@Named("respostaLikertController")
 @SessionScoped
-public class AvaliacaoController implements Serializable {
+public class RespostaLikertController implements Serializable {
 
-    private Avaliacao current;
+    private RespostaLikert current;
     private DataModel items = null;
     @EJB
-    private temporario.bean.AvaliacaoFacade ejbFacade;
+    private br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.beans.RespostaLikertFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public AvaliacaoController() {
+    public RespostaLikertController() {
     }
 
-    public Avaliacao getSelected() {
+    public RespostaLikert getSelected() {
         if (current == null) {
-            current = new Avaliacao();
+            current = new RespostaLikert();
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private AvaliacaoFacade getFacade() {
+    private RespostaLikertFacade getFacade() {
         return ejbFacade;
     }
 
@@ -68,13 +68,13 @@ public class AvaliacaoController implements Serializable {
     }
 
     public String prepareView() {
-        current = (Avaliacao) getItems().getRowData();
+        current = (RespostaLikert) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new Avaliacao();
+        current = new RespostaLikert();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -82,7 +82,7 @@ public class AvaliacaoController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("AvaliacaoCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("RespostaLikertCreated"));
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -91,7 +91,7 @@ public class AvaliacaoController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (Avaliacao) getItems().getRowData();
+        current = (RespostaLikert) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -99,7 +99,7 @@ public class AvaliacaoController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("AvaliacaoUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("RespostaLikertUpdated"));
             return "View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -108,7 +108,7 @@ public class AvaliacaoController implements Serializable {
     }
 
     public String destroy() {
-        current = (Avaliacao) getItems().getRowData();
+        current = (RespostaLikert) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -132,7 +132,7 @@ public class AvaliacaoController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("AvaliacaoDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("RespostaLikertDeleted"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -188,21 +188,21 @@ public class AvaliacaoController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    public Avaliacao getAvaliacao(java.lang.Integer id) {
+    public RespostaLikert getRespostaLikert(java.lang.Integer id) {
         return ejbFacade.find(id);
     }
 
-    @FacesConverter(forClass = Avaliacao.class)
-    public static class AvaliacaoControllerConverter implements Converter {
+    @FacesConverter(forClass = RespostaLikert.class)
+    public static class RespostaLikertControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            AvaliacaoController controller = (AvaliacaoController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "avaliacaoController");
-            return controller.getAvaliacao(getKey(value));
+            RespostaLikertController controller = (RespostaLikertController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "respostaLikertController");
+            return controller.getRespostaLikert(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -222,11 +222,11 @@ public class AvaliacaoController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Avaliacao) {
-                Avaliacao o = (Avaliacao) object;
+            if (object instanceof RespostaLikert) {
+                RespostaLikert o = (RespostaLikert) object;
                 return getStringKey(o.getId());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Avaliacao.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + RespostaLikert.class.getName());
             }
         }
 

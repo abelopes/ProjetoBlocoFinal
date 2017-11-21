@@ -1,9 +1,9 @@
-package temporario.jsf;
+package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.controllers;
 
-import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.Questao;
-import temporario.jsf.util.JsfUtil;
-import temporario.jsf.util.PaginationHelper;
-import temporario.bean.QuestaoFacade;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.Topico;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.controllers.util.JsfUtil;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.controllers.util.PaginationHelper;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.beans.TopicoFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -18,29 +18,29 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@Named("questaoController")
+@Named("topicoController")
 @SessionScoped
-public class QuestaoController implements Serializable {
+public class TopicoController implements Serializable {
 
-    private Questao current;
+    private Topico current;
     private DataModel items = null;
     @EJB
-    private temporario.bean.QuestaoFacade ejbFacade;
+    private br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.beans.TopicoFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public QuestaoController() {
+    public TopicoController() {
     }
 
-    public Questao getSelected() {
+    public Topico getSelected() {
         if (current == null) {
-            current = new Questao();
+            current = new Topico();
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private QuestaoFacade getFacade() {
+    private TopicoFacade getFacade() {
         return ejbFacade;
     }
 
@@ -68,13 +68,13 @@ public class QuestaoController implements Serializable {
     }
 
     public String prepareView() {
-        current = (Questao) getItems().getRowData();
+        current = (Topico) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new Questao();
+        current = new Topico();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -82,7 +82,7 @@ public class QuestaoController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("QuestaoCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TopicoCreated"));
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -91,7 +91,7 @@ public class QuestaoController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (Questao) getItems().getRowData();
+        current = (Topico) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -99,7 +99,7 @@ public class QuestaoController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("QuestaoUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TopicoUpdated"));
             return "View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -108,7 +108,7 @@ public class QuestaoController implements Serializable {
     }
 
     public String destroy() {
-        current = (Questao) getItems().getRowData();
+        current = (Topico) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -132,7 +132,7 @@ public class QuestaoController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("QuestaoDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TopicoDeleted"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -188,21 +188,21 @@ public class QuestaoController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    public Questao getQuestao(java.lang.Integer id) {
+    public Topico getTopico(java.lang.Integer id) {
         return ejbFacade.find(id);
     }
 
-    @FacesConverter(forClass = Questao.class)
-    public static class QuestaoControllerConverter implements Converter {
+    @FacesConverter(forClass = Topico.class)
+    public static class TopicoControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            QuestaoController controller = (QuestaoController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "questaoController");
-            return controller.getQuestao(getKey(value));
+            TopicoController controller = (TopicoController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "topicoController");
+            return controller.getTopico(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -222,11 +222,11 @@ public class QuestaoController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Questao) {
-                Questao o = (Questao) object;
+            if (object instanceof Topico) {
+                Topico o = (Topico) object;
                 return getStringKey(o.getId());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Questao.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Topico.class.getName());
             }
         }
 
