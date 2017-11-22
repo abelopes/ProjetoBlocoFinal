@@ -33,6 +33,15 @@ public class FormularioAvaliacaoAlunoController {
 
     private Aluno aluno;
 
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+        this.idAluno = aluno.getId();
+    }
+
     public void criarAvaliacaoExemplo() {
         avaliacaoFacade.create(montarAvaliacaoExemplo());
     }
@@ -102,19 +111,13 @@ public class FormularioAvaliacaoAlunoController {
         return criarQuestao(TipoQuestao.LIKERT, texto);
     }
 
-    public Aluno getAluno() {
-        return aluno;
-    }
-
     public Integer getIdAluno() {
         return idAluno;
     }
 
     public void setIdAluno(Integer idAluno) {
         this.idAluno = idAluno;
-        aluno = null;
-        aluno = new Aluno();
-        aluno.setId(idAluno);
+        this.aluno = alunoFacade.find(idAluno);
     }
 
     public Aluno montarAlunoExemplo() {

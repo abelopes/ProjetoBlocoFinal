@@ -123,6 +123,9 @@ public class FormularioAvaliacaoAlunoControllerTest {
     @Test
     public void deveSerPossivelAtribuidUmIdDeUsuarioAoController() {
         final Integer ID_ALUNO = 234234;
+        final Aluno esperado = new Aluno();
+        esperado.setId(ID_ALUNO);
+        when(mockAlunoFacade.find(ID_ALUNO)).thenReturn(esperado);
         controller.setIdAluno(ID_ALUNO);
         assertEquals(ID_ALUNO, controller.getAluno().getId());
     }
@@ -144,6 +147,44 @@ public class FormularioAvaliacaoAlunoControllerTest {
     public void deveChamarFacadeAoCriarNoBancoUmAlunoDeExemplo() {
         controller.criarAlunoExemplo();
         verify(mockAlunoFacade).create(Mockito.any());
+    }
+    
+    @Test
+    public void deveSerPossivelAlterarUmAluno() {
+        final String NOME_ALUNO = "Bruce Notario";
+        final Aluno aluno = new Aluno();
+        aluno.setNome(NOME_ALUNO);
+        controller.setAluno(aluno);
+        assertEquals(NOME_ALUNO, controller.getAluno().getNome());
+    }
+    
+    @Test
+    public void seOAlunoForAlteradoOIdTambemDeveSerAlterado() {
+        final Integer ID_ALUNO = 234784982;
+        Aluno aluno = new Aluno();
+        aluno.setId(ID_ALUNO);
+        controller.setAluno(aluno);
+        assertEquals(ID_ALUNO, controller.getIdAluno());
+    }
+    
+    @Test
+    public void aoAlterarUmIdDeAlunoDeveSeBuscarOAlunoNaBase() {
+        final Integer ID_ALUNO = 2345234;
+        controller.setIdAluno(ID_ALUNO);
+        verify(mockAlunoFacade).find(ID_ALUNO);
+    }
+    
+    @Test
+    public void oAlunoEncontradoAoAtribuirUmIdAlunoDeveSerColocadoNoAtributoAluno() {
+        final Integer ID_ALUNO = 88969905;
+        final String NOME_ALUNO = "Yuval noah Harari";
+        final Aluno alunoEsperado = new Aluno();
+        alunoEsperado.setId(ID_ALUNO);
+        alunoEsperado.setNome(NOME_ALUNO);
+        when(mockAlunoFacade.find(ID_ALUNO)).thenReturn(alunoEsperado);
+        controller.setIdAluno(ID_ALUNO);
+        assertEquals(ID_ALUNO, controller.getAluno().getId());
+        assertEquals(NOME_ALUNO, controller.getAluno().getNome());
     }
 
 }
