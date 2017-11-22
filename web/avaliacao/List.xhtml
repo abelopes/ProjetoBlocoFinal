@@ -20,38 +20,38 @@
                     <h:outputText value="#{avaliacaoController.pagination.pageFirstItem + 1}..#{avaliacaoController.pagination.pageLastItem + 1}/#{avaliacaoController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{avaliacaoController.previous}" value="#{bundle.Previous} #{avaliacaoController.pagination.pageSize}" rendered="#{avaliacaoController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{avaliacaoController.next}" value="#{bundle.Next} #{avaliacaoController.pagination.pageSize}" rendered="#{avaliacaoController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{avaliacaoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
+                    <b:dataTable value="#{avaliacaoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <b:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAvaliacaoTitle_codigoAlfanumerico}"/>
                             </f:facet>
-                            <h:outputText value="#{item.codigoAlfanumerico}"/>
-                        </h:column>
-                        <h:column>
+                            <b:outputText value="#{item.codigoAlfanumerico}"/>
+                        </b:column>
+                        <b:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAvaliacaoTitle_objetivo}"/>
                             </f:facet>
-                            <h:outputText value="#{item.objetivo}"/>
-                        </h:column>
-                        <h:column>
+                            <b:outputText value="#{item.objetivo}"/>
+                        </b:column>
+                        <b:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAvaliacaoTitle_fim}"/>
                             </f:facet>
                             <h:outputText value="#{item.fim}"/>
-                        </h:column>
-                        <h:column>
+                        </b:column>
+                        <b:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAvaliacaoTitle_inicio}"/>
                             </f:facet>
                             <h:outputText value="#{item.inicio}"/>
-                        </h:column>
-                        <h:column>
+                        </b:column>
+                        <b:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAvaliacaoTitle_id}"/>
                             </f:facet>
                             <h:outputText value="#{item.id}"/>
-                        </h:column>
-                        <h:column>
+                        </b:column>
+                        <b:column>
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
@@ -60,8 +60,8 @@
                             <h:commandLink action="#{avaliacaoController.prepareEdit}" value="#{bundle.ListAvaliacaoEditLink}"/>
                             <h:outputText value=" "/>
                             <h:commandLink action="#{avaliacaoController.destroy}" value="#{bundle.ListAvaliacaoDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
+                        </b:column>
+                    </b:dataTable>
                 </h:panelGroup>
                 <div style="text-align: center; float: right">
                 <b:commandButton  action="#{avaliacaoController.prepareCreate}" value="#{bundle.ListAvaliacaoCreateLink}"/>
