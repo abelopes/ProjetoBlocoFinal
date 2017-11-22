@@ -1,8 +1,10 @@
 package br.edu.infnet.pos.java.trabalhodebloco.aplicacao.formularioavaliacaoaluno;
 
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.Aluno;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.AlunoFacade;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.Avaliacao;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.TipoQuestao;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.beans.AvaliacaoFacade;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.enums.Sexo;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -11,13 +13,22 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class FormularioAvaliacaoAlunoControllerTest {
 
     @InjectMocks
     private FormularioAvaliacaoAlunoController controller;
+
+    @Mock
+    private AvaliacaoFacade mockAvaliacaoFacade;
+
+    @Mock
+    private AlunoFacade mockAlunoFacade;
 
     @Test
     public void deveCriarUmFormularioDeExemplo() {
@@ -121,6 +132,18 @@ public class FormularioAvaliacaoAlunoControllerTest {
         final Integer ID_ALUNO = 74564;
         controller.setIdAluno(ID_ALUNO);
         assertEquals(ID_ALUNO, controller.getIdAluno());
+    }
+
+    @Test
+    public void deveChamarFacadeAoCriarNoBancoUmaAvaliacaoDeExemplo() {
+        controller.criarAvaliacaoExemplo();
+        verify(mockAvaliacaoFacade).create(Mockito.any());
+    }
+
+    @Test
+    public void deveChamarFacadeAoCriarNoBancoUmAlunoDeExemplo() {
+        controller.criarAlunoExemplo();
+        verify(mockAlunoFacade).create(Mockito.any());
     }
 
 }
