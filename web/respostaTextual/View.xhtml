@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -14,7 +15,7 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
+                <h:panelGrid columns="2" style="width: 50%;float:left;height: 100%">
                     <h:outputText value="#{bundle.ViewRespostaTextualLabel_valor}"/>
                     <h:outputText value="#{respostaTextualController.selected.valor}" title="#{bundle.ViewRespostaTextualTitle_valor}"/>
                     <h:outputText value="#{bundle.ViewRespostaTextualLabel_valor}"/>
@@ -28,19 +29,17 @@
                     <h:outputText value="#{bundle.ViewRespostaTextualLabel_id}"/>
                     <h:outputText value="#{respostaTextualController.selected.id}" title="#{bundle.ViewRespostaTextualTitle_id}"/>
                 </h:panelGrid>
-                <br />
-                <h:commandLink action="#{respostaTextualController.destroyAndView}" value="#{bundle.ViewRespostaTextualDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewRespostaTextualEditLink}"/>
-                <br />
-                <h:commandLink action="#{respostaTextualController.prepareCreate}" value="#{bundle.ViewRespostaTextualCreateLink}" />
-                <br />
-                <h:commandLink action="#{respostaTextualController.prepareList}" value="#{bundle.ViewRespostaTextualShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewRespostaTextualIndexLink}"/>
+                <div style="margin-top: 47rem;float: right">
+                <b:commandButton action="#{respostaTextualController.destroyAndView}" value="#{bundle.ViewRespostaTextualDestroyLink}"/>
 
+                <b:button outcome="Edit" value="#{bundle.ViewRespostaTextualEditLink}"/>
+     
+                <b:commandButton action="#{respostaTextualController.prepareCreate}" value="#{bundle.ViewRespostaTextualCreateLink}" />
+          
+                <b:commandButton action="#{respostaTextualController.prepareList}" value="#{bundle.ViewRespostaTextualShowAllLink}"/>
+      
+                <b:button outcome="/index" value="#{bundle.ViewRespostaTextualIndexLink}"/>
+                </div>   
             </h:form>
         </ui:define>
     </ui:composition>
