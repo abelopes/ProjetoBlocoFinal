@@ -7,24 +7,17 @@ import br.edu.infnet.pos.java.trabalhodebloco.dominio.enums.Sexo;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
-import org.junit.After;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Before;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.junit.MockitoJUnitRunner;
 
+@RunWith(MockitoJUnitRunner.class)
 public class FormularioAvaliacaoAlunoControllerTest {
 
+    @InjectMocks
     private FormularioAvaliacaoAlunoController controller;
-
-    @Before
-    public void setUp() {
-        controller = new FormularioAvaliacaoAlunoController();
-    }
-
-    @After
-    public void tearDown() {
-        controller = null;
-    }
 
     @Test
     public void deveCriarUmFormularioDeExemplo() {
