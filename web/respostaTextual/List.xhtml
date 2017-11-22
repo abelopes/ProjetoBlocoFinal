@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -19,43 +20,43 @@
                     <h:outputText value="#{respostaTextualController.pagination.pageFirstItem + 1}..#{respostaTextualController.pagination.pageLastItem + 1}/#{respostaTextualController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{respostaTextualController.previous}" value="#{bundle.Previous} #{respostaTextualController.pagination.pageSize}" rendered="#{respostaTextualController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{respostaTextualController.next}" value="#{bundle.Next} #{respostaTextualController.pagination.pageSize}" rendered="#{respostaTextualController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{respostaTextualController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
+                    <b:dataTable value="#{respostaTextualController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <b:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListRespostaTextualTitle_valor}"/>
                             </f:facet>
                             <h:outputText value="#{item.valor}"/>
-                        </h:column>
-                        <h:column>
+                        </b:column>
+                        <b:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListRespostaTextualTitle_valor}"/>
                             </f:facet>
                             <h:outputText value="#{item.valor}"/>
-                        </h:column>
-                        <h:column>
+                        </b:column>
+                        <b:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListRespostaTextualTitle_questao}"/>
                             </f:facet>
                             <h:outputText value="#{item.questao}"/>
-                        </h:column>
-                        <h:column>
+                        </b:column>
+                        <b:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListRespostaTextualTitle_aluno}"/>
                             </f:facet>
                             <h:outputText value="#{item.aluno}"/>
-                        </h:column>
-                        <h:column>
+                        </b:column>
+                        <b:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListRespostaTextualTitle_avaliacao}"/>
                             </f:facet>
                             <h:outputText value="#{item.avaliacao}"/>
-                        </h:column>
-                        <h:column>
+                        </b:column>
+                        <b:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListRespostaTextualTitle_id}"/>
                             </f:facet>
                             <h:outputText value="#{item.id}"/>
-                        </h:column>
+                        </b:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
@@ -66,13 +67,12 @@
                             <h:outputText value=" "/>
                             <h:commandLink action="#{respostaTextualController.destroy}" value="#{bundle.ListRespostaTextualDestroyLink}"/>
                         </h:column>
-                    </h:dataTable>
+                    </b:dataTable>
                 </h:panelGroup>
-                <br />
-                <h:commandLink action="#{respostaTextualController.prepareCreate}" value="#{bundle.ListRespostaTextualCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListRespostaTextualIndexLink}"/>
+                <div style="text-align: center; float: right">
+                <b:commandButton action="#{respostaTextualController.prepareCreate}" value="#{bundle.ListRespostaTextualCreateLink}"/>
+                <b:button outcome="/index" value="#{bundle.ListRespostaTextualIndexLink}"/>
+                </div>
             </h:form>
         </ui:define>
     </ui:composition>
