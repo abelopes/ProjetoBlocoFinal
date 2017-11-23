@@ -5,6 +5,13 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:b="http://bootsfaces.net/ui">
+          <style type="text/css">
+              
+              .b_dataTableclass{
+                  border:solid 1px;
+              }
+
+          </style>
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -20,18 +27,18 @@
                     <h:outputText value="#{avaliacaoController.pagination.pageFirstItem + 1}..#{avaliacaoController.pagination.pageLastItem + 1}/#{avaliacaoController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{avaliacaoController.previous}" value="#{bundle.Previous} #{avaliacaoController.pagination.pageSize}" rendered="#{avaliacaoController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{avaliacaoController.next}" value="#{bundle.Next} #{avaliacaoController.pagination.pageSize}" rendered="#{avaliacaoController.pagination.hasNextPage}"/>&nbsp;
-                    <b:dataTable value="#{avaliacaoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <b:dataTable value="#{avaliacaoController.items}" var="item" border="0" class="b_dataTableclass">
                         <b:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAvaliacaoTitle_codigoAlfanumerico}"/>
                             </f:facet>
-                            <b:outputText value="#{item.codigoAlfanumerico}"/>
+                            <h:outputText value="#{item.codigoAlfanumerico}"/>
                         </b:column>
                         <b:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAvaliacaoTitle_objetivo}"/>
                             </f:facet>
-                            <b:outputText value="#{item.objetivo}"/>
+                            <h:outputText value="#{item.objetivo}"/>
                         </b:column>
                         <b:column>
                             <f:facet name="header">

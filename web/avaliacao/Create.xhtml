@@ -5,6 +5,15 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:b="http://bootsfaces.net/ui">
+          <style type="text/css">
+              
+              .b_inputTextareaclass{
+                  width: 100%;
+                  float:left;
+                  border-radius: 4px;
+              }
+
+          </style>
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -23,15 +32,17 @@
                     <h:panelGrid columns="2"  style="width: 50%;float:left">
                            
                     <h:outputLabel value="#{bundle.CreateAvaliacaoLabel_codigoAlfanumerico}" for="codigoAlfanumerico" />
-                    <h:inputText id="codigoAlfanumerico" value="#{avaliacaoController.selected.codigoAlfanumerico}" title="#{bundle.CreateAvaliacaoTitle_codigoAlfanumerico}" style="width: 100%;float:left;border-radius: 4px" />
+                    <b:inputText id="codigoAlfanumerico" value="#{avaliacaoController.selected.codigoAlfanumerico}" title="#{bundle.CreateAvaliacaoTitle_codigoAlfanumerico}" style="width: 100%;float:left;border-radius: 4px" />
                     <h:outputLabel value="#{bundle.CreateAvaliacaoLabel_objetivo}" for="objetivo" />
-                    <h:inputTextarea rows="4" cols="30" id="objetivo" value="#{avaliacaoController.selected.objetivo}" title="#{bundle.CreateAvaliacaoTitle_objetivo}" style="width: 100%;float:left;border-radius: 4px" />
+                    <b:inputTextarea rows="4"  id="objetivo" value="#{avaliacaoController.selected.objetivo}" title="#{bundle.CreateAvaliacaoTitle_objetivo}" class="b_inputTextareaclass" />
                     <h:outputLabel value="#{bundle.CreateAvaliacaoLabel_fim}" for="fim" />
-                    <h:inputText id="fim" value="#{avaliacaoController.selected.fim}" title="#{bundle.CreateAvaliacaoTitle_fim}" style="width: 100%;float:left;border-radius: 4px" />
+                    <b:inputText id="fim" value="#{avaliacaoController.selected.fim}" title="#{bundle.CreateAvaliacaoTitle_fim}" style="width: 100%;float:left;border-radius: 4px" />
+                 
                     <h:outputLabel value="#{bundle.CreateAvaliacaoLabel_inicio}" for="inicio" />
-                    <h:inputText id="inicio" value="#{avaliacaoController.selected.inicio}" title="#{bundle.CreateAvaliacaoTitle_inicio}" style="width: 100%;float:left;border-radius: 4px" />
-                                        <h:outputLabel value="#{bundle.CreateAvaliacaoLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{avaliacaoController.selected.id}" title="#{bundle.CreateAvaliacaoTitle_id}"  readonly="true" style="width: 100%;float:left;border-radius: 4px" />   
+                    <b:inputText id="inicio" value="#{avaliacaoController.selected.inicio}" title="#{bundle.CreateAvaliacaoTitle_inicio}" style="width: 100%;float:left;border-radius: 4px" />
+                        
+                    <h:outputLabel value="#{bundle.CreateAvaliacaoLabel_id}" for="id" />
+                    <b:inputText id="id" value="#{avaliacaoController.selected.id}" title="#{bundle.CreateAvaliacaoTitle_id}"  readonly="true" style="width: 100%;float:left;border-radius: 4px" />   
                 </h:panelGrid>
                <div style="margin-top: 40rem">
                 <b:commandButton action="#{avaliacaoController.create}" value="#{bundle.CreateAvaliacaoSaveLink}" />
