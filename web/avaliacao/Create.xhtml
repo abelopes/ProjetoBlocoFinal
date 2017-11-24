@@ -36,11 +36,14 @@
                     <h:outputLabel value="#{bundle.CreateAvaliacaoLabel_objetivo}" for="objetivo" />
                     <b:inputTextarea rows="4"  id="objetivo" value="#{avaliacaoController.selected.objetivo}" title="#{bundle.CreateAvaliacaoTitle_objetivo}" class="b_inputTextareaclass" />
                     <h:outputLabel value="#{bundle.CreateAvaliacaoLabel_fim}" for="fim" />
-                    <b:inputText id="fim" value="#{avaliacaoController.selected.fim}" title="#{bundle.CreateAvaliacaoTitle_fim}" style="width: 100%;float:left;border-radius: 4px" />
-                 
-                    <h:outputLabel value="#{bundle.CreateAvaliacaoLabel_inicio}" for="inicio" />
-                    <b:inputText id="inicio" value="#{avaliacaoController.selected.inicio}" title="#{bundle.CreateAvaliacaoTitle_inicio}" style="width: 100%;float:left;border-radius: 4px" />
-                        
+                    <b:inputText id="fim" value="#{avaliacaoController.selected.fim}" title="#{bundle.CreateAvaliacaoTitle_fim}" style="width: 100%;float:left;border-radius: 4px">
+                        <f:converter converterId="br.edu.infnet.pos.java.trabalhodebloco.infra.converter.JsfLocalDateTimeConverter" />
+                    </b:inputText>
+                    <h:outputLabel value="#{bundle.CreateAvaliacaoLabel_inicio}" for="inicio" />    
+                    <b:inputText id="inicio" value="#{avaliacaoController.selected.inicio}" title="#{bundle.CreateAvaliacaoTitle_inicio}" style="width: 100%;float:left;border-radius: 4px">
+                        <f:converter converterId="br.edu.infnet.pos.java.trabalhodebloco.infra.converter.JsfLocalDateTimeConverter" />
+                    </b:inputText>
+                   
                     <h:outputLabel value="#{bundle.CreateAvaliacaoLabel_id}" for="id" />
                     <b:inputText id="id" value="#{avaliacaoController.selected.id}" title="#{bundle.CreateAvaliacaoTitle_id}"  readonly="true" style="width: 100%;float:left;border-radius: 4px" />   
                 </h:panelGrid>

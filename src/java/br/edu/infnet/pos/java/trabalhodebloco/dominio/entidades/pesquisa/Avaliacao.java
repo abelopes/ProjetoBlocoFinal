@@ -61,6 +61,7 @@ public class Avaliacao extends Entidade {
     }
 
     public LocalDateTime getFim() {
+        
         return fim;
     }
 
