@@ -35,4 +35,11 @@ public abstract class Pessoa extends Entidade {
     public boolean equals(Object obj) {
         return (obj != null) && (obj instanceof Pessoa) && (getId().equals(((Pessoa) obj).getId()));
     }
+    
+            @Override
+    public String toString() {
+        return this.getNome();
+    }
 }
+
+

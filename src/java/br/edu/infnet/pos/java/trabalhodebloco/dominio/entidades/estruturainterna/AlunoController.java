@@ -1,12 +1,18 @@
 package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna;
 
+import static br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.Aluno_.turmas;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.util.JsfUtil;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.util.PaginationHelper;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.enums.Sexo;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
@@ -16,13 +22,19 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.faces.view.ViewScoped;
 
 @Named("alunoController")
-@SessionScoped
+//@SessionScoped
+@ViewScoped
+//@RequestScoped
 public class AlunoController implements Serializable {
 
     private Aluno current;
     private DataModel items = null;
+   private List<Turma> turmas;
+    private String nome;
+    
 
     @EJB
     private br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.AlunoFacade ejbFacade;
@@ -82,6 +94,38 @@ public class AlunoController implements Serializable {
 
     public String create() {
         try {
+            
+            Aluno aluno = new Aluno();
+            aluno.setNome(nome);
+            aluno.setTurmas(new ArrayList<>());
+         //    aluno.getTurmas().add(new Turma());
+            aluno.getTurmas().add((Turma) (turmas));
+            
+//            Aluno aluno = new Aluno ();
+//            
+//            aluno.setNome(nome);
+//            aluno.setTurmas(aluno.getTurmas());
+//            
+//    //          cr.setAluno(aluno.getAluno(selectedItemIndex));
+//            
+//            aluno.setTurmas(new ArrayList<>());
+//        aluno.getTurmas().add(new Turma());
+//        aluno.getTurmas().get(0).setInicio(LocalDate.of(2000, Month.SEPTEMBER, 12));
+//        aluno.getTurmas().get(0).setFim(LocalDate.of(2000, Month.SEPTEMBER, 20));
+//        aluno.getTurmas().get(0).setProfessor(new Professor());
+//        aluno.getTurmas().get(0).getProfessor().setNome("John Lenon");
+//        aluno.getTurmas().get(0).setModulos(new ArrayList<>());
+//        aluno.getTurmas().get(0).getModulos().add(new Modulo());
+//        aluno.getTurmas().get(0).getModulos().get(0).setNome("Módulo da Banda de Pagode");
+//        
+//      Turma turma = new Turma();
+//    current.getTurmas().add(turma);
+          //  Turma turma = new Turma();
+//            current.getTurmas().add(turma.setAlunos(alunos));
+            
+        //    current.setTurmas(1);
+            
+            
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("AlunoCreated"));
             return prepareCreate();
@@ -236,5 +280,14 @@ public class AlunoController implements Serializable {
     public Sexo[] getSexos() {
         return Sexo.values();
     }
+    
+//        public SelectItem[] getTurma() {
+//        return turma.getItemsAvailableSelectOne;
+//    }
 
+//        public Turma getTurmas() {
+//        return turma.getSelected();
+//    }
+//    
+    
 }

@@ -1,5 +1,6 @@
 package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna;
 
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.Avaliacao;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
@@ -26,6 +27,10 @@ public class Turma implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Integer id;
+    
+    
+    @Column(name = "NOME", length = 150)
+    private String nome;
 
     @Column(name = "DT_INICIO")
     private LocalDate inicio;
@@ -37,17 +42,25 @@ public class Turma implements Serializable {
     @JoinColumn(name = "ID_PROFESSOR")
     private Professor professor;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    //@ManyToMany(cascade ={ CascadeType.PERSIST})
+    @ManyToMany(cascade={ CascadeType.ALL, CascadeType.MERGE })
+    
     @JoinTable(name = "TURMA_MODULO", joinColumns = {
         @JoinColumn(name = "ID_TURMA")}, inverseJoinColumns = {
         @JoinColumn(name = "ID_MODULO")})
     private List<Modulo> modulos;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
-    @JoinTable(name = "TURMA_ALUNO", joinColumns = {
-        @JoinColumn(name = "ID_TURMA")}, inverseJoinColumns = {
-        @JoinColumn(name = "ID_ALUNO")})
+   // @ManyToMany(cascade = CascadeType.PERSIST)
+   // @ManyToMany(cascade={ CascadeType.ALL})
+   @ManyToMany(mappedBy = "turmas", cascade={ CascadeType.ALL, CascadeType.MERGE })
+    
+//    @JoinTable(name = "TURMA_ALUNO", joinColumns = {
+//        @JoinColumn(name = "ID_TURMA")}, inverseJoinColumns = {
+//        @JoinColumn(name = "ID_ALUNO")})
+//    private List<Aluno> alunos;
+//    
     private List<Aluno> alunos;
+    
 
     public Professor getProfessor() {
         return professor;
@@ -56,7 +69,7 @@ public class Turma implements Serializable {
     public void setProfessor(Professor professor) {
         this.professor = professor;
     }
-
+    
     public List<Aluno> getAlunos() {
         return alunos;
     }
@@ -96,5 +109,42 @@ public class Turma implements Serializable {
     public void setModulos(List<Modulo> modulos) {
         this.modulos = modulos;
     }
+    
+       public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    
+ 
+
+    
+        @Override
+    public String toString() {
+        return this.getNome();
+    }
+    
+//     @Override
+//    public String toString() {
+//      return String.valueOf(nome);
+//}
+    
+    
+
+ @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+   public boolean equals(Object obj) {
+        return (obj instanceof Turma) && ((Turma) obj).getId().equals(getId());
+    }
+
+
 
 }

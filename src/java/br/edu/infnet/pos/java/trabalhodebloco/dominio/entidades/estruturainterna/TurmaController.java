@@ -213,7 +213,7 @@ public class TurmaController implements Serializable {
 
         String getStringKey(java.lang.Integer value) {
             StringBuilder sb = new StringBuilder();
-            sb.append(value);
+            sb.equals(value);
             return sb.toString();
         }
 
