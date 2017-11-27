@@ -230,7 +230,7 @@ public class TurmaController implements Serializable {
             if (object instanceof Turma) {
                 Turma o = (Turma) object;
                // return getStringKey(o.getId());
-                return 
+                 return o.getId() + "," + o.getNome();
             } else {
                 throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Turma.class.getName());
             }

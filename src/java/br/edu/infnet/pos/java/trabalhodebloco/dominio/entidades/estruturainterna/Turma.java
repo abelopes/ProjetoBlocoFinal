@@ -3,7 +3,10 @@ package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturaintern
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.Avaliacao;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 
 import javax.persistence.Column;
@@ -52,14 +55,17 @@ public class Turma implements Serializable {
 
    // @ManyToMany(cascade = CascadeType.PERSIST)
    // @ManyToMany(cascade={ CascadeType.ALL})
-   @ManyToMany(mappedBy = "turmas", cascade={ CascadeType.ALL, CascadeType.MERGE })
+   @ManyToMany(mappedBy = "turmas", cascade = CascadeType.PERSIST)
     
-//    @JoinTable(name = "TURMA_ALUNO", joinColumns = {
-//        @JoinColumn(name = "ID_TURMA")}, inverseJoinColumns = {
-//        @JoinColumn(name = "ID_ALUNO")})
-//    private List<Aluno> alunos;
-//    
-    private List<Aluno> alunos;
+   private List<Aluno> alunos;
+      public List<Aluno> getAlunos() {
+        return alunos;
+    }
+
+    public void setAlunos(List<Aluno> alunos) {
+        this.alunos = alunos;
+    }
+
     
 
     public Professor getProfessor() {
@@ -70,14 +76,6 @@ public class Turma implements Serializable {
         this.professor = professor;
     }
     
-    public List<Aluno> getAlunos() {
-        return alunos;
-    }
-
-    public void setAlunos(List<Aluno> alunos) {
-        this.alunos = alunos;
-    }
-
     public Integer getId() {
         return id;
     }
@@ -111,7 +109,7 @@ public class Turma implements Serializable {
     }
     
        public String getNome() {
-        return nome;
+        return this.nome;
     }
 
     public void setNome(String nome) {
@@ -121,28 +119,94 @@ public class Turma implements Serializable {
  
 
     
-        @Override
-    public String toString() {
-        return this.getNome();
-    }
+//        @Override
+//    public String toString() {
+//        return this.getNome();
+//        
+//    }
     
+    @Override
+	public String toString() {
+		return getId() + "," + getNome();
+	}
+	
+    
+//           @Override
+//    public String toString() {
+//        StringBuilder sb = new StringBuilder();  
+//        Iterable<Turma> turma = null;
+//        for(Turma f : turma){  
+//    sb.append(f.toString());  
+//  }  
+//  return sb.toString();
+//}  
+    
+//    @Override
+//    public String toString(){  
+//  StringBuffer sb = new StringBuffer();  
+//        Iterable<Turma> turma = null;
+//  for(Turma f : turma){  
+//    sb.append(f.toString());  
+//  }  
+//  return sb.toString();  
+//    }
+//    
+//  // public class Turma <E> extends ArrayList<E> {
+//  @Override
+//  public String toString() {
+//    StringBuffer s = new StringBuffer();
+//    //for(E e : this)
+//      s.append(this.getNome());
+//    return s.toString();
+//  }
+// // }
+//    
 //     @Override
 //    public String toString() {
-//      return String.valueOf(nome);
+//      return String.valueOf(id);
 //}
     
     
 
- @Override
+// @Override
+//    public int hashCode() {
+//        int hash = 0;
+//        hash += (id != null ? id.hashCode() : 0);
+//        return hash;
+//    }
+//
+//    @Override
+//   public boolean equals(Object obj) {
+//        return (obj instanceof Turma) && ((Turma) obj).getId().equals(getId());
+//    }
+
+    @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 7;
+        hash = 47 * hash + Objects.hashCode(this.id);
+        hash = 47 * hash + Objects.hashCode(this.nome);
         return hash;
     }
 
     @Override
-   public boolean equals(Object obj) {
-        return (obj instanceof Turma) && ((Turma) obj).getId().equals(getId());
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Turma other = (Turma) obj;
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
     }
 
 

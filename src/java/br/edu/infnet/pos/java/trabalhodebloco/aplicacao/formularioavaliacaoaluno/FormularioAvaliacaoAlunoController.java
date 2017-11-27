@@ -133,6 +133,6 @@ public class FormularioAvaliacaoAlunoController {
         aluno.getTurmas().get(0).setModulos(new ArrayList<>());
         aluno.getTurmas().get(0).getModulos().add(new Modulo());
         aluno.getTurmas().get(0).getModulos().get(0).setNome("Módulo da Banda de Pagode");
-        return aluno;
+       return aluno;
     }
 }

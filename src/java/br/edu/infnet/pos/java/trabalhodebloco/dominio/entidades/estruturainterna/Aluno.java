@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.enums.Sexo;
+import java.util.ArrayList;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -49,17 +51,29 @@ public class Aluno extends Pessoa {
   //  @ManyToMany(mappedBy = "alunos", cascade = CascadeType.PERSIST)
    // @ManyToMany(mappedBy = "alunos", cascade={ CascadeType.ALL, CascadeType.MERGE })
     
-      @ManyToMany(cascade={ CascadeType.ALL})
-    
-    @JoinTable(name = "TURMA_ALUNO", joinColumns = {
+      @ManyToMany
+        //(cascade={ CascadeType.PERSIST})
+     @JoinTable(name = "TURMA_ALUNO", joinColumns = {
         @JoinColumn(name = "ID_TURMA")}, inverseJoinColumns = {
         @JoinColumn(name = "ID_ALUNO")})
    // private List<Aluno> alunos;
  //    private List<Turma> turma;
    
     
-    private List<Turma> turmas;
+    private List<Turma> turmas ;
+  //  private Turma turma;
     
+
+
+    public List<Turma> getTurmas() {
+        return turmas;
+    }
+
+    public void setTurmas(List<Turma> turmas) {
+        this.turmas = turmas;
+    }
+
+      
     @OneToMany(mappedBy = "aluno")
     private List<Resposta> respostas;
 
@@ -71,14 +85,17 @@ public class Aluno extends Pessoa {
         this.respostas = respostas;
     }
 
-    public List<Turma> getTurmas() {
-        return turmas;
-    }
 
-    public void setTurmas(List<Turma> turmas) {
-        this.turmas = turmas;
-    }
+//        public Turma getTurma() {
+//        return turma;
+//    }
+//
+//    public void setTurma(Turma turma) {
+//        this.turma = turma;
+//    }
 
+    
+    
     public String getCpf() {
         return cpf;
     }
