@@ -1,5 +1,6 @@
 package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna;
 
+import static br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.Aluno_.turmas;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.util.JsfUtil;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.util.PaginationHelper;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.enums.Sexo;
@@ -25,8 +26,8 @@ import javax.faces.view.ViewScoped;
 
 @Named("alunoController")
 //@SessionScoped
-//@ViewScoped
-@RequestScoped
+@ViewScoped
+//@RequestScoped
 public class AlunoController implements Serializable {
 
     private Aluno current;
@@ -93,14 +94,13 @@ public class AlunoController implements Serializable {
 
     public String create() {
         try {
-    //        current.setTurmas(turmas);
-  
-        //  AlunoController aluno = new AlunoController();
-         //  current.setTurmas(turmas);
-//        //    aluno.setTurmas(new ArrayList<>));
-//         //    aluno.getTurmas().add(new Turma());
-//          //  aluno.getTurmas().add((Turma) (turmas));
-//            
+            
+            Aluno aluno = new Aluno();
+            aluno.setNome(nome);
+            aluno.setTurmas(new ArrayList<>());
+         //    aluno.getTurmas().add(new Turma());
+            aluno.getTurmas().add((Turma) (turmas));
+            
 //            Aluno aluno = new Aluno ();
 //            
 //            aluno.setNome(nome);
@@ -108,8 +108,8 @@ public class AlunoController implements Serializable {
 //            
 //    //          cr.setAluno(aluno.getAluno(selectedItemIndex));
 //            
-//            current.setTurmas(new ArrayList<>());
-//        current.getTurmas().add(new Turma());
+//            aluno.setTurmas(new ArrayList<>());
+//        aluno.getTurmas().add(new Turma());
 //        aluno.getTurmas().get(0).setInicio(LocalDate.of(2000, Month.SEPTEMBER, 12));
 //        aluno.getTurmas().get(0).setFim(LocalDate.of(2000, Month.SEPTEMBER, 20));
 //        aluno.getTurmas().get(0).setProfessor(new Professor());
@@ -281,13 +281,9 @@ public class AlunoController implements Serializable {
         return Sexo.values();
     }
     
-    public List<Turma> getTurmas() {
-        return turmas;
-    }
-        
-         public void setTurmas(List<Turma> turmas) {
-        this.turmas = turmas;
-    }
+//        public SelectItem[] getTurma() {
+//        return turma.getItemsAvailableSelectOne;
+//    }
 
 //        public Turma getTurmas() {
 //        return turma.getSelected();
