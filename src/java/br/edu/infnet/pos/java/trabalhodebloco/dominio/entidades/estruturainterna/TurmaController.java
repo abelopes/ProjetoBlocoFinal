@@ -4,6 +4,8 @@ import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.util.PaginationHelper;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -211,9 +213,12 @@ public class TurmaController implements Serializable {
             return key;
         }
 
+  
+        
         String getStringKey(java.lang.Integer value) {
-            StringBuilder sb = new StringBuilder();
-            sb.equals(value);
+         
+                 StringBuilder sb = new StringBuilder();
+            sb.append(value);
             return sb.toString();
         }
 
@@ -224,7 +229,8 @@ public class TurmaController implements Serializable {
             }
             if (object instanceof Turma) {
                 Turma o = (Turma) object;
-                return getStringKey(o.getId());
+               // return getStringKey(o.getId());
+                return 
             } else {
                 throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Turma.class.getName());
             }
