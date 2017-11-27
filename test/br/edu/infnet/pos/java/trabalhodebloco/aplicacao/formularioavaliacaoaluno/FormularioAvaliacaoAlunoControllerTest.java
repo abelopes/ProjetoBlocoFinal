@@ -2,6 +2,8 @@ package br.edu.infnet.pos.java.trabalhodebloco.aplicacao.formularioavaliacaoalun
 
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.Aluno;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.AlunoFacade;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.Modulo;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.ModuloFacade;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.Avaliacao;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.TipoQuestao;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.beans.AvaliacaoFacade;
@@ -9,6 +11,8 @@ import br.edu.infnet.pos.java.trabalhodebloco.dominio.enums.Sexo;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
@@ -29,6 +33,9 @@ public class FormularioAvaliacaoAlunoControllerTest {
 
     @Mock
     private AlunoFacade mockAlunoFacade;
+
+    @Mock
+    private ModuloFacade mockModuloFacade;
 
     @Test
     public void deveCriarUmFormularioDeExemplo() {
@@ -148,7 +155,7 @@ public class FormularioAvaliacaoAlunoControllerTest {
         controller.criarAlunoExemplo();
         verify(mockAlunoFacade).create(Mockito.any());
     }
-    
+
     @Test
     public void deveSerPossivelAlterarUmAluno() {
         final String NOME_ALUNO = "Bruce Notario";
@@ -157,7 +164,7 @@ public class FormularioAvaliacaoAlunoControllerTest {
         controller.setAluno(aluno);
         assertEquals(NOME_ALUNO, controller.getAluno().getNome());
     }
-    
+
     @Test
     public void seOAlunoForAlteradoOIdTambemDeveSerAlterado() {
         final Integer ID_ALUNO = 234784982;
@@ -166,14 +173,14 @@ public class FormularioAvaliacaoAlunoControllerTest {
         controller.setAluno(aluno);
         assertEquals(ID_ALUNO, controller.getIdAluno());
     }
-    
+
     @Test
     public void aoAlterarUmIdDeAlunoDeveSeBuscarOAlunoNaBase() {
         final Integer ID_ALUNO = 2345234;
         controller.setIdAluno(ID_ALUNO);
         verify(mockAlunoFacade).find(ID_ALUNO);
     }
-    
+
     @Test
     public void oAlunoEncontradoAoAtribuirUmIdAlunoDeveSerColocadoNoAtributoAluno() {
         final Integer ID_ALUNO = 88969905;
@@ -185,6 +192,37 @@ public class FormularioAvaliacaoAlunoControllerTest {
         controller.setIdAluno(ID_ALUNO);
         assertEquals(ID_ALUNO, controller.getAluno().getId());
         assertEquals(NOME_ALUNO, controller.getAluno().getNome());
+    }
+
+    @Test
+    public void deveSerPossivelAlterarOsModulosAssociadosAUmAluno() {
+        final Integer ID_MODULO = 75775794;
+        List<Modulo> modulos = new ArrayList<>();
+        Modulo modulo = new Modulo();
+        modulo.setId(ID_MODULO);
+        modulos.add(modulo);
+        controller.setModulosAluno(modulos);
+        assertEquals(ID_MODULO, controller.getModulosAluno().get(0).getId());
+    }
+
+    @Test
+    public void deveBuscarOsModulosAssociadosAoAluno() {
+        final Integer ID_ALUNO = 123123;
+        controller.setIdAluno(ID_ALUNO);
+        verify(mockModuloFacade).buscarModulosPorIdAluno(ID_ALUNO);
+    }
+    
+    @Test
+    public void deveRetornarOsModulosAssociadosAoAluno() {        
+        final Integer ID_ALUNO = 123123;
+        final Integer ID_MODULO = 74546;
+        List<Modulo> modulos = new ArrayList();
+        Modulo modulo = new Modulo();
+        modulo.setId(ID_MODULO);
+        modulos.add(modulo);
+        when(mockModuloFacade.buscarModulosPorIdAluno(ID_ALUNO)).thenReturn(modulos);
+        controller.setIdAluno(ID_ALUNO);
+        assertEquals(ID_MODULO, controller.getModulosAluno().get(0).getId());
     }
 
 }

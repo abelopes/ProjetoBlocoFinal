@@ -2,6 +2,7 @@ package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturaintern
 
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.Resposta;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.RespostaLikert;
+import br.edu.infnet.pos.java.trabalhodebloco.test.util.TesteEntidade;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
@@ -9,30 +10,34 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class ModuloTest {
+public class TurmaTest extends TesteEntidade {
 
-    private Modulo modulo;
+    private Turma turma;
 
     @Before
     public void setUp() {
-        modulo = new Modulo();
+        turma = new Turma();
+    }
+
+    @After
+    public void tearDown() {
+        turma = null;
     }
 
     @Test
-    public void toStringDeveRetornarONomeDoModulo() {
-        final String nome = "Nome do Módulo";
-        modulo.setNome(nome);
-        assertEquals(nome, modulo.toString());
+    public void deveValidarID() {
+        super.deveValidarOID(turma);
     }
 
     @Test
-    public void umModuloPodeTerUmaListaDeRespostas() {
-        final Integer ID_RESPOSTA = 23234242;
+    public void aTurmaPodeTerUmaListaDeRespostasAssociadas() {
+        final Integer ID_RESPOSTA = 2342;
         List<Resposta> respostas = new ArrayList<>();
         Resposta resposta = new RespostaLikert();
         resposta.setId(ID_RESPOSTA);
         respostas.add(resposta);
-        modulo.setRespostas(respostas);
-        assertEquals(ID_RESPOSTA, modulo.getRespostas().get(0).getId());
+        turma.setRespostas(respostas);
+        assertEquals(ID_RESPOSTA, turma.getRespostas().get(0).getId());
     }
+
 }

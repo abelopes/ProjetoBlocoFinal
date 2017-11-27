@@ -34,7 +34,10 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <h:outputLabel for="modulo" value="Módulo:"/>
-                            <h:inputText id="modulo" class="form-control" readonly="true" />
+                            <h:selectOneMenu id="modulo" class="form-control" onselect="">
+                                <f:selectItem itemValue="#{null}" itemLabel="(Selecione)" />
+                                <f:selectItems value="#{formularioAvaliacaoAlunoController.modulosAluno}" var="modulo" itemValue="#{modulo}" itemLabel="#{modulo.nome}" />   
+                            </h:selectOneMenu>
                         </div>
                     </div>
                     <div class="col-sm-6">

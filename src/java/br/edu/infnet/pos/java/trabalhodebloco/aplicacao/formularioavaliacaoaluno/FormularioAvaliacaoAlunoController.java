@@ -3,6 +3,7 @@ package br.edu.infnet.pos.java.trabalhodebloco.aplicacao.formularioavaliacaoalun
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.Aluno;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.AlunoFacade;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.Modulo;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.ModuloFacade;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.Professor;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.Turma;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.Avaliacao;
@@ -18,6 +19,7 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.beans.AvaliacaoFacade;
+import java.util.List;
 
 @Named("formularioAvaliacaoAlunoController")
 @RequestScoped
@@ -29,9 +31,12 @@ public class FormularioAvaliacaoAlunoController {
     @EJB
     private AlunoFacade alunoFacade;
 
-    private Integer idAluno;
+    @EJB
+    private ModuloFacade moduloFacade;
 
+    private Integer idAluno;
     private Aluno aluno;
+    private List<Modulo> modulosAluno;
 
     public Aluno getAluno() {
         return aluno;
@@ -118,6 +123,7 @@ public class FormularioAvaliacaoAlunoController {
     public void setIdAluno(Integer idAluno) {
         this.idAluno = idAluno;
         this.aluno = alunoFacade.find(idAluno);
+        this.modulosAluno = moduloFacade.buscarModulosPorIdAluno(idAluno);
     }
 
     public Aluno montarAlunoExemplo() {
@@ -137,5 +143,17 @@ public class FormularioAvaliacaoAlunoController {
         novoAluno.getTurmas().get(0).getModulos().add(new Modulo());
         novoAluno.getTurmas().get(0).getModulos().get(0).setNome("Módulo da Banda de Pagode");
         return novoAluno;
+    }
+
+    void setModulosAluno(ArrayList<Object> arrayList) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public List<Modulo> getModulosAluno() {
+        return modulosAluno;
+    }
+
+    public void setModulosAluno(List<Modulo> modulosAluno) {
+        this.modulosAluno = modulosAluno;
     }
 }
