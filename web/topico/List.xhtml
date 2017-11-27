@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -19,26 +20,26 @@
                     <h:outputText value="#{topicoController.pagination.pageFirstItem + 1}..#{topicoController.pagination.pageLastItem + 1}/#{topicoController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{topicoController.previous}" value="#{bundle.Previous} #{topicoController.pagination.pageSize}" rendered="#{topicoController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{topicoController.next}" value="#{bundle.Next} #{topicoController.pagination.pageSize}" rendered="#{topicoController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{topicoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
+                    <b:dataTable value="#{topicoController.items}" var="item" border="0" style="border:solid 1px">
+                        <b:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTopicoTitle_avaliacao}"/>
                             </f:facet>
                             <h:outputText value="#{item.avaliacao}"/>
-                        </h:column>
-                        <h:column>
+                        </b:column>
+                        <b:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTopicoTitle_texto}"/>
                             </f:facet>
                             <h:outputText value="#{item.texto}"/>
-                        </h:column>
-                        <h:column>
+                        </b:column>
+                        <b:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTopicoTitle_id}"/>
                             </f:facet>
                             <h:outputText value="#{item.id}"/>
-                        </h:column>
-                        <h:column>
+                        </b:column>
+                        <b:column>
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
@@ -47,14 +48,13 @@
                             <h:commandLink action="#{topicoController.prepareEdit}" value="#{bundle.ListTopicoEditLink}"/>
                             <h:outputText value=" "/>
                             <h:commandLink action="#{topicoController.destroy}" value="#{bundle.ListTopicoDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
+                        </b:column>
+                    </b:dataTable>
                 </h:panelGroup>
-                <br />
-                <h:commandLink action="#{topicoController.prepareCreate}" value="#{bundle.ListTopicoCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListTopicoIndexLink}"/>
+                 <div style="text-align: center; float: right">
+                <b:commandButton  action="#{topicoController.prepareCreate}" value="#{bundle.ListTopicoCreateLink}"/>
+                <b:button outcome="/index" value="#{bundle.ListTopicoIndexLink}"/>
+                 </div>
             </h:form>
         </ui:define>
     </ui:composition>

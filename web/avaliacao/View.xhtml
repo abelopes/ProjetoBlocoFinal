@@ -32,7 +32,7 @@
                 </h:panelGrid>
                <div style="text-align: center; float: right">
                 <b:commandButton action="#{avaliacaoController.destroyAndView}" value="#{bundle.ViewAvaliacaoDestroyLink}" class="btn btn-primary"/>
-                <h:link outcome="Edit" value="#{bundle.ViewAvaliacaoEditLink}"/>
+                <b:button outcome="Edit" value="#{bundle.ViewAvaliacaoEditLink}"/>
                 <b:commandButton  action="#{avaliacaoController.prepareCreate}" value="#{bundle.ViewAvaliacaoCreateLink}" class="btn btn-primary" />
                 <b:commandButton action="#{avaliacaoController.prepareList}" value="#{bundle.ViewAvaliacaoShowAllLink}" class="btn btn-primary" />
                 <b:button outcome="/index" value="#{bundle.ViewAvaliacaoIndexLink}" class="btn btn-primary" />
