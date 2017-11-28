@@ -13,6 +13,8 @@ import br.edu.infnet.pos.java.trabalhodebloco.dominio.enums.Sexo;
 import javax.persistence.CascadeType;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -43,7 +45,19 @@ public class Aluno extends Pessoa {
     @Enumerated(EnumType.STRING)
     private Sexo sexo;
 
-    @ManyToMany(mappedBy = "alunos", cascade = CascadeType.PERSIST)
+    
+  //  @ManyToMany(mappedBy = "alunos", cascade = CascadeType.PERSIST)
+   // @ManyToMany(mappedBy = "alunos", cascade={ CascadeType.ALL, CascadeType.MERGE })
+    
+      @ManyToMany(cascade={ CascadeType.ALL})
+    
+    @JoinTable(name = "TURMA_ALUNO", joinColumns = {
+        @JoinColumn(name = "ID_TURMA")}, inverseJoinColumns = {
+        @JoinColumn(name = "ID_ALUNO")})
+   // private List<Aluno> alunos;
+ //    private List<Turma> turma;
+   
+    
     private List<Turma> turmas;
     
     @OneToMany(mappedBy = "aluno")
@@ -121,9 +135,19 @@ public class Aluno extends Pessoa {
         this.sexo = sexo;
     }
     
+<<<<<<< HEAD
     @Override
     public String toString() {
         return this.getNome();
     }
+=======
+//      @Override
+//    public String toString() {
+//        return this.getNome();
+//    }
+    
+
+    
+>>>>>>> ce013707d5304ecc46736ece2883002cebd8aacd
 
 }

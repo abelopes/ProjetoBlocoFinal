@@ -15,7 +15,7 @@ public abstract class Entidade implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private Integer id;
+    public Integer id;
 
     public Integer getId() {
         return id;
