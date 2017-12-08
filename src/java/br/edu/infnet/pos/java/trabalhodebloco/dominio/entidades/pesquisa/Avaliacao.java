@@ -1,173 +1,87 @@
 package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa;
 
-import java.time.LocalDate;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
-import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.enviodeemail.Mensagem;
-import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.Turma;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
-import javax.persistence.JoinColumn;
-import java.io.Serializable;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.util.Entidade;
+import java.time.LocalDateTime;
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.OneToMany;
 
 @Entity
 @Table(name = "AVALIACAO")
-public class Avaliacao implements Serializable {
-         private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue
-        //(strategy = GenerationType.IDENTITY)
-	//@Column(name = "ID")
-	private Integer id;
+public class Avaliacao extends Entidade {
 
-	@Lob
-	@Column(name = "COMENTARIOS_E_SUGESTOES")
-	private String comentariosESugestoes;
+    private static final long serialVersionUID = 7138098198142465498L;
 
-	@Column(name = "DT_FIM")
-	private LocalDate fim;
+    @OneToMany(mappedBy = "avaliacao", cascade = CascadeType.PERSIST)
+    private List<Resposta> respostas;
 
-	@Column(name = "DT_INICIO")
-	private LocalDate inicio;
+    @OneToMany(mappedBy = "avaliacao", cascade = CascadeType.PERSIST)
+    private List<Topico> topicos;
 
-	@Column(name = "OBJETIVO", length = 200)
-	private String objetivo;
+    @Column(name = "DATA_HORA_INICIO")
+    private LocalDateTime inicio;
 
-	@Transient
-	private Formulario formulario;
+    @Column(name = "DATA_HORA_FIM")
+    private LocalDateTime fim;
 
-	@Transient
-	private Mensagem mensagem;
+    @Lob
+    @Column(name = "OBJETIVO")
+    private String objetivo;
 
-	@Transient
-	private List<Turma> turmas;
+    @Column(name = "CODIGO_ALFANUMERICO", unique = true)
+    private String codigoAlfanumerico;
 
-	@Transient
-	private List<Questao> questoes;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getComentariosESugestoes() {
-		return comentariosESugestoes;
-	}
-
-	public void setComentariosESugestoes(String comentariosESugestoes) {
-		this.comentariosESugestoes = comentariosESugestoes;
-	}
-
-	public LocalDate getFim() {
-		return fim;
-	}
-
-	public void setFim(LocalDate fim) {
-		this.fim = fim;
-	}
-
-	public LocalDate getInicio() {
-		return inicio;
-	}
-
-	public void setInicio(LocalDate inicio) {
-		this.inicio = inicio;
-	}
-
-	public String getObjetivo() {
-		return objetivo;
-	}
-
-	public void setObjetivo(String objetivo) {
-		this.objetivo = objetivo;
-	}
-
-	public List<Turma> getTurmas() {
-		return turmas;
-	}
-
-	public void setTurmas(List<Turma> turmas) {
-		this.turmas = turmas;
-	}
-
-	public List<Questao> getQuestoes() {
-		return questoes;
-	}
-
-	public void setQuestoes(List<Questao> questoes) {
-		this.questoes = questoes;
-	}
-
-	public Formulario getFormulario() {
-		return formulario;
-	}
-
-	public void setFormulario(Formulario formulario) {
-		this.formulario = formulario;
-	}
-
-	public Mensagem getMensagem() {
-		return mensagem;
-	}
-
-	public void setMensagem(Mensagem mensagem) {
-		this.mensagem = mensagem;
-	}
-        
-   // private Set<Questao> questao = new HashSet<>();
-         
-    @ManyToMany
-    @JoinTable(name = "AVALIACAO_QUESTAO",
-    joinColumns = @JoinColumn(name = "id_avaliacao"),
-    inverseJoinColumns = @JoinColumn(name = "id_questao"))
-    private Set<Questao> questao = new HashSet<>();
-    
-    public Set<Questao> getCategoria() {
-        return questao;
+    public List<Topico> getTopicos() {
+        return topicos;
     }
 
-    public void setCategoria(Set<Questao> categoria) {
-        this.questao = categoria;
-    }
-    
-     @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 29 * hash + Objects.hashCode(this.id);
-        return hash;
+    public void setTopicos(List<Topico> topicos) {
+        this.topicos = topicos;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Avaliacao other = (Avaliacao) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return true;
+    public String getCodigoAlfanumerico() {
+        return codigoAlfanumerico;
+    }
+
+    public void setCodigoAlfanumerico(String codigoAlfanumerico) {
+        this.codigoAlfanumerico = codigoAlfanumerico;
+    }
+
+    public String getObjetivo() {
+        return objetivo;
+    }
+
+    public void setObjetivo(String objetivo) {
+        this.objetivo = objetivo;
+    }
+
+    public LocalDateTime getFim() {
+        return fim;
+    }
+
+    public void setFim(LocalDateTime fim) {
+        this.fim = fim;
+    }
+
+    public LocalDateTime getInicio() {
+        return inicio;
+    }
+
+    public void setInicio(LocalDateTime inicio) {
+        this.inicio = inicio;
+    }
+
+    public List<Resposta> getRespostas() {
+        return respostas;
+    }
+
+    public void setRespostas(List<Resposta> respostas) {
+        this.respostas = respostas;
     }
 
 }

@@ -1,5 +1,6 @@
 package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna;
 
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.Resposta;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -9,10 +10,16 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.enums.Sexo;
+import javax.persistence.CascadeType;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue(value = "ALUNO")
 public class Aluno extends Pessoa {
+
+    private static final long serialVersionUID = 2320565831084162687L;
 
     @Column(name = "CPF", length = 11)
     private String cpf;
@@ -33,10 +40,22 @@ public class Aluno extends Pessoa {
     private String nomeMae;
 
     @Column(name = "SEXO")
+    @Enumerated(EnumType.STRING)
     private Sexo sexo;
 
-    @ManyToMany(mappedBy = "alunos")
+    @ManyToMany(mappedBy = "alunos", cascade = CascadeType.PERSIST)
     private List<Turma> turmas;
+    
+    @OneToMany(mappedBy = "aluno")
+    private List<Resposta> respostas;
+
+    public List<Resposta> getRespostas() {
+        return respostas;
+    }
+
+    public void setRespostas(List<Resposta> respostas) {
+        this.respostas = respostas;
+    }
 
     public List<Turma> getTurmas() {
         return turmas;

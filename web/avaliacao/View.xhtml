@@ -15,26 +15,16 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewAvaliacaoLabel_id}"/>
-                    <h:outputText value="#{avaliacaoController.selected.id}" title="#{bundle.ViewAvaliacaoTitle_id}"/>
-                    <h:outputText value="#{bundle.ViewAvaliacaoLabel_comentariosESugestoes}"/>
-                    <h:outputText value="#{avaliacaoController.selected.comentariosESugestoes}" title="#{bundle.ViewAvaliacaoTitle_comentariosESugestoes}"/>
+                    <h:outputText value="#{bundle.ViewAvaliacaoLabel_codigoAlfanumerico}"/>
+                    <h:outputText value="#{avaliacaoController.selected.codigoAlfanumerico}" title="#{bundle.ViewAvaliacaoTitle_codigoAlfanumerico}"/>
+                    <h:outputText value="#{bundle.ViewAvaliacaoLabel_objetivo}"/>
+                    <h:outputText value="#{avaliacaoController.selected.objetivo}" title="#{bundle.ViewAvaliacaoTitle_objetivo}"/>
                     <h:outputText value="#{bundle.ViewAvaliacaoLabel_fim}"/>
                     <h:outputText value="#{avaliacaoController.selected.fim}" title="#{bundle.ViewAvaliacaoTitle_fim}"/>
                     <h:outputText value="#{bundle.ViewAvaliacaoLabel_inicio}"/>
                     <h:outputText value="#{avaliacaoController.selected.inicio}" title="#{bundle.ViewAvaliacaoTitle_inicio}"/>
-                    <h:outputText value="#{bundle.ViewAvaliacaoLabel_objetivo}"/>
-                    <h:outputText value="#{avaliacaoController.selected.objetivo}" title="#{bundle.ViewAvaliacaoTitle_objetivo}"/>
-                    <h:outputText value="#{bundle.ViewAvaliacaoLabel_turmas}"/>
-                    <h:outputText value="#{avaliacaoController.selected.turmas}" title="#{bundle.ViewAvaliacaoTitle_turmas}"/>
-                    <h:outputText value="#{bundle.ViewAvaliacaoLabel_questoes}"/>
-                    <h:outputText value="#{avaliacaoController.selected.questoes}" title="#{bundle.ViewAvaliacaoTitle_questoes}"/>
-                    <h:outputText value="#{bundle.ViewAvaliacaoLabel_formulario}"/>
-                    <h:outputText value="#{avaliacaoController.selected.formulario}" title="#{bundle.ViewAvaliacaoTitle_formulario}"/>
-                    <h:outputText value="#{bundle.ViewAvaliacaoLabel_mensagem}"/>
-                    <h:outputText value="#{avaliacaoController.selected.mensagem}" title="#{bundle.ViewAvaliacaoTitle_mensagem}"/>
-                    <h:outputText value="#{bundle.ViewAvaliacaoLabel_categoria}"/>
-                    <h:outputText value="#{avaliacaoController.selected.categoria}" title="#{bundle.ViewAvaliacaoTitle_categoria}"/>
+                    <h:outputText value="#{bundle.ViewAvaliacaoLabel_id}"/>
+                    <h:outputText value="#{avaliacaoController.selected.id}" title="#{bundle.ViewAvaliacaoTitle_id}"/>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{avaliacaoController.destroyAndView}" value="#{bundle.ViewAvaliacaoDestroyLink}"/>

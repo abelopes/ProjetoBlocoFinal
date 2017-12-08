@@ -3,15 +3,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.ListQuestaoTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <b:form styleClass="jsfcrud_list_form">
+            <h:form styleClass="jsfcrud_list_form">
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
@@ -20,37 +19,56 @@
                     <h:outputText value="#{questaoController.pagination.pageFirstItem + 1}..#{questaoController.pagination.pageLastItem + 1}/#{questaoController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{questaoController.previous}" value="#{bundle.Previous} #{questaoController.pagination.pageSize}" rendered="#{questaoController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{questaoController.next}" value="#{bundle.Next} #{questaoController.pagination.pageSize}" rendered="#{questaoController.pagination.hasNextPage}"/>&nbsp;
-                    <b:dataTable value="#{questaoController.items}" var="item"  style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
-                        <b:column style="width:1%;text-align:left;">   
+                    <h:dataTable value="#{questaoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListQuestaoTitle_id}"/>
+                                <h:outputText value="#{bundle.ListQuestaoTitle_topico}"/>
                             </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </b:column>
-                        <b:column style="width:88%;text-align:left;">
+                            <h:outputText value="#{item.topico}"/>
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListQuestaoTitle_texto}"/>
                             </f:facet>
                             <h:outputText value="#{item.texto}"/>
-                        </b:column>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListQuestaoTitle_tipo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListQuestaoTitle_avaliacao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.avaliacao}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListQuestaoTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{questaoController.prepareView}" class="fa fa-2x fa-eye"/>
+                            <h:commandLink action="#{questaoController.prepareView}" value="#{bundle.ListQuestaoViewLink}"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{questaoController.prepareEdit}" class="fa fa-2x fa-pencil"/>
+                            <h:commandLink action="#{questaoController.prepareEdit}" value="#{bundle.ListQuestaoEditLink}"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{questaoController.destroy}" class="fa fa-2x fa-trash"/>
+                            <h:commandLink action="#{questaoController.destroy}" value="#{bundle.ListQuestaoDestroyLink}"/>
                         </h:column>
-            </b:dataTable>
-                            </h:panelGroup>
-                            <div style="text-align: center; float: right">
-                                <b:commandButton action="#{questaoController.prepareCreate}" value="#{bundle.ListQuestaoCreateLink}" class="btn btn-primary"/>
-                                <b:button outcome="/index" value="#{bundle.ListQuestaoIndexLink}" class="btn btn-primary"/>
-                            </div>
-                            </b:form>
-                            </ui:define>
-                            </ui:composition>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{questaoController.prepareCreate}" value="#{bundle.ListQuestaoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListQuestaoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
 
-                            </html>
+</html>

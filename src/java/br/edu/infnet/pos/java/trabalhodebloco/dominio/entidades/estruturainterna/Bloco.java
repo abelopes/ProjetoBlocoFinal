@@ -17,6 +17,8 @@ import javax.persistence.Table;
 @Table(name = "BLOCO")
 public class Bloco implements Serializable {
 
+    private static final long serialVersionUID = 1017015769925917614L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
@@ -62,6 +64,16 @@ public class Bloco implements Serializable {
 
     public void setCurso(Curso curso) {
         this.curso = curso;
+    }
+
+    @Override
+    public String toString() {
+        return getNome();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return (obj instanceof Bloco) && ((Bloco) obj).getId().equals(getId());
     }
 
 }

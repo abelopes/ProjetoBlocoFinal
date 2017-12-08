@@ -22,15 +22,15 @@
                     <h:dataTable value="#{avaliacaoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAvaliacaoTitle_id}"/>
+                                <h:outputText value="#{bundle.ListAvaliacaoTitle_codigoAlfanumerico}"/>
                             </f:facet>
-                            <h:outputText value="#{item.id}"/>
+                            <h:outputText value="#{item.codigoAlfanumerico}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAvaliacaoTitle_comentariosESugestoes}"/>
+                                <h:outputText value="#{bundle.ListAvaliacaoTitle_objetivo}"/>
                             </f:facet>
-                            <h:outputText value="#{item.comentariosESugestoes}"/>
+                            <h:outputText value="#{item.objetivo}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
@@ -46,39 +46,9 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAvaliacaoTitle_objetivo}"/>
+                                <h:outputText value="#{bundle.ListAvaliacaoTitle_id}"/>
                             </f:facet>
-                            <h:outputText value="#{item.objetivo}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAvaliacaoTitle_turmas}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.turmas}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAvaliacaoTitle_questoes}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.questoes}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAvaliacaoTitle_formulario}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.formulario}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAvaliacaoTitle_mensagem}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.mensagem}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAvaliacaoTitle_categoria}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.categoria}"/>
+                            <h:outputText value="#{item.id}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditRespostaLikertTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditRespostaLikertLabel_valor}" for="valor" />
+                    <h:inputText id="valor" value="#{respostaLikertController.selected.valor}" title="#{bundle.EditRespostaLikertTitle_valor}" />
+                    <h:outputLabel value="#{bundle.EditRespostaLikertLabel_valor}" for="valor" />
+                    <h:inputText id="valor" value="#{respostaLikertController.selected.valor}" title="#{bundle.EditRespostaLikertTitle_valor}" />
+                    <h:outputLabel value="#{bundle.EditRespostaLikertLabel_questao}" for="questao" />
+                    <h:selectOneMenu id="questao" value="#{respostaLikertController.selected.questao}" title="#{bundle.EditRespostaLikertTitle_questao}" >
+                        <f:selectItems value="#{questaoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditRespostaLikertLabel_aluno}" for="aluno" />
+                    <h:selectOneMenu id="aluno" value="#{respostaLikertController.selected.aluno}" title="#{bundle.EditRespostaLikertTitle_aluno}" >
+                        <f:selectItems value="#{alunoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditRespostaLikertLabel_avaliacao}" for="avaliacao" />
+                    <h:selectOneMenu id="avaliacao" value="#{respostaLikertController.selected.avaliacao}" title="#{bundle.EditRespostaLikertTitle_avaliacao}" >
+                        <f:selectItems value="#{avaliacaoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditRespostaLikertLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{respostaLikertController.selected.id}" title="#{bundle.EditRespostaLikertTitle_id}" />
+                </h:panelGrid>
+                <h:commandLink action="#{respostaLikertController.update}" value="#{bundle.EditRespostaLikertSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditRespostaLikertViewLink}"/>
+                <br />
+                <h:commandLink action="#{respostaLikertController.prepareList}" value="#{bundle.EditRespostaLikertShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditRespostaLikertIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

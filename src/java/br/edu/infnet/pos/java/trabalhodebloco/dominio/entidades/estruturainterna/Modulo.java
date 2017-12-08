@@ -17,51 +17,58 @@ import javax.persistence.Table;
 @Table(name = "MODULO")
 public class Modulo implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
-	private Integer id;
+    private static final long serialVersionUID = 9207840456436410986L;
 
-	@Column(name = "NOME", length = 150)
-	private String nome;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
+    private Integer id;
 
-	@ManyToMany(mappedBy = "modulos")
-	private List<Turma> turmas;
+    @Column(name = "NOME", length = 150)
+    private String nome;
 
-	@ManyToOne
-	@JoinColumn(name = "ID_BLOCO")
-	private Bloco bloco;
+    @ManyToMany(mappedBy = "modulos")
+    private List<Turma> turmas;
 
-	public Integer getId() {
-		return id;
-	}
+    @ManyToOne
+    @JoinColumn(name = "ID_BLOCO")
+    private Bloco bloco;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public String getNome() {
-		return nome;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public List<Turma> getTurmas() {
-		return turmas;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public void setTurmas(List<Turma> turmas) {
-		this.turmas = turmas;
-	}
+    public List<Turma> getTurmas() {
+        return turmas;
+    }
 
-	public Bloco getBloco() {
-		return bloco;
-	}
+    public void setTurmas(List<Turma> turmas) {
+        this.turmas = turmas;
+    }
 
-	public void setBloco(Bloco bloco) {
-		this.bloco = bloco;
-	}
+    public Bloco getBloco() {
+        return bloco;
+    }
+
+    public void setBloco(Bloco bloco) {
+        this.bloco = bloco;
+    }
+
+    @Override
+    public String toString() {
+        return getNome();
+    }
 
 }

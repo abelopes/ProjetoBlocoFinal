@@ -1,81 +1,62 @@
 package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa;
 
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.util.Entidade;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.Aluno;
-import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.Curso;
-import br.edu.infnet.pos.java.trabalhodebloco.dominio.enums.Likert;
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
-@DiscriminatorValue(value = "RESPOSTA")
-public class Resposta {
+@Table(name = "RESPOSTA")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING)
+public abstract class Resposta<T> extends Entidade {
 
-        @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Integer idResposta;
-        
-	@ManyToOne
-	@JoinColumn(name = "ID_QUESTAO")
-	private Questao questao;
-        
-        @ManyToOne
-	@JoinColumn(name = "ID_AVALIACAO")
-	private Avaliacao avaliacao;
-        
-        @ManyToOne
-	@JoinColumn(name = "ID_ALUNO")
-	private Aluno aluno;
-        
-        @Column(name = "RESPOSTA")
-	private Likert resposta;
-        
-        
-          public Avaliacao getIdAvaliacao() {
-		return avaliacao;
-	}
+    private static final long serialVersionUID = -319862261811464750L;
 
-	public void setIdAvaliacao(Avaliacao avaliacao) {
-		this.avaliacao = avaliacao;
-	}
-        
-        
-        public Integer getIdResposta() {
-		return idResposta;
-	}
+    @ManyToOne
+    @JoinColumn(name = "ID_ALUNO")
+    private Aluno aluno;
 
-	public void setIdResposta(Integer idResposta) {
-		this.idResposta = idResposta;
-	}
+    @ManyToOne
+    @JoinColumn(name = "ID_AVALIACAO")
+    private Avaliacao avaliacao;
 
-	public Questao getQuestao() {
-		return questao;
-	}
+    @ManyToOne
+    @JoinColumn(name = "ID_QUESTAO")
+    private Questao questao;
 
-	public void setQuestao(Questao questao) {
-		this.questao = questao;
-	}
-        
-        public Aluno getAluno() {
-		return aluno;
-	}
+    public abstract T getValor();
 
-	public void setAluno(Aluno aluno) {
-		this.aluno = aluno;
-	}
+    public abstract void setValor(T valor);
 
+    public Questao getQuestao() {
+        return questao;
+    }
 
-	public Likert getResposta() {
-		return resposta;
-	}
+    public void setQuestao(Questao questao) {
+        this.questao = questao;
+    }
 
-	public void setResposta(Likert resposta) {
-		this.resposta = resposta;
-	}
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
+
+    public Avaliacao getAvaliacao() {
+        return avaliacao;
+    }
+
+    public void setAvaliacao(Avaliacao avaliacao) {
+        this.avaliacao = avaliacao;
+    }
 
 }

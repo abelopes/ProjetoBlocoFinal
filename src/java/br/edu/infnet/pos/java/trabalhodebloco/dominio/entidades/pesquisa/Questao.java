@@ -1,52 +1,84 @@
 package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa;
 
-import java.time.LocalDate;
-import java.util.List;
-
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.util.Entidade;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
-import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.enviodeemail.Mensagem;
-import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.Turma;
+import java.util.List;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 @Table(name = "QUESTAO")
+public class Questao extends Entidade {
 
-public class Questao {
+    private static final long serialVersionUID = -512868865480632740L;
 
-        @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-        
-        @Column(name = "TEXTO", length = 200)
-	private String texto;
+    @OneToMany(mappedBy = "questao")
+    private List<Resposta> respostas;
 
-	public Integer getId() {
-		return id;
-	}
+    @ManyToOne
+    @JoinColumn(name = "ID_AVALIACAO")
+    private Avaliacao avaliacao;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    @Column(name = "TIPO")
+    @Enumerated(EnumType.STRING)
+    private TipoQuestao tipo;
 
-	public String getTexto() {
-		return texto;
-	}
+    @Column(name = "TEXTO", length = 200)
+    private String texto;
+    
+    @ManyToOne
+    @JoinColumn(name = "ID_TOPICO")
+    private Topico topico;
 
-	public void setTexto(String texto) {
-		this.texto = texto;
-	}
+    public Topico getTopico() {
+        return topico;
+    }
 
-            @Override
+    public void setTopico(Topico topico) {
+        this.topico = topico;;
+    }
+
+    public String getTexto() {
+        return texto;
+    }
+
+    public void setTexto(String texto) {
+        this.texto = texto;
+    }
+
+    public TipoQuestao getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoQuestao tipo) {
+        this.tipo = tipo;
+    }
+
+    public Avaliacao getAvaliacao() {
+        return avaliacao;
+    }
+
+    public void setAvaliacao(Avaliacao avaliacao) {
+        this.avaliacao = avaliacao;
+    }
+
+    public List<Resposta> getRespostas() {
+        return respostas;
+    }
+
+    public void setRespostas(List<Resposta> respostas) {
+        this.respostas = respostas;
+    }
+
+    @Override
     public String toString() {
         return this.getTexto();
     }
-        
-        
+
 }

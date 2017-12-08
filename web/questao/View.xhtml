@@ -3,8 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -15,27 +14,31 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <b:dataTable value="#{questaoController.selected}" var="item"  style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
-                       <b:column style="width:1%;text-align:left;">
-                        <f:facet name="header">
-                 <h:outputText value="#{bundle.ViewQuestaoLabel_id}"/>
-                        </f:facet>
-                 <h:outputText value="#{questaoController.selected.id}" title="#{bundle.ViewQuestaoTitle_id}"/>
-                       </b:column>
-                       <b:column style="width:99%;text-align:left;">
-                        <f:facet name="header">
-                 <h:outputText value="#{bundle.ViewQuestaoLabel_texto}"/>
-                        </f:facet> 
-                 <h:outputText value="#{questaoController.selected.texto}" title="#{bundle.ViewQuestaoTitle_texto}"/>
-                       </b:column>
-                </b:dataTable>
-                <div style="text-align: center; float: right">
-                <b:commandButton action="#{questaoController.destroyAndView}" value="#{bundle.ViewQuestaoDestroyLink}" class="btn btn-primary"/>
-                <b:button outcome="Edit" value="#{bundle.ViewQuestaoEditLink}" class="btn btn-primary"/>
-                <b:commandButton action="#{questaoController.prepareCreate}" value="#{bundle.ViewQuestaoCreateLink}" class="btn btn-primary"/>
-                <b:commandButton action="#{questaoController.prepareList}" value="#{bundle.ViewQuestaoShowAllLink}" class="btn btn-primary"/>
-                <b:button outcome="/index" value="#{bundle.ViewQuestaoIndexLink}" class="btn btn-primary"/>
-                </div>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewQuestaoLabel_topico}"/>
+                    <h:outputText value="#{questaoController.selected.topico}" title="#{bundle.ViewQuestaoTitle_topico}"/>
+                    <h:outputText value="#{bundle.ViewQuestaoLabel_texto}"/>
+                    <h:outputText value="#{questaoController.selected.texto}" title="#{bundle.ViewQuestaoTitle_texto}"/>
+                    <h:outputText value="#{bundle.ViewQuestaoLabel_tipo}"/>
+                    <h:outputText value="#{questaoController.selected.tipo}" title="#{bundle.ViewQuestaoTitle_tipo}"/>
+                    <h:outputText value="#{bundle.ViewQuestaoLabel_avaliacao}"/>
+                    <h:outputText value="#{questaoController.selected.avaliacao}" title="#{bundle.ViewQuestaoTitle_avaliacao}"/>
+                    <h:outputText value="#{bundle.ViewQuestaoLabel_id}"/>
+                    <h:outputText value="#{questaoController.selected.id}" title="#{bundle.ViewQuestaoTitle_id}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{questaoController.destroyAndView}" value="#{bundle.ViewQuestaoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewQuestaoEditLink}"/>
+                <br />
+                <h:commandLink action="#{questaoController.prepareCreate}" value="#{bundle.ViewQuestaoCreateLink}" />
+                <br />
+                <h:commandLink action="#{questaoController.prepareList}" value="#{bundle.ViewQuestaoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewQuestaoIndexLink}"/>
+
             </h:form>
         </ui:define>
     </ui:composition>

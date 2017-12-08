@@ -3,6 +3,7 @@ package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturaintern
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
+import javax.persistence.CascadeType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,77 +20,81 @@ import javax.persistence.Table;
 @Table(name = "TURMA")
 public class Turma implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
-	private Integer id;
+    private static final long serialVersionUID = -8916695384405405035L;
 
-	@Column(name = "DT_INICIO")
-	private LocalDate inicio;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
+    private Integer id;
 
-	@Column(name = "DT_FIM")
-	private LocalDate fim;
+    @Column(name = "DT_INICIO")
+    private LocalDate inicio;
 
-	@ManyToOne
-	@JoinColumn(name = "ID_PROFESSOR")
-	private Professor professor;
+    @Column(name = "DT_FIM")
+    private LocalDate fim;
 
-	@ManyToMany
-	@JoinTable(name = "TURMA_MODULO", joinColumns = { @JoinColumn(name = "ID_TURMA") }, inverseJoinColumns = {
-			@JoinColumn(name = "ID_MODULO") })
-	private List<Modulo> modulos;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "ID_PROFESSOR")
+    private Professor professor;
 
-	@ManyToMany
-	@JoinTable(name = "TURMA_ALUNO", joinColumns = { @JoinColumn(name = "ID_TURMA") }, inverseJoinColumns = {
-			@JoinColumn(name = "ID_ALUNO") })
-	private List<Aluno> alunos;
-        
-	public Professor getProfessor() {
-		return professor;
-	}
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "TURMA_MODULO", joinColumns = {
+        @JoinColumn(name = "ID_TURMA")}, inverseJoinColumns = {
+        @JoinColumn(name = "ID_MODULO")})
+    private List<Modulo> modulos;
 
-	public void setProfessor(Professor professor) {
-		this.professor = professor;
-	}
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "TURMA_ALUNO", joinColumns = {
+        @JoinColumn(name = "ID_TURMA")}, inverseJoinColumns = {
+        @JoinColumn(name = "ID_ALUNO")})
+    private List<Aluno> alunos;
 
-	public List<Aluno> getAlunos() {
-		return alunos;
-	}
+    public Professor getProfessor() {
+        return professor;
+    }
 
-	public void setAlunos(List<Aluno> alunos) {
-		this.alunos = alunos;
-	}
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    public List<Aluno> getAlunos() {
+        return alunos;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setAlunos(List<Aluno> alunos) {
+        this.alunos = alunos;
+    }
 
-	public LocalDate getFim() {
-		return fim;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setFim(LocalDate fim) {
-		this.fim = fim;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public LocalDate getInicio() {
-		return inicio;
-	}
+    public LocalDate getFim() {
+        return fim;
+    }
 
-	public void setInicio(LocalDate inicio) {
-		this.inicio = inicio;
-	}
+    public void setFim(LocalDate fim) {
+        this.fim = fim;
+    }
 
-	public List<Modulo> getModulos() {
-		return modulos;
-	}
+    public LocalDate getInicio() {
+        return inicio;
+    }
 
-	public void setModulos(List<Modulo> modulos) {
-		this.modulos = modulos;
-	}
+    public void setInicio(LocalDate inicio) {
+        this.inicio = inicio;
+    }
+
+    public List<Modulo> getModulos() {
+        return modulos;
+    }
+
+    public void setModulos(List<Modulo> modulos) {
+        this.modulos = modulos;
+    }
 
 }

@@ -73,3 +73,9 @@ VALUES      (3,
              NULL); 
 </pre>
 
+## Manhas do Netbeans
+
+  - [Alt + Enter]: sobre um trecho de código qualquer oferece opções úteis;
+  - [Alt + Shift + O]: procurar qualquer arquivo do projeto;
+  - [Shift + Ctrl + F]: procurar por uma string qualquer nos arquivos do projeto;
+  - [Ctrl + O]: procurar por tipos.

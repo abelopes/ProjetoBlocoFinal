@@ -20,8 +20,11 @@ import javax.faces.model.SelectItem;
 @SessionScoped
 public class CursoController implements Serializable {
 
+    private static final long serialVersionUID = 7542284321092982564L;
+
     private Curso current;
     private DataModel items = null;
+    
     @EJB
     private br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.CursoFacade ejbFacade;
     private PaginationHelper pagination;

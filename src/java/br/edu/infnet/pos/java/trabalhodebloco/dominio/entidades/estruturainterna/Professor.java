@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 @DiscriminatorValue(value = "PROFESSOR")
 public class Professor extends Pessoa {
 
+    private static final long serialVersionUID = 7946419488883988134L;
+
     @Lob
     @Column(name = "CURRICULO_RESUMIDO")
     private String curriculoResumido;

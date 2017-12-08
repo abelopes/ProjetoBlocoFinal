@@ -15,26 +15,16 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditAvaliacaoLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{avaliacaoController.selected.id}" title="#{bundle.EditAvaliacaoTitle_id}" />
-                    <h:outputLabel value="#{bundle.EditAvaliacaoLabel_comentariosESugestoes}" for="comentariosESugestoes" />
-                    <h:inputTextarea rows="4" cols="30" id="comentariosESugestoes" value="#{avaliacaoController.selected.comentariosESugestoes}" title="#{bundle.EditAvaliacaoTitle_comentariosESugestoes}" />
+                    <h:outputLabel value="#{bundle.EditAvaliacaoLabel_codigoAlfanumerico}" for="codigoAlfanumerico" />
+                    <h:inputText id="codigoAlfanumerico" value="#{avaliacaoController.selected.codigoAlfanumerico}" title="#{bundle.EditAvaliacaoTitle_codigoAlfanumerico}" />
+                    <h:outputLabel value="#{bundle.EditAvaliacaoLabel_objetivo}" for="objetivo" />
+                    <h:inputTextarea rows="4" cols="30" id="objetivo" value="#{avaliacaoController.selected.objetivo}" title="#{bundle.EditAvaliacaoTitle_objetivo}" />
                     <h:outputLabel value="#{bundle.EditAvaliacaoLabel_fim}" for="fim" />
                     <h:inputText id="fim" value="#{avaliacaoController.selected.fim}" title="#{bundle.EditAvaliacaoTitle_fim}" />
                     <h:outputLabel value="#{bundle.EditAvaliacaoLabel_inicio}" for="inicio" />
                     <h:inputText id="inicio" value="#{avaliacaoController.selected.inicio}" title="#{bundle.EditAvaliacaoTitle_inicio}" />
-                    <h:outputLabel value="#{bundle.EditAvaliacaoLabel_objetivo}" for="objetivo" />
-                    <h:inputText id="objetivo" value="#{avaliacaoController.selected.objetivo}" title="#{bundle.EditAvaliacaoTitle_objetivo}" />
-                    <h:outputLabel value="#{bundle.EditAvaliacaoLabel_turmas}" for="turmas" />
-                    <h:inputText id="turmas" value="#{avaliacaoController.selected.turmas}" title="#{bundle.EditAvaliacaoTitle_turmas}" />
-                    <h:outputLabel value="#{bundle.EditAvaliacaoLabel_questoes}" for="questoes" />
-                    <h:inputText id="questoes" value="#{avaliacaoController.selected.questoes}" title="#{bundle.EditAvaliacaoTitle_questoes}" />
-                    <h:outputLabel value="#{bundle.EditAvaliacaoLabel_formulario}" for="formulario" />
-                    <h:inputText id="formulario" value="#{avaliacaoController.selected.formulario}" title="#{bundle.EditAvaliacaoTitle_formulario}" />
-                    <h:outputLabel value="#{bundle.EditAvaliacaoLabel_mensagem}" for="mensagem" />
-                    <h:inputText id="mensagem" value="#{avaliacaoController.selected.mensagem}" title="#{bundle.EditAvaliacaoTitle_mensagem}" />
-                    <h:outputLabel value="#{bundle.EditAvaliacaoLabel_categoria}" for="categoria" />
-                    <h:inputText id="categoria" value="#{avaliacaoController.selected.categoria}" title="#{bundle.EditAvaliacaoTitle_categoria}" />
+                    <h:outputLabel value="#{bundle.EditAvaliacaoLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{avaliacaoController.selected.id}" title="#{bundle.EditAvaliacaoTitle_id}" />
                 </h:panelGrid>
                 <h:commandLink action="#{avaliacaoController.update}" value="#{bundle.EditAvaliacaoSaveLink}"/>
                 <br />
