@@ -1,12 +1,16 @@
 package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.controllers;
 
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.enviodeemail.Email;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.Avaliacao;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.controllers.util.JsfUtil;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.controllers.util.PaginationHelper;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.beans.AvaliacaoFacade;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -25,7 +29,9 @@ public class AvaliacaoController implements Serializable {
     private Avaliacao current;
     private DataModel items = null;
     @EJB
-    private br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.beans.AvaliacaoFacade ejbFacade;
+    private br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.beans.AvaliacaoFacade ejbAvaliacaoFacade;
+    @EJB
+    private br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.AlunoFacade ejbAlunoFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
@@ -41,7 +47,7 @@ public class AvaliacaoController implements Serializable {
     }
 
     private AvaliacaoFacade getFacade() {
-        return ejbFacade;
+        return ejbAvaliacaoFacade;
     }
 
     public PaginationHelper getPagination() {
@@ -71,6 +77,17 @@ public class AvaliacaoController implements Serializable {
         current = (Avaliacao) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
+    }
+    
+    public void enviarEmail(Integer idModulo) {
+        List<String> emails = ejbAlunoFacade.findAllEmailAlunoByModulo(idModulo);
+        emails.stream().forEach(email -> {
+            try {
+                Email.enviarEmail(email);
+            } catch (Exception ex) {
+                Logger.getLogger(AvaliacaoController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
     }
 
     public String prepareCreate() {
@@ -181,15 +198,15 @@ public class AvaliacaoController implements Serializable {
     }
 
     public SelectItem[] getItemsAvailableSelectMany() {
-        return JsfUtil.getSelectItems(ejbFacade.findAll(), false);
+        return JsfUtil.getSelectItems(ejbAvaliacaoFacade.findAll(), false);
     }
 
     public SelectItem[] getItemsAvailableSelectOne() {
-        return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
+        return JsfUtil.getSelectItems(ejbAvaliacaoFacade.findAll(), true);
     }
 
     public Avaliacao getAvaliacao(java.lang.Integer id) {
-        return ejbFacade.find(id);
+        return ejbAvaliacaoFacade.find(id);
     }
 
     @FacesConverter(forClass = Avaliacao.class)
