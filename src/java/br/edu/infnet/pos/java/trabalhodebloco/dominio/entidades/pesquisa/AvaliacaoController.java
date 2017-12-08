@@ -25,6 +25,8 @@ public class AvaliacaoController implements Serializable {
     private Avaliacao current;
     private DataModel items = null;
     @EJB
+    private br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.AvaliacaoFacade ejbAvaliacaoFacade;
+    @EJB
     private br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.AvaliacaoFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
@@ -41,7 +43,7 @@ public class AvaliacaoController implements Serializable {
     }
 
     private AvaliacaoFacade getFacade() {
-        return ejbFacade;
+        return ejbAvaliacaoFacade;
     }
 
     public PaginationHelper getPagination() {
@@ -182,7 +184,7 @@ public class AvaliacaoController implements Serializable {
 
     public SelectItem[] getItemsAvailableSelectMany() {
         try {
-            return JsfUtil.getSelectItems(ejbFacade.findAll(), false);
+            return JsfUtil.getSelectItems(ejbAvaliacaoFacade.findAll(), false);
         } catch (IllegalArgumentException ex) {
             Logger.getLogger(AvaliacaoController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
@@ -193,7 +195,7 @@ public class AvaliacaoController implements Serializable {
 
     public SelectItem[] getItemsAvailableSelectOne() {
         try {
-            return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
+            return JsfUtil.getSelectItems(ejbAvaliacaoFacade.findAll(), true);
         } catch (IllegalArgumentException ex) {
             Logger.getLogger(AvaliacaoController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
@@ -203,7 +205,7 @@ public class AvaliacaoController implements Serializable {
     }
 
     public Avaliacao getAvaliacao(java.lang.Integer id) {
-        return ejbFacade.find(id);
+        return ejbAvaliacaoFacade.find(id);
     }
 
     @FacesConverter(forClass = Avaliacao.class)
