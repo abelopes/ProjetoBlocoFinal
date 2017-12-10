@@ -27,13 +27,19 @@
                             </f:facet>
                             <h:outputText value="#{item.id}"/>
                         </b:column>
-                         <b:column style="width:44%;text-align:left;">
+                         <b:column style="width:24%;text-align:left;">
+                           <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTurmaTitle_nome}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nome}"/>
+                        </b:column>
+                        <b:column style="width:24%;text-align:left;">
                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTurmaTitle_professor}"/>
                             </f:facet>
                             <h:outputText value="#{item.professor.nome}"/>
                         </b:column>
-                        <b:column style="width:22%;text-align:left;">
+                        <b:column style="width:20%;text-align:left;">
                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTurmaTitle_inicio}"/>
                             </f:facet>
@@ -41,7 +47,7 @@
                                 <f:converter converterId="br.edu.infnet.pos.java.trabalhodebloco.infra.converter.JsfLocalDateConverter" />
                             </h:outputText>
                         </b:column>
-                        <b:column style="width:22%;text-align:left;">
+                        <b:column style="width:20%;text-align:left;">
                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTurmaTitle_fim}"/>
                             </f:facet>

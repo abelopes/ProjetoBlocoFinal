@@ -26,7 +26,10 @@ public class Turma implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Integer id;
-
+    
+    @Column(name = "NOME")
+    private String nome;
+    
     @Column(name = "DT_INICIO")
     private LocalDate inicio;
 
@@ -49,6 +52,14 @@ public class Turma implements Serializable {
         @JoinColumn(name = "ID_ALUNO")})
     private List<Aluno> alunos;
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    
     public Professor getProfessor() {
         return professor;
     }

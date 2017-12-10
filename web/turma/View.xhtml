@@ -21,13 +21,18 @@
                             <h:outputText value="#{bundle.ViewTurmaLabel_id}"/>
                         </f:facet>
                         <h:outputText value="#{turmaController.selected.id}" title="#{bundle.ViewTurmaTitle_id}"/>
-                    </b:column> 
+                    </b:column>
+                     <b:column style="width:1%;text-align:left;">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ViewTurmaLabel_id}"/>
+                        </f:facet>
+                        <h:outputText value="#{turmaController.selected.id}" title="#{bundle.ViewTurmaTitle_id}"/>
+                    </b:column>
                     <b:column style="width:22%;text-align:left;">
                         <f:facet name="header">
-                            <h:outputText value="#{bundle.ViewTurmaLabel_inicio}"/>
+                            <h:outputText value="#{bundle.ViewTurmaLabel_nome}"/>
                         </f:facet>
-                        <h:outputText value="#{turmaController.selected.inicio}" title="#{bundle.ViewTurmaTitle_inicio}">
-                            <f:converter converterId="br.edu.infnet.pos.java.trabalhodebloco.infra.converter.JsfLocalDateConverter" />
+                        <h:outputText value="#{turmaController.selected.nome}" title="#{bundle.ViewTurmaTitle_nome}">
                         </h:outputText>
                     </b:column>
                     <b:column style="width:22%;text-align:left;">
@@ -48,7 +53,7 @@
                 <div style="text-align: center; float: right">
                     <b:commandButton action="#{turmaController.destroyAndView}" value="#{bundle.ViewTurmaDestroyLink}" class="btn btn-primary"/>
                     <b:button outcome="Edit" value="#{bundle.ViewTurmaEditLink}" class="btn btn-primary"/>
-                    <b:commandButton action="#{turmaController.prepareCreate}" value="#{bundle.ViewTurmaCreateLink}"class="btn btn-primary"/>
+                    <b:commandButton action="#{turmaController.prepareCreate}" value="#{bundle.ViewTurmaCreateLink}" class="btn btn-primary"/>
                     <b:commandButton action="#{turmaController.prepareList}" value="#{bundle.ViewTurmaShowAllLink}" class="btn btn-primary"/>
                     <b:button outcome="/index" value="#{bundle.ViewTurmaIndexLink}" class="btn btn-primary"/>
                 </div>

@@ -24,6 +24,10 @@
                                 <h:outputLabel value="#{bundle.EditTurmaLabel_id}" for="id" />
                                 <b:inputText id="id" value="#{turmaController.selected.id}" title="#{bundle.EditTurmaTitle_id}" readonly="true" />
 
+                                <h:outputLabel value="#{bundle.CreateTurmaLabel_nome}" for="nome" />
+                                <b:inputText id="nome" value="#{turmaController.selected.nome}" title="#{bundle.CreateTurmaTitle_nome}" >
+                                </b:inputText>
+                                
                                 <h:outputLabel value="#{bundle.EditTurmaLabel_inicio}" for="inicio" />
                                 <b:inputText id="inicio" value="#{turmaController.selected.inicio}" title="#{bundle.EditTurmaTitle_inicio}">
                                     <f:converter converterId="br.edu.infnet.pos.java.trabalhodebloco.infra.converter.JsfLocalDateConverter" />
