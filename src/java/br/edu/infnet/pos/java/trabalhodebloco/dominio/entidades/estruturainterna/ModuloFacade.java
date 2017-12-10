@@ -1,18 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-/**
- *
- * @author Bruce Notario
- */
 @Stateless
 public class ModuloFacade extends AbstractFacade<Modulo> {
 
@@ -27,5 +19,9 @@ public class ModuloFacade extends AbstractFacade<Modulo> {
     public ModuloFacade() {
         super(Modulo.class);
     }
-    
+
+    public List<Modulo> buscarModulosPorIdAluno(Integer idAluno) {
+        return em.createNamedQuery("Modulo.buscarModulosPorIdAluno", Modulo.class).getResultList();
+    }
+
 }
