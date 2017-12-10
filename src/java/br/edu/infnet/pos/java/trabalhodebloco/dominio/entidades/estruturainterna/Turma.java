@@ -1,6 +1,7 @@
 package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna;
 
-import java.io.Serializable;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.Resposta;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.util.Entidade;
 import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -14,11 +15,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "TURMA")
-public class Turma implements Serializable {
+public class Turma extends Entidade {
 
     private static final long serialVersionUID = -8916695384405405035L;
 
@@ -52,6 +54,9 @@ public class Turma implements Serializable {
         @JoinColumn(name = "ID_ALUNO")})
     private List<Aluno> alunos;
 
+    @OneToMany(mappedBy = "turma")
+    private List<Resposta> respostas;
+
     public String getNome() {
         return nome;
     }
@@ -59,6 +64,14 @@ public class Turma implements Serializable {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    public List<Resposta> getRespostas() {
+        return respostas;
+    }
+
+    public void setRespostas(List<Resposta> respostas) {
+        this.respostas = respostas;
+    }    
     
     public Professor getProfessor() {
         return professor;

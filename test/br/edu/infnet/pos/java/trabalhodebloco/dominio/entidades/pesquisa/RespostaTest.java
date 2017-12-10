@@ -1,7 +1,11 @@
 package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa;
 
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.Aluno;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.Modulo;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.Turma;
 import br.edu.infnet.pos.java.trabalhodebloco.test.util.TesteEntidade;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -65,5 +69,23 @@ public class RespostaTest extends TesteEntidade {
         questao.setId(ID_QUESTAO);
         resposta.setQuestao(questao);
         assertEquals(ID_QUESTAO, resposta.getQuestao().getId());
+    }
+
+    @Test
+    public void aRespostaDeveEstarAssociadaComUmaTurma() {
+        final Integer ID_TURMA = 737324383;
+        Turma turma = new Turma();
+        turma.setId(ID_TURMA);
+        resposta.setTurma(turma);
+        assertEquals(ID_TURMA, resposta.getTurma().getId());
+    }
+    
+    @Test
+    public void aRespostaDeveEstarAssociadaComUmModulo() {
+        final Integer ID_MODULO = 1234383;
+        Modulo modulo = new Modulo();
+        modulo.setId(ID_MODULO);
+        resposta.setModulo(modulo);
+        assertEquals(ID_MODULO, resposta.getModulo().getId());
     }
 }

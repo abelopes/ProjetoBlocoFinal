@@ -3,6 +3,7 @@ package br.edu.infnet.pos.java.trabalhodebloco.aplicacao.formularioavaliacaoalun
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.Aluno;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.AlunoFacade;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.Modulo;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.ModuloFacade;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.Professor;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.Turma;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.Avaliacao;
@@ -18,6 +19,7 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.beans.AvaliacaoFacade;
+import java.util.List;
 
 @Named("formularioAvaliacaoAlunoController")
 @RequestScoped
@@ -29,15 +31,27 @@ public class FormularioAvaliacaoAlunoController {
     @EJB
     private AlunoFacade alunoFacade;
 
+    @EJB
+    private ModuloFacade moduloFacade;
+
     private Integer idAluno;
-
     private Aluno aluno;
+    private List<Modulo> modulosAluno;
 
-    public void criarAvaliacaoExemplo() { // TODO RETIRAR ISSO DAQUI ELIMINAR O MÉTODO
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+        this.idAluno = aluno.getId();
+    }
+
+    public void criarAvaliacaoExemplo() {
         avaliacaoFacade.create(montarAvaliacaoExemplo());
     }
 
-    public void criarAlunoExemplo() { // TODO RETIRAR ISSO DAQUI ELIMINAR O MÉTODO
+    public void criarAlunoExemplo() {
         alunoFacade.create(montarAlunoExemplo());
     }
 
@@ -102,37 +116,44 @@ public class FormularioAvaliacaoAlunoController {
         return criarQuestao(TipoQuestao.LIKERT, texto);
     }
 
-    public Aluno getAluno() {
-        return aluno;
-    }
-
     public Integer getIdAluno() {
         return idAluno;
     }
 
     public void setIdAluno(Integer idAluno) {
         this.idAluno = idAluno;
-        aluno = null;
-        aluno = new Aluno();
-        aluno.setId(idAluno);
+        this.aluno = alunoFacade.find(idAluno);
+        this.modulosAluno = moduloFacade.buscarModulosPorIdAluno(idAluno);
     }
 
     public Aluno montarAlunoExemplo() {
-        Aluno aluno = new Aluno();
-        aluno.setNome("Bruce Notario");
-        aluno.setCpf("12345678901");
-        aluno.setMatricula("999444222");
-        aluno.setSexo(Sexo.MASCULINO);
-        aluno.setDataNascimento(LocalDate.of(1985, Month.SEPTEMBER, 12));
-        aluno.setTurmas(new ArrayList<>());
-        aluno.getTurmas().add(new Turma());
-        aluno.getTurmas().get(0).setInicio(LocalDate.of(2000, Month.SEPTEMBER, 12));
-        aluno.getTurmas().get(0).setFim(LocalDate.of(2000, Month.SEPTEMBER, 20));
-        aluno.getTurmas().get(0).setProfessor(new Professor());
-        aluno.getTurmas().get(0).getProfessor().setNome("John Lenon");
-        aluno.getTurmas().get(0).setModulos(new ArrayList<>());
-        aluno.getTurmas().get(0).getModulos().add(new Modulo());
-        aluno.getTurmas().get(0).getModulos().get(0).setNome("Módulo da Banda de Pagode");
-        return aluno;
+        Aluno novoAluno = new Aluno();
+        novoAluno.setNome("Bruce Notario");
+        novoAluno.setCpf("12345678901");
+        novoAluno.setMatricula("999444222");
+        novoAluno.setSexo(Sexo.MASCULINO);
+        novoAluno.setDataNascimento(LocalDate.of(1985, Month.SEPTEMBER, 12));
+        novoAluno.setTurmas(new ArrayList<>());
+        novoAluno.getTurmas().add(new Turma());
+        novoAluno.getTurmas().get(0).setInicio(LocalDate.of(2000, Month.SEPTEMBER, 12));
+        novoAluno.getTurmas().get(0).setFim(LocalDate.of(2000, Month.SEPTEMBER, 20));
+        novoAluno.getTurmas().get(0).setProfessor(new Professor());
+        novoAluno.getTurmas().get(0).getProfessor().setNome("John Lenon");
+        novoAluno.getTurmas().get(0).setModulos(new ArrayList<>());
+        novoAluno.getTurmas().get(0).getModulos().add(new Modulo());
+        novoAluno.getTurmas().get(0).getModulos().get(0).setNome("Módulo da Banda de Pagode");
+        return novoAluno;
+    }
+
+    void setModulosAluno(ArrayList<Object> arrayList) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public List<Modulo> getModulosAluno() {
+        return modulosAluno;
+    }
+
+    public void setModulosAluno(List<Modulo> modulosAluno) {
+        this.modulosAluno = modulosAluno;
     }
 }

@@ -25,7 +25,10 @@ public class AlunoController implements Serializable {
     private DataModel items = null;
 
     @EJB
-    private br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.AlunoFacade ejbFacade;
+    private br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.AlunoFacade ejbAlunoFacade;
+    
+    @EJB
+    private br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.TurmaFacade ejbTurmaFacade;
 
     private PaginationHelper pagination;
     private int selectedItemIndex;
@@ -42,7 +45,7 @@ public class AlunoController implements Serializable {
     }
 
     private AlunoFacade getFacade() {
-        return ejbFacade;
+        return ejbAlunoFacade;
     }
 
     public PaginationHelper getPagination() {
@@ -182,15 +185,15 @@ public class AlunoController implements Serializable {
     }
 
     public SelectItem[] getItemsAvailableSelectMany() {
-        return JsfUtil.getSelectItems(ejbFacade.findAll(), false);
+        return JsfUtil.getSelectItems(ejbAlunoFacade.findAll(), false);
     }
 
     public SelectItem[] getItemsAvailableSelectOne() {
-        return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
+        return JsfUtil.getSelectItems(ejbAlunoFacade.findAll(), true);
     }
 
     public Aluno getAluno(java.lang.Integer id) {
-        return ejbFacade.find(id);
+        return ejbAlunoFacade.find(id);
     }
 
     @FacesConverter(forClass = Aluno.class)
@@ -235,6 +238,10 @@ public class AlunoController implements Serializable {
 
     public Sexo[] getSexos() {
         return Sexo.values();
+    }
+    
+    public Turma[] getTurmas() {
+        return ejbTurmaFacade.findAll().stream().toArray(Turma[]::new);
     }
 
 }

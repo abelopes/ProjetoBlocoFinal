@@ -1,7 +1,9 @@
 package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna;
 
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.Resposta;
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,10 +13,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "MODULO")
+@NamedQuery(name = "Modulo.buscarModulosPorIdAluno", query = "SELECT m FROM Modulo m")
 public class Modulo implements Serializable {
 
     private static final long serialVersionUID = 9207840456436410986L;
@@ -33,6 +38,17 @@ public class Modulo implements Serializable {
     @ManyToOne
     @JoinColumn(name = "ID_BLOCO")
     private Bloco bloco;
+
+    @OneToMany(mappedBy = "modulo", cascade = CascadeType.PERSIST)
+    private List<Resposta> respostas;
+
+    public List<Resposta> getRespostas() {
+        return respostas;
+    }
+
+    public void setRespostas(List<Resposta> respostas) {
+        this.respostas = respostas;
+    }
 
     public Integer getId() {
         return id;

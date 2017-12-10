@@ -4,6 +4,8 @@ import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.util.PaginationHelper;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -20,10 +22,14 @@ import javax.faces.model.SelectItem;
 @SessionScoped
 public class ModuloController implements Serializable {
 
+    private static final long serialVersionUID = 8444977427822536284L;
+
     private Modulo current;
     private DataModel items = null;
+
     @EJB
     private br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.ModuloFacade ejbFacade;
+
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
