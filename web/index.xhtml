@@ -73,8 +73,11 @@ body {
   <a href="respostaLikert/List.xhtml">Respostas Likert</a>
   <a href="respostaTextual/List.xhtml">Respostas Textuais</a>
   <a href="user/List.xhtml">Usuários</a>
+    <b:form>
+        <h:commandLink action="#{excelController.writeExcel()}" immediate="true" value="Gerar Excel"/> 
+  </b:form>
   <b:form>
-  <h:commandLink action="#{authController.logout()}" immediate="true" value="Sair"/> 
+      <h:commandLink action="#{authController.logout()}" immediate="true" value="Sair"/> 
   </b:form>
 </div>
 
@@ -98,4 +101,3 @@ function closeNav() {
 </body>
 
 </html>
-
