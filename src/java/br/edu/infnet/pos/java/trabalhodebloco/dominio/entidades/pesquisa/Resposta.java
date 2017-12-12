@@ -85,5 +85,7 @@ public abstract class Resposta<T> extends Entidade {
     public void setAvaliacao(Avaliacao avaliacao) {
         this.avaliacao = avaliacao;
     }
+    
+    
 
 }
