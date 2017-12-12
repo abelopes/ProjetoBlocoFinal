@@ -42,11 +42,7 @@ public class ExcelController  implements Serializable {
   private String url = "jdbc:mysql://localhost/"+db;
   /** variable para trabajar con la conexion a la base de datos */
   private Connection conn = null;  
-  /** ruta y archivo de destino */
-  String caminhoAtual = getClass().getResource(getClass().getSimpleName() + ".class").getPath();
-  String caminhoExcel = caminhoAtual.replace("build/web/WEB-INF/classes/br/edu/infnet/pos/java/trabalhodebloco/dominio/entidades/estruturainterna/ExcelController.class", "src/java/br/edu/infnet/pos/java/trabalhodebloco/excel");
-  File file = new File(caminhoExcel + "/avaliacao.xls");
-
+  
     /**
  * Constructor de clase
  */
@@ -77,7 +73,7 @@ public class ExcelController  implements Serializable {
     /**
  * Metodo para obtener los registros de la base de datos y crear el archivo excel
  */
-    public void writeExcel() throws WriteException, IOException
+    public void writeExcel(Modulo modulo) throws WriteException, IOException
     {
             FacesContext context = FacesContext.getCurrentInstance();
     //
@@ -95,6 +91,9 @@ public class ExcelController  implements Serializable {
         wbSettings.setLocale(new Locale("en", "EN"));
 
         try {
+            String caminhoAtual = getClass().getResource(getClass().getSimpleName() + ".class").getPath();
+            String caminhoExcel = caminhoAtual.replace("build/web/WEB-INF/classes/br/edu/infnet/pos/java/trabalhodebloco/dominio/entidades/estruturainterna/ExcelController.class", "src/java/br/edu/infnet/pos/java/trabalhodebloco/excel");
+            File file = new File(caminhoExcel + "/avaliacao_modulo_"+modulo.getNome()+".xls");
             workbook = Workbook.createWorkbook( file, wbSettings );
             //hoja con nombre de la tabla
             workbook.createSheet( "avaliacao", 0 );
@@ -135,7 +134,13 @@ public class ExcelController  implements Serializable {
         //Consulta SQL 
        // String sql = "SELECT ci , nombre , apellido , fechanac, DATE_FORMAT(fechanac,'%Y-%m-%d %h:%i:%s') AS fecha , salario FROM persona ";
        // String sql = "select a.id AS id, a.objetivo AS objetivo, b.texto AS topico, c.texto AS questao, d.valor_likert AS resposta from avaliacao a,topico b,questao c,resposta d where a.id = b.id_avaliacao ";
-        String sql = "  select a.id AS id,a.objetivo,b.texto AS topico,c.texto AS questao, d.valor_likert AS resposta from avaliacao a,topico b,questao c,resposta d where a.id = b.id_avaliacao  and   a.id  =c.id_avaliacao and   b.id = c.id_topico and   a.id = d.id_avaliacao and   c.id = d.id_questao ";
+        String sql = "select a.id AS id,a.objetivo,b.texto AS topico,c.texto AS questao, d.valor_likert AS resposta "
+                + "from avaliacao a,topico b,questao c,resposta d where a.id = b.id_avaliacao  "
+                + "and   a.id = c.id_avaliacao "
+                + "and   b.id = c.id_topico "
+                + "and   a.id = d.id_avaliacao "
+                + "and   c.id = d.id_questao "
+                + "and   d.id_modulo = " + modulo.getId();
 
         try{
              java.sql.PreparedStatement pstm = conn.prepareStatement( sql );

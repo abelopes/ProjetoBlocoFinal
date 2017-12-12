@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -16,45 +17,45 @@
                 </h:panelGroup>
                 <h:outputText escape="false" value="#{bundle.ListModuloEmpty}" rendered="#{moduloController.items.rowCount == 0}"/>
                 <h:panelGroup rendered="#{moduloController.items.rowCount > 0}">
-                    <h:outputText value="#{moduloController.pagination.pageFirstItem + 1}..#{moduloController.pagination.pageLastItem + 1}/#{moduloController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{moduloController.previous}" value="#{bundle.Previous} #{moduloController.pagination.pageSize}" rendered="#{moduloController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{moduloController.next}" value="#{bundle.Next} #{moduloController.pagination.pageSize}" rendered="#{moduloController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{moduloController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
+                    <h:commandLink lang="pt-BR" action="#{moduloController.previous}" value="#{bundle.Previous} #{moduloController.pagination.pageSize}" rendered="#{moduloController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink lang="pt-BR" action="#{moduloController.next}" value="#{bundle.Next} #{moduloController.pagination.pageSize}" rendered="#{moduloController.pagination.hasNextPage}"/>&nbsp;
+                    <b:dataTable lang="pt-BR" value="#{moduloController.items}" var="item" style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
+                        <b:column style="width:1%;text-align:left;">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListModuloTitle_id}"/>
                             </f:facet>
                             <h:outputText value="#{item.id}"/>
-                        </h:column>
-                        <h:column>
+                        </b:column>
+                        <b:column style="width:43%;text-align:left;">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListModuloTitle_nome}"/>
                             </f:facet>
                             <h:outputText value="#{item.nome}"/>
-                        </h:column>
-                        <h:column>
+                        </b:column>
+                        <b:column style="width:42%;text-align:left;">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListModuloTitle_bloco}"/>
                             </f:facet>
                             <h:outputText value="#{item.bloco.nome}"/>
-                        </h:column>
+                        </b:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{moduloController.prepareView}" value="#{bundle.ListModuloViewLink}"/>
+                            <h:commandLink action="#{moduloController.prepareView}" class="fa fa-2x fa-eye"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{moduloController.prepareEdit}" value="#{bundle.ListModuloEditLink}"/>
+                            <h:commandLink action="#{moduloController.prepareEdit}" class="fa fa-2x fa-pencil"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{moduloController.destroy}" value="#{bundle.ListModuloDestroyLink}"/>
+                            <h:commandLink action="#{moduloController.destroy}" class="fa fa-2x fa-trash"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{moduloController.exportarExcel}" class="fa fa-2x fa-download"/>
                         </h:column>
-                    </h:dataTable>
+                    </b:dataTable>
                 </h:panelGroup>
-                <br />
-                <h:commandLink action="#{moduloController.prepareCreate}" value="#{bundle.ListModuloCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListModuloIndexLink}"/>
+                <div style="text-align: center; float: right">
+                <b:commandButton action="#{moduloController.prepareCreate}" value="#{bundle.ListModuloCreateLink}" class="btn btn-primary"/>
+                <b:button outcome="/index" value="#{bundle.ListModuloIndexLink}" class="btn btn-primary"/>
+                </div>
             </h:form>
         </ui:define>
     </ui:composition>
