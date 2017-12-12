@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -14,33 +15,51 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewRespostaTextualLabel_valor}"/>
+                 <b:dataTable value="#{cursoController.selected}" var="item"  style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
+                    <b:column style="width:1%;text-align:left;">
+                        <f:facet name="header">
+                   <h:outputText value="#{bundle.ViewRespostaTextualLabel_valor}"/>
+                        </f:facet>
+                   <h:outputText value="#{respostaTextualController.selected.valor}" title="#{bundle.ViewRespostaTextualTitle_valor}"/>
+                    </b:column>
+                      <b:column style="width:1%;text-align:left;">
+                        <f:facet name="header">
+                   <h:outputText value="#{bundle.ViewRespostaTextualLabel_valor}"/>
+                        </f:facet>
                     <h:outputText value="#{respostaTextualController.selected.valor}" title="#{bundle.ViewRespostaTextualTitle_valor}"/>
-                    <h:outputText value="#{bundle.ViewRespostaTextualLabel_valor}"/>
-                    <h:outputText value="#{respostaTextualController.selected.valor}" title="#{bundle.ViewRespostaTextualTitle_valor}"/>
+                      </b:column>
+                      <b:column style="width:1%;text-align:left;">
+                        <f:facet name="header">
                     <h:outputText value="#{bundle.ViewRespostaTextualLabel_questao}"/>
+                        </f:facet>
                     <h:outputText value="#{respostaTextualController.selected.questao}" title="#{bundle.ViewRespostaTextualTitle_questao}"/>
+                      </b:column>
+                      <b:column style="width:1%;text-align:left;">
+                        <f:facet name="header">
                     <h:outputText value="#{bundle.ViewRespostaTextualLabel_aluno}"/>
+                        </f:facet>
                     <h:outputText value="#{respostaTextualController.selected.aluno}" title="#{bundle.ViewRespostaTextualTitle_aluno}"/>
+                      </b:column>
+                      <b:column style="width:1%;text-align:left;">
+                        <f:facet name="header">
                     <h:outputText value="#{bundle.ViewRespostaTextualLabel_avaliacao}"/>
+                        </f:facet>
                     <h:outputText value="#{respostaTextualController.selected.avaliacao}" title="#{bundle.ViewRespostaTextualTitle_avaliacao}"/>
+                      </b:column>
+                      <b:column style="width:1%;text-align:left;">
+                        <f:facet name="header">
                     <h:outputText value="#{bundle.ViewRespostaTextualLabel_id}"/>
+                        </f:facet>
                     <h:outputText value="#{respostaTextualController.selected.id}" title="#{bundle.ViewRespostaTextualTitle_id}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{respostaTextualController.destroyAndView}" value="#{bundle.ViewRespostaTextualDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewRespostaTextualEditLink}"/>
-                <br />
-                <h:commandLink action="#{respostaTextualController.prepareCreate}" value="#{bundle.ViewRespostaTextualCreateLink}" />
-                <br />
-                <h:commandLink action="#{respostaTextualController.prepareList}" value="#{bundle.ViewRespostaTextualShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewRespostaTextualIndexLink}"/>
-
+                      </b:column>
+            </h:panelGrid>
+            <div style="text-align: center; float: right">
+                 <b:commandButton action="#{respostaTextualController.destroyAndView}" value="#{bundle.ViewRespostaTextualDestroyLink}" class="btn btn-primary"/>
+                <b:button outcome="Edit" value="#{bundle.ViewRespostaTextualEditLink}"/>
+                <b:commandButton action="#{respostaTextualController.prepareCreate}" value="#{bundle.ViewRespostaTextualCreateLink}" class="btn btn-primary"/>
+                <b:commandButton action="#{respostaTextualController.prepareList}" value="#{bundle.ViewRespostaTextualShowAllLink}"class="btn btn-primary"/>
+                <b:button outcome="/index" value="#{bundle.ViewRespostaTextualIndexLink}" class="btn btn-primary"/>
+            </div>
             </h:form>
         </ui:define>
     </ui:composition>
