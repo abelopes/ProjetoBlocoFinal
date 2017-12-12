@@ -83,5 +83,10 @@ public class Avaliacao extends Entidade {
     public void setRespostas(List<Resposta> respostas) {
         this.respostas = respostas;
     }
+    
+       @Override
+    public String toString() {
+        return this.getObjetivo();
+    }
 
 }

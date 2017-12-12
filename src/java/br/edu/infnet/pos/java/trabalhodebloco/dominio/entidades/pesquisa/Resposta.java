@@ -86,6 +86,5 @@ public abstract class Resposta<T> extends Entidade {
         this.avaliacao = avaliacao;
     }
     
-    
-
+ 
 }
