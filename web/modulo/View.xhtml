@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -14,28 +15,34 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewModuloLabel_id}"/>
-                    <h:outputText value="#{moduloController.selected.id}" title="#{bundle.ViewModuloTitle_id}"/>
-                    
+                 <b:dataTable value="#{cursoController.selected}" var="item"  style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
+                    <b:column style="width:1%;text-align:left;">
+                        <f:facet name="header">
+                     <h:outputText value="#{bundle.ViewModuloLabel_id}"/>
+                              </f:facet>
+                  <h:outputText value="#{moduloController.selected.id}" title="#{bundle.ViewModuloTitle_id}"/>
+                       </b:column>
+                         <b:column style="width:1%;text-align:left;">
+                        <f:facet name="header">
                     <h:outputText value="#{bundle.ViewModuloLabel_nome}"/>
+                        </f:facet>
                     <h:outputText value="#{moduloController.selected.nome}" title="#{bundle.ViewModuloTitle_nome}"/>
-                    
+                         </b:column>
+                         <b:column style="width:1%;text-align:left;">
+                        <f:facet name="header">
                     <h:outputText value="#{bundle.ViewModuloLabel_bloco}"/>
+                        </f:facet>
                     <h:outputText value="#{moduloController.selected.bloco.nome}" title="#{bundle.ViewModuloTitle_bloco}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{moduloController.destroyAndView}" value="#{bundle.ViewModuloDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewModuloEditLink}"/>
-                <br />
-                <h:commandLink action="#{moduloController.prepareCreate}" value="#{bundle.ViewModuloCreateLink}" />
-                <br />
-                <h:commandLink action="#{moduloController.prepareList}" value="#{bundle.ViewModuloShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewModuloIndexLink}"/>
+                         </b:column>
+                 </b:dataTable>
+               
+                <div style="text-align: center; float: right">
+               <b:commandButton action="#{moduloController.destroyAndView}" value="#{bundle.ViewModuloDestroyLink}" class="btn btn-primary"/>
+                <b:button outcome="Edit" value="#{bundle.ViewModuloEditLink}"/>
+                <b:commandButton action="#{moduloController.prepareCreate}" value="#{bundle.ViewModuloCreateLink}" class="btn btn-primary"/>
+                <b:commandButton action="#{moduloController.prepareList}" value="#{bundle.ViewModuloShowAllLink}" class="btn btn-primary"/>
+                <b:button outcome="/index" value="#{bundle.ViewModuloIndexLink}" class="btn btn-primary"/>
+                </div>
 
             </h:form>
         </ui:define>

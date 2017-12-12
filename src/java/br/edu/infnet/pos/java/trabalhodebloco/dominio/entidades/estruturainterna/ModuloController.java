@@ -2,11 +2,14 @@ package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturaintern
 
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.util.JsfUtil;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.util.PaginationHelper;
+import java.io.IOException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -17,6 +20,8 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.inject.Inject;
+import jxl.write.WriteException;
 
 @Named("moduloController")
 @SessionScoped
@@ -26,6 +31,8 @@ public class ModuloController implements Serializable {
 
     private Modulo current;
     private DataModel items = null;
+    @Inject
+    ExcelController excelController;
 
     @EJB
     private br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.ModuloFacade ejbFacade;
@@ -98,6 +105,16 @@ public class ModuloController implements Serializable {
         current = (Modulo) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
+    }
+    
+    public void exportarExcel() throws IOException {
+        current = (Modulo) getItems().getRowData();
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        try {
+            excelController.writeExcel(current);
+        } catch (WriteException ex) {
+            Logger.getLogger(ModuloController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public String update() {
