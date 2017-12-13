@@ -49,5 +49,10 @@ public class Topico extends Entidade {
     public void setTexto(String texto) {
         this.texto = texto;
     }
+    
+       @Override
+    public String toString() {
+        return this.getTexto();
+    }
 
 }

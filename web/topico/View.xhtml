@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -14,26 +15,33 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewTopicoLabel_avaliacao}"/>
+                <b:dataTable value="#{cursoController.selected}" var="item"  style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
+                    <b:column style="width:1%;text-align:left;">
+                        <f:facet name="header">
+                  <h:outputText value="#{bundle.ViewTopicoLabel_avaliacao}"/>
+                        </f:facet>
                     <h:outputText value="#{topicoController.selected.avaliacao}" title="#{bundle.ViewTopicoTitle_avaliacao}"/>
-                    <h:outputText value="#{bundle.ViewTopicoLabel_texto}"/>
+                    </b:column>
+                        <b:column style="width:1%;text-align:left;">
+                        <f:facet name="header">
+                  <h:outputText value="#{bundle.ViewTopicoLabel_texto}"/>
+                        </f:facet>
                     <h:outputText value="#{topicoController.selected.texto}" title="#{bundle.ViewTopicoTitle_texto}"/>
+                        </b:column>
+                    <b:column style="width:1%;text-align:left;">
+                        <f:facet name="header">
                     <h:outputText value="#{bundle.ViewTopicoLabel_id}"/>
+                        </f:facet>
                     <h:outputText value="#{topicoController.selected.id}" title="#{bundle.ViewTopicoTitle_id}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{topicoController.destroyAndView}" value="#{bundle.ViewTopicoDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewTopicoEditLink}"/>
-                <br />
-                <h:commandLink action="#{topicoController.prepareCreate}" value="#{bundle.ViewTopicoCreateLink}" />
-                <br />
-                <h:commandLink action="#{topicoController.prepareList}" value="#{bundle.ViewTopicoShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewTopicoIndexLink}"/>
+                    </b:column>
+                </b:dataTable>
+                <div style="text-align: center; float: right">
+                <b:commandButton action="#{topicoController.destroyAndView}" value="#{bundle.ViewTopicoDestroyLink}" class="btn btn-primary"/>
+                <b:button outcome="Edit" value="#{bundle.ViewTopicoEditLink}" class="btn btn-primary"/>
+                <b:commandButton action="#{topicoController.prepareCreate}" value="#{bundle.ViewTopicoCreateLink}" class="btn btn-primary"/>
+                <b:commandButton action="#{topicoController.prepareList}" value="#{bundle.ViewTopicoShowAllLink}" class="btn btn-primary"/>
+                <b:button outcome="/index" value="#{bundle.ViewTopicoIndexLink}" class="btn btn-primary"/>
+                </div>
 
             </h:form>
         </ui:define>

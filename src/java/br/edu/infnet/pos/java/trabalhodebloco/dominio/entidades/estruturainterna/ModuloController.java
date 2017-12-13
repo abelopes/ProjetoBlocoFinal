@@ -106,8 +106,8 @@ public class ModuloController implements Serializable {
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
-    
-    public void exportarExcel() {
+
+	    public void exportarExcel() {
         current = (Modulo) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         try {
