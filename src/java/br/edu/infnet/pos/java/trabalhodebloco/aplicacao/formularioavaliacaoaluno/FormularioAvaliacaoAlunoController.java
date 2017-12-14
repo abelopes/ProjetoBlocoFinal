@@ -58,8 +58,8 @@ public class FormularioAvaliacaoAlunoController {
     public Avaliacao montarAvaliacaoExemplo() {
         Avaliacao avaliacao = new Avaliacao();
         avaliacao.setCodigoAlfanumerico("0B1W4NK3N0B1");
-        avaliacao.setInicio(LocalDateTime.of(1985, Month.SEPTEMBER, 12, 6, 0));
-        avaliacao.setFim(LocalDateTime.of(2000, Month.SEPTEMBER, 12, 6, 0));
+        avaliacao.setInicio(LocalDate.of(1985, Month.SEPTEMBER, 12));
+        avaliacao.setFim(LocalDate.of(2000, Month.SEPTEMBER, 12));
         avaliacao.setObjetivo("Avaliar o curso de especialização em engenharia de software");
         avaliacao.setTopicos(new ArrayList<>());
         Topico topico;

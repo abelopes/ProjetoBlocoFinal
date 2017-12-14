@@ -6,7 +6,7 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.util.Entidade;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;
@@ -24,10 +24,10 @@ public class Avaliacao extends Entidade {
     private List<Topico> topicos;
 
     @Column(name = "DATA_HORA_INICIO")
-    private LocalDateTime inicio;
+    private LocalDate inicio;
 
     @Column(name = "DATA_HORA_FIM")
-    private LocalDateTime fim;
+    private LocalDate fim;
 
     @Lob
     @Column(name = "OBJETIVO")
@@ -60,19 +60,19 @@ public class Avaliacao extends Entidade {
         this.objetivo = objetivo;
     }
 
-    public LocalDateTime getFim() {
+    public LocalDate getFim() {
         return fim;
     }
 
-    public void setFim(LocalDateTime fim) {
+    public void setFim(LocalDate fim) {
         this.fim = fim;
     }
 
-    public LocalDateTime getInicio() {
+    public LocalDate getInicio() {
         return inicio;
     }
 
-    public void setInicio(LocalDateTime inicio) {
+    public void setInicio(LocalDate inicio) {
         this.inicio = inicio;
     }
 
