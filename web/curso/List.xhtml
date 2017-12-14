@@ -12,15 +12,14 @@
         </ui:define>
         <ui:define name="body">
             <b:form styleClass="jsfcrud_list_form">
-                
                 <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                    <b:messages styleClass="msgs" errorStyle="color: red" infoStyle="color: green" warnStyle="color: yellow"/>
                 </h:panelGroup>
                 <h:outputText escape="false" value="#{bundle.ListCursoEmpty}" rendered="#{cursoController.items.rowCount == 0}"/>
                 <h:panelGroup rendered="#{cursoController.items.rowCount > 0}">
                         <h:commandLink action="#{cursoController.previous}" value="#{bundle.Previous} #{cursoController.pagination.pageSize}" rendered="#{cursoController.pagination.hasPreviousPage}"/>&nbsp;
                         <h:commandLink action="#{cursoController.next}" value="#{bundle.Next} #{cursoController.pagination.pageSize}" rendered="#{cursoController.pagination.hasNextPage}"/>&nbsp;
-                        <b:dataTable value="#{cursoController.items}" var="item"  style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
+                        <b:dataTable customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json" value="#{cursoController.items}" var="item"  style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
                         <b:column style="width:1%;text-align:left;">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCursoTitle_id}"/>

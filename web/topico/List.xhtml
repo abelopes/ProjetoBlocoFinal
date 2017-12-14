@@ -13,14 +13,13 @@
         <ui:define name="body">
             <h:form styleClass="jsfcrud_list_form">
                 <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                    <b:messages styleClass="msgs" errorStyle="color: red" infoStyle="color: green" warnStyle="color: yellow"/>
                 </h:panelGroup>
                 <h:outputText escape="false" value="#{bundle.ListTopicoEmpty}" rendered="#{topicoController.items.rowCount == 0}"/>
                 <h:panelGroup rendered="#{topicoController.items.rowCount > 0}">
-                    <h:outputText value="#{topicoController.pagination.pageFirstItem + 1}..#{topicoController.pagination.pageLastItem + 1}/#{topicoController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{topicoController.previous}" value="#{bundle.Previous} #{topicoController.pagination.pageSize}" rendered="#{topicoController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{topicoController.next}" value="#{bundle.Next} #{topicoController.pagination.pageSize}" rendered="#{topicoController.pagination.hasNextPage}"/>&nbsp;
-                    <b:dataTable value="#{topicoController.items}" var="item" style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
+                    <b:dataTable customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json" value="#{topicoController.items}" var="item" style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
                         <b:column style="width:1%;text-align:left;">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTopicoTitle_avaliacao}"/>

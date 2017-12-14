@@ -13,14 +13,13 @@
         <ui:define name="body">
             <b:form styleClass="jsfcrud_list_form">
                 <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                    <b:messages styleClass="msgs" errorStyle="color: red" infoStyle="color: green" warnStyle="color: yellow"/>
                 </h:panelGroup>
                 <h:outputText escape="false" value="#{bundle.ListTurmaEmpty}" rendered="#{turmaController.items.rowCount == 0}"/>
                 <h:panelGroup rendered="#{turmaController.items.rowCount > 0}">
-                    <h:outputText value="#{turmaController.pagination.pageFirstItem + 1}..#{turmaController.pagination.pageLastItem + 1}/#{turmaController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{turmaController.previous}" value="#{bundle.Previous} #{turmaController.pagination.pageSize}" rendered="#{turmaController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{turmaController.next}" value="#{bundle.Next} #{turmaController.pagination.pageSize}" rendered="#{turmaController.pagination.hasNextPage}"/>&nbsp;
-                    <b:dataTable value="#{turmaController.items}" var="item"  style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
+                    <b:dataTable customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json" value="#{turmaController.items}" var="item"  style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
                          <b:column style="width:1%;text-align:left;">
                              <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTurmaTitle_id}"/>
