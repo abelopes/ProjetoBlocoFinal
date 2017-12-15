@@ -19,21 +19,21 @@
                     <h:form  style="border: solid 3px #e0e0e0;padding-top:50px;border-radius: 5px;position: relative;max-width:100%;height:auto; width:100%">
 
                         <h:panelGrid columns="2" style="width: 50%;float:left">
-                            <h:outputLabel value="#{bundle.CreateBlocoLabel_id}" for="id" />
-                            <b:inputText id="id" value="#{blocoController.selected.id}" title="#{bundle.CreateBlocoTitle_id}" readonly="true" />
                             <h:outputLabel value="#{bundle.CreateBlocoLabel_nome}" for="nome" />
                             <b:inputText id="nome" value="#{blocoController.selected.nome}" title="#{bundle.CreateBlocoTitle_nome}" />
                             <h:outputLabel value="#{bundle.CreateBlocoLabel_curso}" for="curso" />
-                            <h:selectOneMenu id="curso" value="#{blocoController.selected.curso}" title="#{bundle.CreateBlocoTitle_curso}" style="width: 100%;float:left;border-radius: 4px" >
+                            <h:selectOneMenu class="form-control" id="curso" value="#{blocoController.selected.curso}" title="#{bundle.CreateBlocoTitle_curso}" style="width: 100%;float:left;border-radius: 4px" >
                                 <f:selectItems value="#{cursoController.itemsAvailableSelectOne}"/>
                             </h:selectOneMenu>
                         </h:panelGrid>
-                        <div style="margin-top: 40rem">
+                        <div style="margin-top: 10rem">
                             <b:commandButton action="#{blocoController.create}" value="#{bundle.CreateBlocoSaveLink}" class="btn btn-primary"/>
                             <b:commandButton action="#{blocoController.prepareList}" value="#{bundle.CreateBlocoShowAllLink}" immediate="true" class="btn btn-primary"/>
                             <b:button outcome="/index" value="#{bundle.CreateBlocoIndexLink}" style="color: #ffffff;background-color: #166056;border-color: #166056;"/>
                         </div>
+                        <br></br>
                     </h:form>
+                    <br></br>
                 </div>
             </div>
                     </ui:define>

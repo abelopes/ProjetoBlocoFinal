@@ -26,7 +26,7 @@
                     <h:outputLabel value="#{bundle.CreateAlunoLabel_email}" for="email" />
                     <b:inputText id="email" value="#{alunoController.selected.email}" title="#{bundle.CreateAlunoTitle_email}" />
                    <h:outputLabel value="#{bundle.CreateAlunoLabel_dataNascimento}" for="dataNascimento" />
-                    <b:inputText id="dataNascimento" value="#{alunoController.selected.dataNascimento}" title="#{bundle.CreateAlunoTitle_dataNascimento}">
+                   <b:inputText mask="99/99/9999" id="dataNascimento" value="#{alunoController.selected.dataNascimento}" title="#{bundle.CreateAlunoTitle_dataNascimento}">
                         <f:converter converterId="br.edu.infnet.pos.java.trabalhodebloco.infra.converter.JsfLocalDateConverter" />
                     </b:inputText>
                     <h:outputLabel value="#{bundle.CreateAlunoLabel_nomeMae}" for="nomeMae" />

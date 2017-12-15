@@ -22,17 +22,19 @@
                     <h:outputLabel value="#{bundle.EditModuloLabel_nome}" for="nome" />
                     <b:inputText id="nome" value="#{moduloController.selected.nome}" title="#{bundle.EditModuloTitle_nome}" />
                     <h:outputLabel value="#{bundle.EditModuloLabel_bloco}" for="bloco" />
-                    <b:selectOneMenu id="bloco" value="#{moduloController.selected.bloco}" title="#{bundle.EditModuloTitle_bloco}" >
+                    <h:selectOneMenu class="form-control" id="bloco" value="#{moduloController.selected.bloco}" title="#{bundle.EditModuloTitle_bloco}" >
                         <f:selectItems value="#{blocoController.itemsAvailableSelectOne}"/>
-                    </b:selectOneMenu>
+                    </h:selectOneMenu>
                 </h:panelGrid>
-                       <div style="margin-top: 40rem">
+                       <div style="margin-top: 10rem">
                 <b:commandButton action="#{moduloController.update}" value="#{bundle.EditModuloSaveLink}" class="btn btn-primary"/>
                 <b:button outcome="View" value="#{bundle.EditModuloViewLink}" class="btn btn-primary"/>
                 <b:commandButton action="#{moduloController.prepareList}" value="#{bundle.EditModuloShowAllLink}" immediate="true" class="btn btn-primary"/>
                 <b:button outcome="/index" value="#{bundle.EditModuloIndexLink}" style="color: #ffffff;background-color: #166056;border-color: #166056;" />
                        </div>
+                       <br></br>
             </h:form>
+                    <br></br>
                 </div>
             </div>
         </ui:define>

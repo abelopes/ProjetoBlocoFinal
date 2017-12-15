@@ -25,13 +25,13 @@
                     <b:inputTextarea rows="4" id="objetivo" value="#{avaliacaoController.selected.objetivo}" title="#{bundle.CreateAvaliacaoTitle_objetivo}" />
                     
                     <h:outputLabel value="#{bundle.CreateAvaliacaoLabel_inicio}" for="inicio" />
-                    <b:datepicker id="inicio" value="#{avaliacaoController.selected.inicio}">
+                    <b:inputText mask="99/99/9999" id="inicio" value="#{avaliacaoController.selected.inicio}">
                         <f:converter converterId="br.edu.infnet.pos.java.trabalhodebloco.infra.converter.JsfLocalDateConverter" />
-                    </b:datepicker>
+                    </b:inputText>
                     <h:outputLabel value="#{bundle.CreateAvaliacaoLabel_fim}" for="fim" />
-                    <b:datepicker id="fim" value="#{avaliacaoController.selected.fim}">
+                    <b:inputText mask="99/99/9999" id="fim" value="#{avaliacaoController.selected.fim}">
                         <f:converter converterId="br.edu.infnet.pos.java.trabalhodebloco.infra.converter.JsfLocalDateConverter" />
-                    </b:datepicker>
+                    </b:inputText>
                 </h:panelGrid>
                 <div style="margin-top: 31rem;float: right">
                     <b:commandButton action="#{avaliacaoController.create}" value="#{bundle.CreateAvaliacaoSaveLink}" class="btn btn-primary"/>

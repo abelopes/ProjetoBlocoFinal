@@ -12,36 +12,36 @@
         </ui:define>
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
-               <b:messages styleClass="msgs" errorStyle="color: red" infoStyle="color: green" warnStyle="color: yellow"/>
+                <b:messages styleClass="msgs" errorStyle="color: red" infoStyle="color: green" warnStyle="color: yellow"/>
             </h:panelGroup>
             <h:form>
-                 <b:dataTable value="#{cursoController.selected}" var="item"  style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
+                <b:dataTable customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json" value="#{cursoController.selected}" var="item"  style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
                     <b:column style="width:1%;text-align:left;">
                         <f:facet name="header">
-                     <h:outputText value="#{bundle.ViewModuloLabel_id}"/>
-                              </f:facet>
-                  <h:outputText value="#{moduloController.selected.id}" title="#{bundle.ViewModuloTitle_id}"/>
-                       </b:column>
-                         <b:column style="width:1%;text-align:left;">
-                        <f:facet name="header">
-                    <h:outputText value="#{bundle.ViewModuloLabel_nome}"/>
+                            <h:outputText value="#{bundle.ViewModuloLabel_id}"/>
                         </f:facet>
-                    <h:outputText value="#{moduloController.selected.nome}" title="#{bundle.ViewModuloTitle_nome}"/>
-                         </b:column>
-                         <b:column style="width:1%;text-align:left;">
+                        <h:outputText value="#{moduloController.selected.id}" title="#{bundle.ViewModuloTitle_id}"/>
+                    </b:column>
+                    <b:column style="width:44%;text-align:left;">
                         <f:facet name="header">
-                    <h:outputText value="#{bundle.ViewModuloLabel_bloco}"/>
+                            <h:outputText value="#{bundle.ViewModuloLabel_nome}"/>
                         </f:facet>
-                    <h:outputText value="#{moduloController.selected.bloco.nome}" title="#{bundle.ViewModuloTitle_bloco}"/>
-                         </b:column>
-                 </b:dataTable>
-               
+                        <h:outputText value="#{moduloController.selected.nome}" title="#{bundle.ViewModuloTitle_nome}"/>
+                    </b:column>
+                    <b:column style="width:44%;text-align:left;">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ViewModuloLabel_bloco}"/>
+                        </f:facet>
+                        <h:outputText value="#{moduloController.selected.bloco.nome}" title="#{bundle.ViewModuloTitle_bloco}"/>
+                    </b:column>
+                </b:dataTable>
+
                 <div style="text-align: center; float: right">
-               <b:commandButton action="#{moduloController.destroyAndView}" value="#{bundle.ViewModuloDestroyLink}" class="btn btn-primary"/>
-                <b:button outcome="Edit" value="#{bundle.ViewModuloEditLink}"/>
-                <b:commandButton action="#{moduloController.prepareCreate}" value="#{bundle.ViewModuloCreateLink}" class="btn btn-primary"/>
-                <b:commandButton action="#{moduloController.prepareList}" value="#{bundle.ViewModuloShowAllLink}" class="btn btn-primary"/>
-                <b:button outcome="/index" value="#{bundle.ViewModuloIndexLink}" class="btn btn-primary"/>
+                    <b:commandButton action="#{moduloController.destroyAndView}" value="#{bundle.ViewModuloDestroyLink}" class="btn btn-primary"/>
+                    <b:button outcome="Edit" value="#{bundle.ViewModuloEditLink}"/>
+                    <b:commandButton action="#{moduloController.prepareCreate}" value="#{bundle.ViewModuloCreateLink}" class="btn btn-primary"/>
+                    <b:commandButton action="#{moduloController.prepareList}" value="#{bundle.ViewModuloShowAllLink}" class="btn btn-primary"/>
+                    <b:button outcome="/index" value="#{bundle.ViewModuloIndexLink}" class="btn btn-primary"/>
                 </div>
 
             </h:form>

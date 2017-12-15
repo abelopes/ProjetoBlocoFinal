@@ -29,17 +29,17 @@
                     <b:inputText id="email" value="#{alunoController.selected.email}" title="#{bundle.EditAlunoTitle_email}" readonly="true" />
                     
                     <h:outputLabel value="#{bundle.EditAlunoLabel_dataNascimento}" for="dataNascimento"  />
-                    <h:inputText id="dataNascimento" value="#{alunoController.selected.dataNascimento}" title="#{bundle.EditAlunoTitle_dataNascimento}" readonly="true">
+                    <b:inputText id="dataNascimento" value="#{alunoController.selected.dataNascimento}" title="#{bundle.EditAlunoTitle_dataNascimento}" readonly="true">
                         <f:converter converterId="br.edu.infnet.pos.java.trabalhodebloco.infra.converter.JsfLocalDateConverter" />
-                    </h:inputText>
+                    </b:inputText>
                     
                     <h:outputLabel value="#{bundle.EditAlunoLabel_nomeMae}" for="nomeMae" />
                     <b:inputText id="nomeMae" value="#{alunoController.selected.nomeMae}" title="#{bundle.EditAlunoTitle_nomeMae}" readonly="true"/>
 
                     <h:outputLabel value="#{bundle.EditAlunoLabel_sexo}" for="sexo"/>
-                    <h:selectOneMenu id="sexo" value="#{alunoController.selected.sexo}" title="#{bundle.EditAlunoTitle_sexo}" readonly="true">
+                    <b:selectOneMenu id="sexo" value="#{alunoController.selected.sexo}" title="#{bundle.EditAlunoTitle_sexo}" readonly="true">
                         <f:selectItems value="#{alunoController.sexos}" var="sexo" itemValue="#{sexo}" itemLabel="#{sexo.descricao}"  />   
-                    </h:selectOneMenu>
+                    </b:selectOneMenu>
                     
                     <h:outputLabel value="#{bundle.EditAlunoLabel_cpf}" for="cpf" />
                     <b:inputText id="cpf" value="#{alunoController.selected.cpf}" title="#{bundle.EditAlunoTitle_cpf}" readonly="true" />
