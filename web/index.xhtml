@@ -61,24 +61,39 @@ body {
 
 <div id="mySidenav" class="sidenav" style="background-color: #99b3ff">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  
   <a href="aluno/List.xhtml">Alunos</a>
+  
   <a href="avaliacao/List.xhtml">Avaliações</a>
-  <a href="bloco/List.xhtml">Blocos de Cursos</a>
-  <a href="modulo/List.xhtml">Módulo</a>
+  
+  <a href="bloco/List.xhtml">Blocos</a>
+  
+  <a href="modulo/List.xhtml">Módulos</a>
+  
   <a href="curso/List.xhtml">Cursos</a>
+  
   <a href="professor/List.xhtml">Professores</a>
+  
   <a href="turma/List.xhtml">Turmas</a>
+  
   <a href="questao/List.xhtml">Questões</a>
+  
   <a href="topico/List.xhtml">Tópicos</a>
+  
   <a href="respostaLikert/List.xhtml">Respostas Likert</a>
+  
   <a href="respostaTextual/List.xhtml">Respostas Textuais</a>
+  
   <a href="user/List.xhtml">Usuários</a>
-    <b:form>
-        <h:commandLink action="#{excelController.writeExcel()}" immediate="true" value="Gerar Excel"/> 
-  </b:form>
+  
   <b:form>
       <h:commandLink action="#{authController.logout()}" immediate="true" value="Sair"/> 
   </b:form>
+  
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
 </div>
 
 <div id="main">
@@ -91,8 +106,8 @@ body {
 
 <script>
 function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
+    document.getElementById("mySidenav").style.width = "280px";
+    document.getElementById("main").style.marginLeft = "280px";
 }
 
 function closeNav() {
