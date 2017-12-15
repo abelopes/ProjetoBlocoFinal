@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -11,30 +12,35 @@
         </ui:define>
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                <b:messages styleClass="msgs" errorStyle="color: red" infoStyle="color: green" warnStyle="color: yellow"/>
             </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
+            
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-4 col-md-offset-4 col-sm-offset-3 col-xs-offset-0">
+                <div style="margin: 0 -450px;height: 100%">
+            <h:form style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative;height: 37rem">
+                <h:panelGrid columns="2" style="width: 50%;float:left;height: 100%">
                     <h:outputLabel value="#{bundle.CreateAvaliacaoLabel_codigoAlfanumerico}" for="codigoAlfanumerico" />
-                    <h:inputText id="codigoAlfanumerico" value="#{avaliacaoController.selected.codigoAlfanumerico}" title="#{bundle.CreateAvaliacaoTitle_codigoAlfanumerico}" />
+                    <b:inputText id="codigoAlfanumerico" value="#{avaliacaoController.selected.codigoAlfanumerico}" title="#{bundle.CreateAvaliacaoTitle_codigoAlfanumerico}" />
                     <h:outputLabel value="#{bundle.CreateAvaliacaoLabel_objetivo}" for="objetivo" />
-                    <h:inputTextarea rows="4" cols="30" id="objetivo" value="#{avaliacaoController.selected.objetivo}" title="#{bundle.CreateAvaliacaoTitle_objetivo}" />
-                    <h:outputLabel value="#{bundle.CreateAvaliacaoLabel_fim}" for="fim" />
-                    <h:inputText id="fim" value="#{avaliacaoController.selected.fim}" title="#{bundle.CreateAvaliacaoTitle_fim}" />
+                    <b:inputTextarea rows="4" id="objetivo" value="#{avaliacaoController.selected.objetivo}" title="#{bundle.CreateAvaliacaoTitle_objetivo}" />
+                    
                     <h:outputLabel value="#{bundle.CreateAvaliacaoLabel_inicio}" for="inicio" />
-                    <h:inputText id="inicio" value="#{avaliacaoController.selected.inicio}" title="#{bundle.CreateAvaliacaoTitle_inicio}" />
-                    <h:outputLabel value="#{bundle.CreateAvaliacaoLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{avaliacaoController.selected.id}" title="#{bundle.CreateAvaliacaoTitle_id}" />
+                    <b:datepicker id="inicio" value="#{avaliacaoController.selected.inicio}">
+                        <f:converter converterId="br.edu.infnet.pos.java.trabalhodebloco.infra.converter.JsfLocalDateConverter" />
+                    </b:datepicker>
+                    <h:outputLabel value="#{bundle.CreateAvaliacaoLabel_fim}" for="fim" />
+                    <b:datepicker id="fim" value="#{avaliacaoController.selected.fim}">
+                        <f:converter converterId="br.edu.infnet.pos.java.trabalhodebloco.infra.converter.JsfLocalDateConverter" />
+                    </b:datepicker>
                 </h:panelGrid>
-                <br />
-                <h:commandLink action="#{avaliacaoController.create}" value="#{bundle.CreateAvaliacaoSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{avaliacaoController.prepareList}" value="#{bundle.CreateAvaliacaoShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateAvaliacaoIndexLink}"/>
+                <div style="margin-top: 31rem;float: right">
+                    <b:commandButton action="#{avaliacaoController.create}" value="#{bundle.CreateAvaliacaoSaveLink}" class="btn btn-primary"/>
+                    <b:commandButton action="#{avaliacaoController.prepareList}" value="#{bundle.CreateAvaliacaoShowAllLink}" immediate="true" class="btn btn-primary"/>
+                    <b:button outcome="/index" value="#{bundle.CreateAvaliacaoIndexLink}" class="btn btn-primary"/>
+                </div>
             </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 

@@ -10,5 +10,5 @@
         <property name="URL" value="jdbc:mysql://localhost:3306/projeto_bloco_final"/>
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
   </jdbc-connection-pool>
-  <jdbc-resource enabled="true" jndi-name="java:app/projeto_bloco_final_jndi" object-type="user" pool-name="mysql_login_rootPool"/>
+  <jdbc-resource enabled="true" jndi-name="java:app/projeto_bloco_final" object-type="user" pool-name="mysql_login_rootPool"/>
 </resources>

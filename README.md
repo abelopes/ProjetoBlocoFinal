@@ -19,6 +19,10 @@ Software para avaliação da instituição por seus alunos usando a escala de **
  - Você deve colocar o conteúdo do projeto https://github.com/brucelucien/ProjetoBlocoFinalLibs dentro do diretório **lib** na raiz deste projeto.
  - **ATENÇÃO**: se você precisar adicionar novas bibliotecas ao projeto o faça também nesse repositório citado acima e, no Netbeans, faça uma referência com **caminho relativo**, que é uma opção do Netbeans quando incluímos novas libs ao projeto.
 
+## Acesso ao formulário (exemplo)
+
+ - http://localhost:8080/ProjetoBlocoFinal/externo/FormularioAvaliacaoAluno.xhtml?id_aluno=3&id_modulo=1&id_avaliacao=1&id_turma=1
+
 ## Carga inicial de usuários
 
   - Você deve executar o script abaixo para adicionar alguns usuários (com 'login/senha' como 'EDUARDO/123', 'JOAO/123' e 'MARCOS/123') à aplicação.

@@ -27,10 +27,6 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.persistence.Id;
 
-/**
- *
- * @author davood
- */
 @Named(value = "authController")
 @ViewScoped
 //@SessionScoped
@@ -51,16 +47,13 @@ public class AuthController implements Serializable {
     public AuthController() {
     }
     
-        public User getSelected() {
-        if (current == null) {
-            current = new User();
-            selectedItemIndex = -1;
-        }
-        return current;
+    public User getSelected() {
+    if (current == null) {
+        current = new User();
+        selectedItemIndex = -1;
     }
-        
-
-
+    return current;
+    }
  
     public String login() {
         User user = userFacade.findByUsername(username);
@@ -94,9 +87,6 @@ public class AuthController implements Serializable {
             return null;
         } else {
             User cr = new User();
-            
-        
-      
             //String x  =null;
             //x = al.getNome();
             cr.setUsername(username);
@@ -150,8 +140,6 @@ public class AuthController implements Serializable {
      public AlunoController getAluno() {
         return aluno;
     }
-     
-    
 
     public void setAluno (AlunoController aluno) {
         this.aluno = aluno;

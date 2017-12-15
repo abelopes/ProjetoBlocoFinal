@@ -8,15 +8,15 @@ body {
 
 .btn,
 .btn-primary {
-    color: #ffffff !IMPORTANT;
-    background-color: #166056 !IMPORTANT;
-    border-color: #166056 !IMPORTANT;
+    color: #000000 !IMPORTANT;
+    background-color: #99b3ff !IMPORTANT;
+    border-color: #000000 !IMPORTANT;
     margin-right: 5px !IMPORTANT;
 }
 
 .btn:hover,
 .btn-primary:hover {
-    background-color: #259688 !IMPORTANT;
+    background-color: #668cff !IMPORTANT;
 }
 
 .borda-login {

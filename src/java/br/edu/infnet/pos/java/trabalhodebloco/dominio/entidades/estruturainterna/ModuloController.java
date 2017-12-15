@@ -106,13 +106,13 @@ public class ModuloController implements Serializable {
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
-    
-    public void exportarExcel() throws IOException {
+
+	    public void exportarExcel() {
         current = (Modulo) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         try {
             excelController.writeExcel(current);
-        } catch (WriteException ex) {
+        } catch (WriteException | IOException ex) {
             Logger.getLogger(ModuloController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

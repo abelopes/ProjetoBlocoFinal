@@ -13,14 +13,13 @@
         <ui:define name="body">
             <b:form styleClass="jsfcrud_list_form">
                 <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                    <b:messages styleClass="msgs" errorStyle="color: red" infoStyle="color: green" warnStyle="color: yellow"/>
                 </h:panelGroup>
                 <h:outputText escape="false" value="#{bundle.ListBlocoEmpty}" rendered="#{blocoController.items.rowCount == 0}"/>
                 <h:panelGroup rendered="#{blocoController.items.rowCount > 0}">
-                    <h:outputText value="#{blocoController.pagination.pageFirstItem + 1}..#{blocoController.pagination.pageLastItem + 1}/#{blocoController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{blocoController.previous}" value="#{bundle.Previous} #{blocoController.pagination.pageSize}" rendered="#{blocoController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{blocoController.next}" value="#{bundle.Next} #{blocoController.pagination.pageSize}" rendered="#{blocoController.pagination.hasNextPage}"/>&nbsp;
-                      <b:dataTable value="#{blocoController.items}" var="item"  style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
+                      <b:dataTable customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json" value="#{blocoController.items}" var="item"  style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
                           <b:column style="width:1%;text-align:left;">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListBlocoTitle_id}"/>

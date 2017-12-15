@@ -13,14 +13,13 @@
         <ui:define name="body">
             <h:form styleClass="jsfcrud_list_form">
                 <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                    <b:messages styleClass="msgs" errorStyle="color: red" infoStyle="color: green" warnStyle="color: yellow"/>
                 </h:panelGroup>
                 <h:outputText escape="false" value="#{bundle.ListAlunoEmpty}" rendered="#{alunoController.items.rowCount == 0}"/>
                 <h:panelGroup rendered="#{alunoController.items.rowCount > 0}">
-                    <h:outputText value="#{alunoController.pagination.pageFirstItem + 1}..#{alunoController.pagination.pageLastItem + 1}/#{alunoController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{alunoController.previous}" value="#{bundle.Previous} #{alunoController.pagination.pageSize}" rendered="#{alunoController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{alunoController.next}" value="#{bundle.Next} #{alunoController.pagination.pageSize}" rendered="#{alunoController.pagination.hasNextPage}"/>&nbsp;
-                    <b:dataTable value="#{alunoController.items}" var="item"  style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
+                    <b:dataTable customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json" value="#{alunoController.items}" var="item"  style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
                           <b:column style="width:1%;text-align:left;">
                              <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAlunoTitle_id}"/>
@@ -33,7 +32,7 @@
                             </f:facet>
                             <h:outputText value="#{item.nome}"/>
                         </b:column>
-                        <b:column style="width:44%;text-align:left;">
+                        <b:column style="width:43%;text-align:left;">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAlunoTitle_email}"/>
                             </f:facet>
@@ -51,9 +50,9 @@
                         </h:column>
                     </b:dataTable>
                 </h:panelGroup>
-                <div style="text-align: center; float: right">
-                <b:commandButton action="#{alunoController.prepareCreate}" value="#{bundle.ListAlunoCreateLink}" class="btn btn-primary"/>
-                <b:button outcome="/index" value="#{bundle.ListAlunoIndexLink}" class="btn btn-primary"/>
+                <div style="float: right">
+                    <b:commandButton action="#{alunoController.prepareCreate}" value="#{bundle.ListAlunoCreateLink}" class="btn btn-primary"/>
+                    <b:button outcome="/index" value="#{bundle.ListAlunoIndexLink}" class="btn btn-primary"/>
                 </div>
             </h:form>
         </ui:define>
