@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -23,7 +24,7 @@ public class Topico extends Entidade {
     @JoinColumn(name = "ID_AVALIACAO")
     private Avaliacao avaliacao;
 
-    @OneToMany(mappedBy = "topico", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "topico", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<Questao> questoes;
 
     public List<Questao> getQuestoes() {

@@ -9,6 +9,7 @@ import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.util.Entidade;
 import java.time.LocalDateTime;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -20,7 +21,7 @@ public class Avaliacao extends Entidade {
     @OneToMany(mappedBy = "avaliacao", cascade = CascadeType.PERSIST)
     private List<Resposta> respostas;
 
-    @OneToMany(mappedBy = "avaliacao", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "avaliacao", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<Topico> topicos;
 
     @Column(name = "DATA_HORA_INICIO")

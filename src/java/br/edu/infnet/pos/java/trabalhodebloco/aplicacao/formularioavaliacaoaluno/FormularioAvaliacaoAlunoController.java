@@ -6,6 +6,7 @@ import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.ModuloFacade;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.Professor;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.Turma;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.TurmaFacade;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.Avaliacao;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.Questao;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.TipoQuestao;
@@ -19,6 +20,7 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.beans.AvaliacaoFacade;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.enums.Likert;
 import java.util.List;
 
 @Named("formularioAvaliacaoAlunoController")
@@ -34,9 +36,28 @@ public class FormularioAvaliacaoAlunoController {
     @EJB
     private ModuloFacade moduloFacade;
 
+    @EJB
+    private TurmaFacade turmaFacade;
+
     private Integer idAluno;
     private Aluno aluno;
-    private List<Modulo> modulosAluno;
+
+    private Integer idAvaliacao;
+    private Avaliacao avaliacao;
+
+    private Integer idModulo;
+    private Modulo modulo;
+
+    private Integer idTurma;
+    private Turma turma;
+
+    public Avaliacao getAvaliacao() {
+        return avaliacao;
+    }
+
+    public void setAvaliacao(Avaliacao avaliacao) {
+        this.avaliacao = avaliacao;
+    }
 
     public Aluno getAluno() {
         return aluno;
@@ -57,7 +78,7 @@ public class FormularioAvaliacaoAlunoController {
 
     public Avaliacao montarAvaliacaoExemplo() {
         Avaliacao avaliacao = new Avaliacao();
-        avaliacao.setCodigoAlfanumerico("0B1W4NK3N0B1");
+        avaliacao.setCodigoAlfanumerico("0B1W4NK3N0B1" + Math.random());
         avaliacao.setInicio(LocalDateTime.of(1985, Month.SEPTEMBER, 12, 6, 0));
         avaliacao.setFim(LocalDateTime.of(2000, Month.SEPTEMBER, 12, 6, 0));
         avaliacao.setObjetivo("Avaliar o curso de especialização em engenharia de software");
@@ -123,7 +144,6 @@ public class FormularioAvaliacaoAlunoController {
     public void setIdAluno(Integer idAluno) {
         this.idAluno = idAluno;
         this.aluno = alunoFacade.find(idAluno);
-        this.modulosAluno = moduloFacade.buscarModulosPorIdAluno(idAluno);
     }
 
     public Aluno montarAlunoExemplo() {
@@ -149,11 +169,54 @@ public class FormularioAvaliacaoAlunoController {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public List<Modulo> getModulosAluno() {
-        return modulosAluno;
+    public Integer getIdAvaliacao() {
+        return idAvaliacao;
     }
 
-    public void setModulosAluno(List<Modulo> modulosAluno) {
-        this.modulosAluno = modulosAluno;
+    public void setIdAvaliacao(Integer idAvaliacao) {
+        this.idAvaliacao = idAvaliacao;
+        this.avaliacao = avaliacaoFacade.find(idAvaliacao);
     }
+
+    public Modulo getModulo() {
+        return modulo;
+    }
+
+    public void setModulo(Modulo modulo) {
+        this.modulo = modulo;
+    }
+
+    public Turma getTurma() {
+        return turma;
+    }
+
+    public void setTurma(Turma turma) {
+        this.turma = turma;
+    }
+
+    public Integer getIdModulo() {
+        return idModulo;
+    }
+
+    public void setIdModulo(Integer idModulo) {
+        this.idModulo = idModulo;
+        this.modulo = moduloFacade.find(idModulo);
+    }
+
+    public Integer getIdTurma() {
+        return idTurma;
+    }
+
+    public void setIdTurma(Integer idTurma) {
+        this.idTurma = idTurma;
+        this.turma = turmaFacade.find(idTurma);
+    }
+    
+    public void salvarRespostas() {
+        System.out.println();
+    }
+
+    public Likert[] getValoresLikert() {
+        return Likert.values();
+    }    
 }

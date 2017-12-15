@@ -28,3 +28,20 @@ body {
 .text-red {
     color: #ff0000;
 }
+
+.formulario-avaliacao-questoes .primeira-linha {
+    border-top: 1px solid #eeeeee;
+}
+
+.formulario-avaliacao-questoes .row {
+    border-bottom: 1px solid #eeeeee;
+}
+
+.formulario-avaliacao-questoes .cabecalho {
+    font-weight: bold;
+}
+
+.formulario-avaliacao-questoes h4 {
+    padding-top: 1em;
+    font-style: italic;
+}

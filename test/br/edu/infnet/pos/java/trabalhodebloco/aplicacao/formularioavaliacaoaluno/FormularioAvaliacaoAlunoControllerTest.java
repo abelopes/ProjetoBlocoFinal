@@ -4,6 +4,8 @@ import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.AlunoFacade;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.Modulo;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.ModuloFacade;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.Turma;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.TurmaFacade;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.Avaliacao;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.TipoQuestao;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.beans.AvaliacaoFacade;
@@ -37,13 +39,16 @@ public class FormularioAvaliacaoAlunoControllerTest {
     @Mock
     private ModuloFacade mockModuloFacade;
 
+    @Mock
+    private TurmaFacade mockTurmaFacade;
+
     @Test
     public void deveCriarUmFormularioDeExemplo() {
         Avaliacao avaliacao = controller.montarAvaliacaoExemplo();
 
         assertNotNull(avaliacao);
 
-        assertEquals("0B1W4NK3N0B1", avaliacao.getCodigoAlfanumerico());
+        assertEquals("0B1W4NK3N0B1", avaliacao.getCodigoAlfanumerico().substring(0, 12));
         assertEquals(LocalDateTime.of(1985, Month.SEPTEMBER, 12, 6, 0), avaliacao.getInicio());
         assertEquals(LocalDateTime.of(2000, Month.SEPTEMBER, 12, 6, 0), avaliacao.getFim());
         assertEquals("Avaliar o curso de especialização em engenharia de software", avaliacao.getObjetivo());
@@ -128,7 +133,7 @@ public class FormularioAvaliacaoAlunoControllerTest {
     }
 
     @Test
-    public void deveSerPossivelAtribuidUmIdDeUsuarioAoController() {
+    public void deveSerPossivelAtribuidUmIdDeAlunoAoController() {
         final Integer ID_ALUNO = 234234;
         final Aluno esperado = new Aluno();
         esperado.setId(ID_ALUNO);
@@ -195,34 +200,80 @@ public class FormularioAvaliacaoAlunoControllerTest {
     }
 
     @Test
-    public void deveSerPossivelAlterarOsModulosAssociadosAUmAluno() {
-        final Integer ID_MODULO = 75775794;
-        List<Modulo> modulos = new ArrayList<>();
-        Modulo modulo = new Modulo();
-        modulo.setId(ID_MODULO);
-        modulos.add(modulo);
-        controller.setModulosAluno(modulos);
-        assertEquals(ID_MODULO, controller.getModulosAluno().get(0).getId());
+    public void deveSerPossivelAcessarUmaAvaliacao() {
+        final Integer ID_AVALIACAO = 123123;
+        Avaliacao avaliacao = new Avaliacao();
+        avaliacao.setId(ID_AVALIACAO);
+        controller.setAvaliacao(avaliacao);
+        assertEquals(ID_AVALIACAO, controller.getAvaliacao().getId());
     }
 
     @Test
-    public void deveBuscarOsModulosAssociadosAoAluno() {
-        final Integer ID_ALUNO = 123123;
-        controller.setIdAluno(ID_ALUNO);
-        verify(mockModuloFacade).buscarModulosPorIdAluno(ID_ALUNO);
-    }
-    
-    @Test
-    public void deveRetornarOsModulosAssociadosAoAluno() {        
-        final Integer ID_ALUNO = 123123;
-        final Integer ID_MODULO = 74546;
-        List<Modulo> modulos = new ArrayList();
-        Modulo modulo = new Modulo();
-        modulo.setId(ID_MODULO);
-        modulos.add(modulo);
-        when(mockModuloFacade.buscarModulosPorIdAluno(ID_ALUNO)).thenReturn(modulos);
-        controller.setIdAluno(ID_ALUNO);
-        assertEquals(ID_MODULO, controller.getModulosAluno().get(0).getId());
+    public void deveSerPossivelAtribuidUmIdAvaliacaoAoController() {
+        final Integer ID_AVALIACAO = 2342334;
+        final Avaliacao esperado = new Avaliacao();
+        esperado.setId(ID_AVALIACAO);
+        when(mockAvaliacaoFacade.find(ID_AVALIACAO)).thenReturn(esperado);
+        controller.setIdAvaliacao(ID_AVALIACAO);
+        assertEquals(ID_AVALIACAO, controller.getAvaliacao().getId());
     }
 
+    @Test
+    public void deveTerUmGetParaIdAvaliacao() {
+        final Integer ID_AVALIACAO = 7453364;
+        controller.setIdAvaliacao(ID_AVALIACAO);
+        assertEquals(ID_AVALIACAO, controller.getIdAvaliacao());
+    }
+
+    @Test
+    public void deveSerPossivelAcessarUmModulo() {
+        final Integer ID_MODULO = 12333123;
+        Modulo modulo = new Modulo();
+        modulo.setId(ID_MODULO);
+        controller.setModulo(modulo);
+        assertEquals(ID_MODULO, controller.getModulo().getId());
+    }
+
+    @Test
+    public void deveSerPossivelAcessarUmaTurma() {
+        final Integer ID_TURMA = 435345;
+        Turma turma = new Turma();
+        turma.setId(ID_TURMA);
+        controller.setTurma(turma);
+        assertEquals(ID_TURMA, controller.getTurma().getId());
+    }
+
+    @Test
+    public void deveSerPossivelAtribuidUmIdModuloAoController() {
+        final Integer ID_MODULO = 2342334;
+        final Modulo esperado = new Modulo();
+        esperado.setId(ID_MODULO);
+        when(mockModuloFacade.find(ID_MODULO)).thenReturn(esperado);
+        controller.setIdModulo(ID_MODULO);
+        assertEquals(ID_MODULO, controller.getModulo().getId());
+    }
+
+    @Test
+    public void deveTerUmGetParaIdModulo() {
+        final Integer ID_MODULO = 565364;
+        controller.setIdModulo(ID_MODULO);
+        assertEquals(ID_MODULO, controller.getIdModulo());
+    }
+
+    @Test
+    public void deveSerPossivelAtribuidUmIdTurmaAoController() {
+        final Integer ID_TURMA = 23432334;
+        final Turma esperado = new Turma();
+        esperado.setId(ID_TURMA);
+        when(mockTurmaFacade.find(ID_TURMA)).thenReturn(esperado);
+        controller.setIdTurma(ID_TURMA);
+        assertEquals(ID_TURMA, controller.getTurma().getId());
+    }
+
+    @Test
+    public void deveTerUmGetParaIdTurma() {
+        final Integer ID_TURMA = 5655364;
+        controller.setIdTurma(ID_TURMA);
+        assertEquals(ID_TURMA, controller.getIdTurma());
+    }
 }

@@ -3,13 +3,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Likert</title>
         <h:outputStylesheet library="bootstrap-3.3.7-dist" name="css/bootstrap.css"/>
         <h:outputStylesheet library="css" name="customizacoes.css"/>
         <f:metadata>
             <f:viewParam name="id_aluno" value="#{formularioAvaliacaoAlunoController.idAluno}" required="true"></f:viewParam>
+            <f:viewParam name="id_turma" value="#{formularioAvaliacaoAlunoController.idTurma}" required="true"></f:viewParam>
+            <f:viewParam name="id_modulo" value="#{formularioAvaliacaoAlunoController.idModulo}" required="true"></f:viewParam>
+            <f:viewParam name="id_avaliacao" value="#{formularioAvaliacaoAlunoController.idAvaliacao}" required="true"></f:viewParam>
         </f:metadata>
     </h:head>
     <h:body>
@@ -34,16 +38,13 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <h:outputLabel for="modulo" value="Módulo:"/>
-                            <h:selectOneMenu id="modulo" class="form-control" onselect="">
-                                <f:selectItem itemValue="#{null}" itemLabel="(Selecione)" />
-                                <f:selectItems value="#{formularioAvaliacaoAlunoController.modulosAluno}" var="modulo" itemValue="#{modulo}" itemLabel="#{modulo.nome}" />   
-                            </h:selectOneMenu>
+                            <h:inputText id="modulo" class="form-control" readonly="true" value="#{formularioAvaliacaoAlunoController.modulo.nome}" />
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <h:outputLabel for="professor" value="Professor:" />
-                            <h:inputText id="professor" class="form-control" readonly="true" />
+                            <h:inputText id="professor" class="form-control" readonly="true" value="#{formularioAvaliacaoAlunoController.turma.professor.nome}" />
                         </div>
                     </div>
                 </div>
@@ -52,10 +53,78 @@
                         <p class="text-indent-first-line">Por favor, preencha essa avaliação com toda atenção. Ela é muito importante para a melhoria contínua de seu curso. É através das avaliações que poderemos construir um curso cada vez melhor. O que é importante para você agora e para o valor de seu diploma no futuro.</p>
                     </div>
                 </div>               
+                <div class="formulario-avaliacao-questoes">
+                    <div class="row primeira-linha">
+                        <div class="col-sm-1 col-sm-offset-6 text-center cabecalho">
+                            Concordo totalmente
+                        </div>
+                        <div class="col-sm-1 text-center cabecalho">
+                            Concordo
+                        </div>
+                        <div class="col-sm-1 text-center cabecalho">
+                            Não concordo nem discordo
+                        </div>
+                        <div class="col-sm-1 text-center cabecalho">
+                            Discordo
+                        </div>
+                        <div class="col-sm-1 text-center cabecalho">
+                            Discordo totalmente
+                        </div>
+                        <div class="col-sm-1 text-center cabecalho">
+                            Não sei avaliar
+                        </div>
+                    </div>
+                    <c:forEach var="topico" items="#{formularioAvaliacaoAlunoController.avaliacao.topicos}">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h4 class="text-muted"><h:outputText value="#{topico.texto}" /></h4>
+                            </div>
+                        </div>
+                        <c:forEach var="questao" items="#{topico.questoes}">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h:outputText value="#{questao.texto}" />
+                                </div>
+                                <c:choose>
+                                    <c:when test="#{questao.tipo == 'LIKERT'}">
+                                        <ui:repeat value="#{formularioAvaliacaoAlunoController.valoresLikert}" var="valor">
+                                            <div class="col-sm-1 text-center">
+                                                <div class="radio">
+                                                    <label>
+                                                        <input type="radio" name="valorLikert" value="#{valor}" />
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </ui:repeat>  
+                                    </c:when>    
+                                    <c:otherwise>
+                                        <div class="col-sm-6 text-center">
+                                            <textarea class="form-control" rows="3"></textarea>
+                                        </div>
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
+                        </c:forEach>
+                    </c:forEach>
+                </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <h:commandLink action="#{formularioAvaliacaoAlunoController.criarAvaliacaoExemplo}" value="Criar formulário de exemplo" immediate="true" class="btn btn-primary" />
-                        <h:commandLink action="#{formularioAvaliacaoAlunoController.criarAlunoExemplo}" value="Criar aluno de exemplo" immediate="true" class="btn btn-primary" />
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <h:commandLink action="#{formularioAvaliacaoAlunoController.salvarRespostas}" value="Salvar" immediate="true" class="btn btn-primary btn-block btn-lg" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        &nbsp;
                     </div>
                 </div>
             </div>
