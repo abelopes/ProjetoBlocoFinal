@@ -29,9 +29,9 @@ public class AlunoFacade extends AbstractFacade<Aluno> {
         super(Aluno.class);
     }
     
-    public List<String> findAllEmailAlunoByModulo(Integer idModulo) {
-        String sql = "SELECT P.EMAIL FROM PESSOA AS P JOIN TURMA_ALUNO AS TA ON P.ID = TA.ID_ALUNO" +
-                " JOIN TURMA_MODULO AS TM ON TA.ID_TURMA = TM.ID_TURMA WHERE TM.ID_MODULO = " + idModulo;
-        return getEntityManager().createNativeQuery(sql).getResultList();
+    public List<Aluno> findAllAlunoByModulo(Integer idModulo) {
+//        String sql = "SELECT * FROM PESSOA AS P JOIN TURMA_ALUNO AS TA ON P.ID = TA.ID_ALUNO" +
+//                " JOIN TURMA_MODULO AS TM ON TA.ID_TURMA = TM.ID_TURMA WHERE TM.ID_MODULO = " + idModulo;
+        return getEntityManager().createQuery("select a from Aluno a where a.email is not null", Aluno.class).getResultList();
     }
 }

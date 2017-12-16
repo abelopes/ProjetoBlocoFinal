@@ -27,6 +27,7 @@ import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.beans.Q
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.beans.RespostaLikertFacade;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.beans.RespostaTextualFacade;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.enums.Likert;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Enumeration;
 import java.util.List;
@@ -280,7 +281,7 @@ public class FormularioAvaliacaoAlunoController implements Serializable {
             resposta.setAluno(alunoFacade.find(aluno.getId()));
             resposta.setAvaliacao(avaliacaoFacade.find(avaliacao.getId()));
             resposta.setModulo(moduloFacade.find(modulo.getId()));
-            resposta.setQuestao(questaoFacade.find(resposta.getModulo().getId()));
+            resposta.setQuestao(questaoFacade.find(resposta.getQuestao().getId()));
             resposta.setTurma(turmaFacade.find(turma.getId()));
         });
     }
@@ -297,10 +298,12 @@ public class FormularioAvaliacaoAlunoController implements Serializable {
         });
     }
 
-    public void salvarRespostas() {
+    public void salvarRespostas() throws IOException {
+        FacesContext context = FacesContext.getCurrentInstance();
         List<Resposta> respostasRecebidas = capturarRespostasEnviadas();
         carregarAtributosResposta(respostasRecebidas);
         registrarRespostasEmBanco(respostasRecebidas);
+        context.getExternalContext().redirect("../index.xhtml");
     }
 
     public EscalaLikert[] getValoresLikert() {

@@ -3,10 +3,12 @@ package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturaintern
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.enviodeemail.Email;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.util.JsfUtil;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.util.PaginationHelper;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.beans.AvaliacaoFacade;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.controllers.AvaliacaoController;
 import java.io.IOException;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -42,6 +44,9 @@ public class ModuloController implements Serializable {
     private br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.AlunoFacade ejbAlunoFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+
+    @EJB
+    private AvaliacaoFacade avaliacaoFacade;
 
     public ModuloController() {
     }
@@ -109,7 +114,7 @@ public class ModuloController implements Serializable {
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
-    
+
     public void exportarExcel() {
         current = (Modulo) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
@@ -255,17 +260,23 @@ public class ModuloController implements Serializable {
         }
 
     }
-    
+
     public void enviarEmail() {
         current = (Modulo) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        List<String> emails = ejbAlunoFacade.findAllEmailAlunoByModulo(current.getId());
-        emails.stream().forEach(email -> {
-            try {
-                Email.enviarEmail(email);
-            } catch (Exception ex) {
-                Logger.getLogger(ModuloController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        List<Aluno> alunos = ejbAlunoFacade.findAllAlunoByModulo(current.getId());
+        alunos.stream().forEach(aluno -> {
+            aluno.getTurmas().stream().forEach(turma -> {
+                avaliacaoFacade.findAll().stream()
+                        //.filter(avaliacao -> avaliacao.getInicio().isAfter(LocalDate.now()) && avaliacao.getFim().isBefore(LocalDate.now()))
+                        .forEach(avaliacao -> {
+                    try {
+                        Email.enviarEmail(aluno, current.getId(), turma.getId(), avaliacao.getId());
+                    } catch (Exception ex) {
+                        Logger.getLogger(ModuloController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
+            });
         });
     }
 

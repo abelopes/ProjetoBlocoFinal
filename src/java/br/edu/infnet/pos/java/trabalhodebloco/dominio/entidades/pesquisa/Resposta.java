@@ -34,11 +34,11 @@ public abstract class Resposta<T> extends Entidade {
     @JoinColumn(name = "ID_QUESTAO")
     private Questao questao;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "ID_TURMA")
     private Turma turma;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "ID_MODULO")
     private Modulo modulo;
 

@@ -134,13 +134,15 @@ public class ExcelController  implements Serializable {
         //Consulta SQL 
        // String sql = "SELECT ci , nombre , apellido , fechanac, DATE_FORMAT(fechanac,'%Y-%m-%d %h:%i:%s') AS fecha , salario FROM persona ";
        // String sql = "select a.id AS id, a.objetivo AS objetivo, b.texto AS topico, c.texto AS questao, d.valor_likert AS resposta from avaliacao a,topico b,questao c,resposta d where a.id = b.id_avaliacao ";
-        String sql = "select a.id AS id,a.objetivo,b.texto AS topico,c.texto AS questao, d.valor_likert AS resposta "
-                + "from avaliacao a,topico b,questao c,resposta d where a.id = b.id_avaliacao  "
-                + "and   a.id = c.id_avaliacao "
-                + "and   b.id = c.id_topico "
-                + "and   a.id = d.id_avaliacao "
-                + "and   c.id = d.id_questao "
-                + "and   d.id_modulo = " + modulo.getId();
+        String sql = "select a.id AS id,a.objetivo,b.texto AS topico,c.texto AS questao, d.valor_likert AS resposta , d.id_modulo as modulo,f.nome as professor " +
+"from avaliacao a,topico b,questao c,resposta d, turma e, pessoa f where a.id = b.id_avaliacao " +
+"           and   a.id = c.id_avaliacao " +
+"                and   b.id = c.id_topico " +
+"               and   a.id = d.id_avaliacao " +
+"               and   c.id = d.id_questao " +
+"               and   e.id = d.id_turma " +
+"               and   e.id_professor = f.id " +
+"               and   d.id_modulo = " + modulo.getId();
 
         try{
              java.sql.PreparedStatement pstm = conn.prepareStatement( sql );
@@ -148,21 +150,26 @@ public class ExcelController  implements Serializable {
              System.out.println(  "obtendo registros...pronto"  );
               while(res.next())
               {
+                  System.out.println("teste = " + res.toString());
                   Label id     = new Label( 0 , row, res.getString("id" ) , cf );
                   Label objetivo  = new Label( 1 , row, res.getString( "objetivo" ) , cf );                  
                   Label topico= new Label( 2 , row, res.getString( "topico" ) , cf );                  
                   Label questao= new Label( 3 , row, res.getString( "questao" ) , cf );
-                  Label resposta= new  Label ( 4 , row, res.getString("resposta" ) , cf );                                    
+                  Label resposta= new  Label ( 4 , row, res.getString("resposta" ) , cf );     
+                  Label modulo1= new  Label ( 5 , row, res.getString("modulo" ) , cf );  
+                  Label professor= new  Label ( 6 , row, res.getString("professor" ) , cf );  
                   row ++;                  
                  try {
                      
                                  // Cabeçalhos
-			String cabecalho[] = new String[5];
+			String cabecalho[] = new String[7];
 			cabecalho[0] = "Id";
 			cabecalho[1] = "Objetivo";
 			cabecalho[2] = "Topico";
 			cabecalho[3] = "Questao";
 			cabecalho[4] = "Resposta";
+                        cabecalho[5] = "Módulo";
+                        cabecalho[6] = "Professor";
  
                         
                         Colour bckcolor = Colour.DARK_GREEN;
@@ -190,6 +197,8 @@ public class ExcelController  implements Serializable {
                      excelSheet.addCell( topico );
                      excelSheet.addCell( questao );
                      excelSheet.addCell(resposta);
+                      excelSheet.addCell(modulo1);
+                       excelSheet.addCell(professor);
                  } catch (WriteException ex) {
                      System.err.println(  ex.getMessage() );
                  } 
