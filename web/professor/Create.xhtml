@@ -19,7 +19,7 @@
 
                     <h:form style="border: solid 3px #e0e0e0;padding-top:50px;border-radius: 5px;position: relative;max-width:100%;height:auto; width:100%">
   
-                        <h:panelGrid columns="2" style="width: 50rem;float:left">
+                        <b:panelGrid columns="2" style="width: 50rem;float:left">
 
                             <h:outputLabel value="#{bundle.CreateProfessorLabel_nome}" for="nome" />
                             <b:inputText id="nome" value="#{professorController.selected.nome}" title="#{bundle.CreateProfessorTitle_nome}" />
@@ -27,13 +27,15 @@
                             <h:outputLabel value="#{bundle.CreateProfessorLabel_curriculoResumido}" for="curriculoResumido" />
                             <b:inputTextarea rows="4"  id="curriculoResumido" value="#{professorController.selected.curriculoResumido}" title="#{bundle.CreateProfessorTitle_curriculoResumido}" />
 
-                        </h:panelGrid>
-                        <div style="margin-top: 40rem">
+                        </b:panelGrid>
+                        <div style="margin-top: 15rem">
                             <b:commandButton action="#{professorController.create}" value="#{bundle.CreateProfessorSaveLink}" class="btn btn-primary"/>
                             <b:commandButton action="#{professorController.prepareList}" value="#{bundle.CreateProfessorShowAllLink}" immediate="true" class="btn btn-primary"/>
                             <b:button outcome="/index" value="#{bundle.CreateProfessorIndexLink}" style="color: #ffffff;background-color: #166056;border-color: #166056"/>
                         </div>
+                        <br></br>
                     </h:form>
+                    <br></br>
                 </div>
             </div>
         </ui:define>

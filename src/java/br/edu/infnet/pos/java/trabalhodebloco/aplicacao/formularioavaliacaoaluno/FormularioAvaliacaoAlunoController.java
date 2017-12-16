@@ -13,7 +13,6 @@ import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.TipoQue
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.Topico;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.enums.Sexo;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
 import javax.ejb.EJB;
@@ -79,8 +78,8 @@ public class FormularioAvaliacaoAlunoController {
     public Avaliacao montarAvaliacaoExemplo() {
         Avaliacao avaliacao = new Avaliacao();
         avaliacao.setCodigoAlfanumerico("0B1W4NK3N0B1" + Math.random());
-        avaliacao.setInicio(LocalDateTime.of(1985, Month.SEPTEMBER, 12, 6, 0));
-        avaliacao.setFim(LocalDateTime.of(2000, Month.SEPTEMBER, 12, 6, 0));
+        avaliacao.setInicio(LocalDate.of(2017, Month.MARCH, 01));
+        avaliacao.setFim(LocalDate.of(2017, Month.JULY, 10));
         avaliacao.setObjetivo("Avaliar o curso de especialização em engenharia de software");
         avaliacao.setTopicos(new ArrayList<>());
         Topico topico;

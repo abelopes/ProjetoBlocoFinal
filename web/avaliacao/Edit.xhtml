@@ -16,28 +16,31 @@
             </h:panelGroup>
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-4 col-md-offset-4 col-sm-offset-3 col-xs-offset-0">
                 <div style="margin: 0 -450px;height: 100%">
-            <h:form style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative;height: 53rem">
+            <h:form style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative;height: 33rem">
                 
-                <h:panelGrid columns="2" style="width: 50%;float:left;height: 100%">
+                <b:panelGrid columns="2" style="width: 50%;float:left;height: 100%">
                     <h:outputLabel value="#{bundle.EditAvaliacaoLabel_codigoAlfanumerico}" for="codigoAlfanumerico" />
                     <b:inputText id="codigoAlfanumerico" value="#{avaliacaoController.selected.codigoAlfanumerico}" title="#{bundle.EditAvaliacaoTitle_codigoAlfanumerico}" />
                     <h:outputLabel value="#{bundle.EditAvaliacaoLabel_objetivo}" for="objetivo" />
                     <b:inputTextarea rows="4" id="objetivo" value="#{avaliacaoController.selected.objetivo}" title="#{bundle.EditAvaliacaoTitle_objetivo}" />
-                    <h:outputLabel value="#{bundle.EditAvaliacaoLabel_inicio}" for="inicio" />
-                    <b:inputText id="inicio" value="#{avaliacaoController.selected.inicio}" title="#{bundle.EditAvaliacaoTitle_inicio}" />
-                    <h:outputLabel value="#{bundle.EditAvaliacaoLabel_fim}" for="fim" />
-                    <b:inputText id="fim" value="#{avaliacaoController.selected.fim}" title="#{bundle.EditAvaliacaoTitle_fim}" />
-                    
-                    <h:outputLabel value="#{bundle.EditAvaliacaoLabel_id}" for="id" />
-                    <b:inputText id="id" value="#{avaliacaoController.selected.id}" title="#{bundle.EditAvaliacaoTitle_id}" />
-                </h:panelGrid>
-                <div style="margin-top: 47rem;float: right">
+                    <h:outputLabel value="#{bundle.CreateAvaliacaoLabel_inicio}" for="inicio" />
+                    <b:inputText mask="99/99/9999" id="inicio" value="#{avaliacaoController.selected.inicio}">
+                        <f:converter converterId="br.edu.infnet.pos.java.trabalhodebloco.infra.converter.JsfLocalDateConverter" />
+                    </b:inputText>
+                    <h:outputLabel value="#{bundle.CreateAvaliacaoLabel_fim}" for="fim" />
+                    <b:inputText mask="99/99/9999" id="fim" value="#{avaliacaoController.selected.fim}">
+                        <f:converter converterId="br.edu.infnet.pos.java.trabalhodebloco.infra.converter.JsfLocalDateConverter" />
+                    </b:inputText>
+                </b:panelGrid>
+                <div style="margin-top: 27rem;float: right">
                     <b:commandButton action="#{avaliacaoController.update}" value="#{bundle.EditAvaliacaoSaveLink}" class="btn btn-primary"/>
                     <b:button outcome="View" value="#{bundle.EditAvaliacaoViewLink}" class="btn btn-primary"/>
                     <b:commandButton action="#{avaliacaoController.prepareList}" value="#{bundle.EditAvaliacaoShowAllLink}" immediate="true" class="btn btn-primary"/>
                     <b:button outcome="/index" value="#{bundle.EditAvaliacaoIndexLink}" class="btn btn-primary"/>
                 </div>
             </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 

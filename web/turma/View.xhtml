@@ -15,27 +15,30 @@
                 <b:messages styleClass="msgs" errorStyle="color: red" infoStyle="color: green" warnStyle="color: yellow"/>
             </h:panelGroup>
             <h:form>
-                <b:dataTable value="#{turmaController.selected}" var="item"  style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
+                <b:dataTable customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json" value="#{turmaController.selected}" var="item"  style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
                     <b:column style="width:1%;text-align:left;">
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ViewTurmaLabel_id}"/>
                         </f:facet>
                         <h:outputText value="#{turmaController.selected.id}" title="#{bundle.ViewTurmaTitle_id}"/>
                     </b:column>
-                     <b:column style="width:1%;text-align:left;">
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ViewTurmaLabel_id}"/>
-                        </f:facet>
-                        <h:outputText value="#{turmaController.selected.id}" title="#{bundle.ViewTurmaTitle_id}"/>
-                    </b:column>
-                    <b:column style="width:22%;text-align:left;">
+                    
+                    <b:column style="width:35%;text-align:left;">
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ViewTurmaLabel_nome}"/>
                         </f:facet>
                         <h:outputText value="#{turmaController.selected.nome}" title="#{bundle.ViewTurmaTitle_nome}">
                         </h:outputText>
                     </b:column>
-                    <b:column style="width:22%;text-align:left;">
+                    <b:column style="width:10%;text-align:left;">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ViewTurmaLabel_inicio}"/>
+                        </f:facet>
+                        <h:outputText value="#{turmaController.selected.inicio}" title="#{bundle.ViewTurmaTitle_inicio}">
+                            <f:converter converterId="br.edu.infnet.pos.java.trabalhodebloco.infra.converter.JsfLocalDateConverter" />
+                        </h:outputText>
+                    </b:column>
+                    <b:column style="width:10%;text-align:left;">
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ViewTurmaLabel_fim}"/>
                         </f:facet>

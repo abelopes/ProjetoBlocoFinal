@@ -15,32 +15,34 @@
                 <b:messages styleClass="msgs" errorStyle="color: red" infoStyle="color: green" warnStyle="color: yellow"/>
             </h:panelGroup>
             <h:form>
-                <b:dataTable value="#{cursoController.selected}" var="item"  style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
+                <b:dataTable customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json" value="#{cursoController.selected}" var="item"  style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
                     <b:column style="width:1%;text-align:left;">
                         <f:facet name="header">
-                  <h:outputText value="#{bundle.ViewTopicoLabel_avaliacao}"/>
+                            <h:outputText value="#{bundle.ViewTopicoLabel_id}"/>
                         </f:facet>
-                    <h:outputText value="#{topicoController.selected.avaliacao}" title="#{bundle.ViewTopicoTitle_avaliacao}"/>
+                        <h:outputText value="#{topicoController.selected.id}" title="#{bundle.ViewTopicoTitle_id}"/>
                     </b:column>
-                        <b:column style="width:1%;text-align:left;">
+                    
+                    <b:column style="width:49%;text-align:left;">
                         <f:facet name="header">
-                  <h:outputText value="#{bundle.ViewTopicoLabel_texto}"/>
+                            <h:outputText value="#{bundle.ViewTopicoLabel_avaliacao}"/>
                         </f:facet>
-                    <h:outputText value="#{topicoController.selected.texto}" title="#{bundle.ViewTopicoTitle_texto}"/>
-                        </b:column>
-                    <b:column style="width:1%;text-align:left;">
-                        <f:facet name="header">
-                    <h:outputText value="#{bundle.ViewTopicoLabel_id}"/>
-                        </f:facet>
-                    <h:outputText value="#{topicoController.selected.id}" title="#{bundle.ViewTopicoTitle_id}"/>
+                        <h:outputText value="#{topicoController.selected.avaliacao.objetivo}" title="#{bundle.ViewTopicoTitle_avaliacao}"/>
                     </b:column>
+                    <b:column style="width:50%;text-align:left;">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ViewTopicoLabel_texto}"/>
+                        </f:facet>
+                        <h:outputText value="#{topicoController.selected.texto}" title="#{bundle.ViewTopicoTitle_texto}"/>
+                    </b:column>
+                    
                 </b:dataTable>
                 <div style="text-align: center; float: right">
-                <b:commandButton action="#{topicoController.destroyAndView}" value="#{bundle.ViewTopicoDestroyLink}" class="btn btn-primary"/>
-                <b:button outcome="Edit" value="#{bundle.ViewTopicoEditLink}" class="btn btn-primary"/>
-                <b:commandButton action="#{topicoController.prepareCreate}" value="#{bundle.ViewTopicoCreateLink}" class="btn btn-primary"/>
-                <b:commandButton action="#{topicoController.prepareList}" value="#{bundle.ViewTopicoShowAllLink}" class="btn btn-primary"/>
-                <b:button outcome="/index" value="#{bundle.ViewTopicoIndexLink}" class="btn btn-primary"/>
+                    <b:commandButton action="#{topicoController.destroyAndView}" value="#{bundle.ViewTopicoDestroyLink}" class="btn btn-primary"/>
+                    <b:button outcome="Edit" value="#{bundle.ViewTopicoEditLink}" class="btn btn-primary"/>
+                    <b:commandButton action="#{topicoController.prepareCreate}" value="#{bundle.ViewTopicoCreateLink}" class="btn btn-primary"/>
+                    <b:commandButton action="#{topicoController.prepareList}" value="#{bundle.ViewTopicoShowAllLink}" class="btn btn-primary"/>
+                    <b:button outcome="/index" value="#{bundle.ViewTopicoIndexLink}" class="btn btn-primary"/>
                 </div>
 
             </h:form>

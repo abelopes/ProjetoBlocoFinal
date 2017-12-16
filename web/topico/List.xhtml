@@ -22,22 +22,23 @@
                     <b:dataTable customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json" value="#{topicoController.items}" var="item" style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
                         <b:column style="width:1%;text-align:left;">
                             <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTopicoTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </b:column>
+                        <b:column style="width:42%;text-align:left;">
+                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTopicoTitle_avaliacao}"/>
                             </f:facet>
-                            <h:outputText value="#{item.avaliacao}"/>
+                            <h:outputText value="#{item.avaliacao.objetivo}"/>
                         </b:column>
-                        <b:column style="width:75%;text-align:left;">
+                        <b:column style="width:45%;text-align:left;">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTopicoTitle_texto}"/>
                             </f:facet>
                             <h:outputText value="#{item.texto}"/>
                         </b:column>
-                        <b:column style="width:1%;text-align:left;">
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTopicoTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </b:column>
+                        
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>

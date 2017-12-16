@@ -17,22 +17,21 @@
             </h:panelGroup>
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-4 col-md-offset-4 col-sm-offset-3 col-xs-offset-0">
                 <div style="margin: 0 -450px; text-align:right">
-                    <h:form  style="border: solid 3px #e0e0e0;padding-top:50px;border-radius: 5px;position: relative;max-width:100%;height:auto; width:100%">
+                    <h:form style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative;height: 27rem">
   
-                  <h:panelGrid columns="2"  style="width: 50%; float:left">
-                    <h:outputLabel value="#{bundle.EditUserLabel_email}" for="email" />
-                    <b:inputText id="email" value="#{userController.selected.email}" title="#{bundle.EditUserTitle_email}" />
-                    <h:outputLabel value="#{bundle.EditUserLabel_status}" for="status" />
-                    <b:inputText id="status" value="#{userController.selected.status}" title="#{bundle.EditUserTitle_status}" />
-                    <h:outputLabel value="#{bundle.EditUserLabel_username}" for="username" />
-                    <b:inputText id="username" value="#{userController.selected.username}" title="#{bundle.EditUserTitle_username}" />
-                    <h:outputLabel value="#{bundle.EditUserLabel_password}" for="password" />
-                    <b:inputSecret styleClass="form-control" id="password" value="#{authController.password}" title="#{bundle.EditUserTitle_password}" />
-                    <h:outputLabel value="#{bundle.EditUserLabel_aluno}" for="aluno" />
-                   <h:selectOneMenu id="aluno" value="#{usuarioController.selected.aluno}" title="#{bundle.EditUsuarioTitle_aluno}" style="width: 100%;float:left;border-radius: 4px">
-                      <f:selectItems value="#{alunoController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>   </h:panelGrid>
-                    <div style="margin-top: 40rem">     
+                  <b:panelGrid columns="2" style="width: 50%;float:left;height: 100%">
+                    <h:outputLabel value="#{bundle.CreateUserLabel_email}" for="email" />
+                    <b:inputText id="email" value="#{userController.email}" title="#{bundle.CreateUserTitle_email}" />
+                    <h:outputLabel value="#{bundle.CreateUserLabel_username}" for="username" />
+                    <b:inputText id="username" value="#{userController.username}" title="#{bundle.CreateUserTitle_username}" />
+                    <h:outputLabel value="#{bundle.CreateUserLabel_password}" for="password" />
+                    <b:inputSecret styleClass="form-control" id="password" value="#{userController.password}" title="#{bundle.CreateUserTitle_password}" />
+                    <h:outputLabel value="#{bundle.CreateUserLabel_aluno}" for="aluno" />
+                    <h:selectOneMenu class="form-control" id="aluno" value="#{userController.selected.aluno}" title="#{bundle.CreateUsuarioTitle_aluno}" style="width: 100%;float:left;border-radius: 4px">
+                        <f:selectItems value="#{alunoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>                   
+                </b:panelGrid>
+                    <div style="margin-top: 21rem">     
                <b:commandButton action="#{userController.update}" value="#{bundle.EditUserSaveLink}" class="btn btn-primary"/>
                 <b:button outcome="View" value="#{bundle.EditUserViewLink}" class="btn btn-primary"/>
                 <b:commandButton action="#{userController.prepareList}" value="#{bundle.EditUserShowAllLink}" immediate="true" class="btn btn-primary"/>

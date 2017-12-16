@@ -17,36 +17,35 @@
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-4 col-md-offset-4 col-sm-offset-3 col-xs-offset-0">
                 <div style="margin: 0 -450px; text-align:right">
                     <h:form  style="border: solid 3px #e0e0e0;padding-top:50px;border-radius: 5px;position: relative;max-width:100%;height:auto; width:100%">
-                            <h:panelGrid columns="2" style="width: 50%;float:left">                  
-                                <h:outputLabel value="#{bundle.EditTurmaLabel_id}" for="id" />
-                                <b:inputText id="id" value="#{turmaController.selected.id}" title="#{bundle.EditTurmaTitle_id}" readonly="true" />
-
+                            <b:panelGrid columns="2" style="width: 50%;float:left">                  
                                 <h:outputLabel value="#{bundle.CreateTurmaLabel_nome}" for="nome" />
                                 <b:inputText id="nome" value="#{turmaController.selected.nome}" title="#{bundle.CreateTurmaTitle_nome}" >
                                 </b:inputText>
                                 
                                 <h:outputLabel value="#{bundle.EditTurmaLabel_inicio}" for="inicio" />
-                                <b:inputText id="inicio" value="#{turmaController.selected.inicio}" title="#{bundle.EditTurmaTitle_inicio}">
+                                <b:inputText mask="99/99/9999" id="inicio" value="#{turmaController.selected.inicio}" title="#{bundle.EditTurmaTitle_inicio}">
                                     <f:converter converterId="br.edu.infnet.pos.java.trabalhodebloco.infra.converter.JsfLocalDateConverter" />
                                 </b:inputText>
 
                                 <h:outputLabel value="#{bundle.EditTurmaLabel_fim}" for="fim" />
-                                <b:inputText id="fim" value="#{turmaController.selected.fim}" title="#{bundle.EditTurmaTitle_fim}">
+                                <b:inputText mask="99/99/9999" id="fim" value="#{turmaController.selected.fim}" title="#{bundle.EditTurmaTitle_fim}">
                                     <f:converter converterId="br.edu.infnet.pos.java.trabalhodebloco.infra.converter.JsfLocalDateConverter" />
                                 </b:inputText>
 
                                 <h:outputLabel value="#{bundle.EditTurmaLabel_professor}" for="professor" />
-                                <h:selectOneMenu id="professor" value="#{turmaController.selected.professor}" title="#{bundle.EditTurmaTitle_professor}" style="width: 100%;float:left;border-radius: 4px" >
+                                <h:selectOneMenu class="form-control" id="professor" value="#{turmaController.selected.professor}" title="#{bundle.EditTurmaTitle_professor}" style="width: 100%;float:left;border-radius: 4px" >
                                     <f:selectItems value="#{professorController.itemsAvailableSelectOne}"/>
                                 </h:selectOneMenu>
-                            </h:panelGrid>
-                            <div style="margin-top: 40rem">
+                            </b:panelGrid>
+                            <div style="margin-top: 20rem">
                                 <b:commandButton action="#{turmaController.update}" value="#{bundle.EditTurmaSaveLink}" class="btn btn-primary"/>
                                 <b:button outcome="View" value="#{bundle.EditTurmaViewLink}" class="btn btn-primary" />
                                 <b:commandButton action="#{turmaController.prepareList}" value="#{bundle.EditTurmaShowAllLink}" immediate="true" class="btn btn-primary"/>
                                 <b:button outcome="/index" value="#{bundle.EditTurmaIndexLink}"  class="btn btn-primary" />
                             </div>
-                    </h:form>
+                    <br></br>
+            </h:form>
+                    <br></br>
                 </div>
             </div>
         </ui:define>

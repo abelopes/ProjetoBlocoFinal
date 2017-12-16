@@ -18,14 +18,14 @@
                 <div style="margin: 0 -450px; text-align:right">
                    <h:form  style="border: solid 3px #e0e0e0;padding-top:50px;border-radius: 5px;position: relative;max-width:100%;height:auto; width:100%">
  
-                <h:panelGrid columns="2" style="width: 50%;float:left;height: 100%">
+                <b:panelGrid columns="2" style="width: 50%;float:left;height: 100%">
                     <h:outputLabel value="#{bundle.EditModuloLabel_nome}" for="nome" />
                     <b:inputText id="nome" value="#{moduloController.selected.nome}" title="#{bundle.EditModuloTitle_nome}" />
                     <h:outputLabel value="#{bundle.EditModuloLabel_bloco}" for="bloco" />
                     <h:selectOneMenu class="form-control" id="bloco" value="#{moduloController.selected.bloco}" title="#{bundle.EditModuloTitle_bloco}" >
                         <f:selectItems value="#{blocoController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
-                </h:panelGrid>
+                </b:panelGrid>
                        <div style="margin-top: 10rem">
                 <b:commandButton action="#{moduloController.update}" value="#{bundle.EditModuloSaveLink}" class="btn btn-primary"/>
                 <b:button outcome="View" value="#{bundle.EditModuloViewLink}" class="btn btn-primary"/>

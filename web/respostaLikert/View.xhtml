@@ -14,53 +14,49 @@
             <h:panelGroup id="messagePanel" layout="block">
                 <b:messages styleClass="msgs" errorStyle="color: red" infoStyle="color: green" warnStyle="color: yellow"/>
             </h:panelGroup>
-            <h:form>
-                 <b:dataTable value="#{cursoController.selected}" var="item"  style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
+            <b:form styleClass="jsfcrud_list_form">
+                <b:dataTable customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json" value="#{cursoController.selected}" var="item"  style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
                     <b:column style="width:1%;text-align:left;">
-                        <f:facet name="header">
-                    <h:outputText value="#{bundle.ViewRespostaLikertLabel_valor}"/>
-                        </f:facet>
-                    <h:outputText value="#{respostaLikertController.selected.valor}" title="#{bundle.ViewRespostaLikertTitle_valor}"/>
-                    </b:column>
-                    <b:column style="width:1%;text-align:left;">
-                        <f:facet name="header">
-                    <h:outputText value="#{bundle.ViewRespostaLikertLabel_valor}"/>
-                        </f:facet>
-                    <h:outputText value="#{respostaLikertController.selected.valor}" title="#{bundle.ViewRespostaLikertTitle_valor}"/>
-                    </b:column>
-                      <b:column style="width:1%;text-align:left;">
-                        <f:facet name="header">
-                    <h:outputText value="#{bundle.ViewRespostaLikertLabel_questao}"/>
-                        </f:facet>
-                    <h:outputText value="#{respostaLikertController.selected.questao}" title="#{bundle.ViewRespostaLikertTitle_questao}"/>
-                      </b:column>
-                     <b:column style="width:1%;text-align:left;">
-                           <f:facet name="header">
-                    <h:outputText value="#{bundle.ViewRespostaLikertLabel_aluno}"/>
-                           </f:facet>
-                     <h:outputText value="#{respostaLikertController.selected.aluno}" title="#{bundle.ViewRespostaLikertTitle_aluno}"/>
-                     </b:column>
-                    <b:column style="width:1%;text-align:left;">
-                           <f:facet name="header">
-                    <h:outputText value="#{bundle.ViewRespostaLikertLabel_avaliacao}"/>
-                           </f:facet>
-                   <h:outputText value="#{respostaLikertController.selected.avaliacao}" title="#{bundle.ViewRespostaLikertTitle_avaliacao}"/>
-                    </b:column>
-                 <b:column style="width:1%;text-align:left;">
-                           <f:facet name="header">
-                    <h:outputText value="#{bundle.ViewRespostaLikertLabel_id}"/>
-                           </f:facet>
-                    <h:outputText value="#{respostaLikertController.selected.id}" title="#{bundle.ViewRespostaLikertTitle_id}"/>
-                    </b:column>
-                 </b:dataTable>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRespostaLikertTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{respostaLikertController.selected.id}"/>
+                        </b:column>
+                        <b:column style="width:20%;text-align:left;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRespostaLikertTitle_valor}"/>
+                            </f:facet>
+                            <h:outputText value="#{respostaLikertController.selected.valor}"/>
+                        </b:column>
+                       
+                        <b:column style="width:24%;text-align:left;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRespostaLikertTitle_questao}"/>
+                            </f:facet>
+                            <h:outputText value="#{respostaLikertController.selected.questao.texto}"/>
+                        </b:column>
+                        <b:column style="width:18%;text-align:left;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRespostaLikertTitle_aluno}"/>
+                            </f:facet>
+                            <h:outputText value="#{respostaLikertController.selected.aluno.nome}"/>
+                        </b:column>
+                        <b:column style="width:25%;text-align:left;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRespostaLikertTitle_avaliacao}"/>
+                            </f:facet>
+                            <h:outputText value="#{respostaLikertController.selected.avaliacao.objetivo}"/>
+                        </b:column>
+                    
+                </b:dataTable>
                 <div style="text-align: center; float: right">
-                <b:commandButton action="#{respostaLikertController.destroyAndView}" value="#{bundle.ViewRespostaLikertDestroyLink}" class="btn btn-primary"/>
-                <b:button outcome="Edit" value="#{bundle.ViewRespostaLikertEditLink}" class="btn btn-primary"/>
-                <b:commandButton action="#{respostaLikertController.prepareCreate}" value="#{bundle.ViewRespostaLikertCreateLink}" class="btn btn-primary" />
-                <b:commandButton action="#{respostaLikertController.prepareList}" value="#{bundle.ViewRespostaLikertShowAllLink}" class="btn btn-primary"/>
-                <b:button outcome="/index" value="#{bundle.ViewRespostaLikertIndexLink}" class="btn btn-primary"/>
+                    <b:commandButton action="#{respostaLikertController.destroyAndView}" value="#{bundle.ViewRespostaLikertDestroyLink}" class="btn btn-primary"/>
+                    <b:button outcome="Edit" value="#{bundle.ViewRespostaLikertEditLink}" class="btn btn-primary"/>
+                    <b:commandButton action="#{respostaLikertController.prepareCreate}" value="#{bundle.ViewRespostaLikertCreateLink}" class="btn btn-primary" />
+                    <b:commandButton action="#{respostaLikertController.prepareList}" value="#{bundle.ViewRespostaLikertShowAllLink}" class="btn btn-primary"/>
+                    <b:button outcome="/index" value="#{bundle.ViewRespostaLikertIndexLink}" class="btn btn-primary"/>
                 </div>
-            </h:form>
+            </b:form>
         </ui:define>
     </ui:composition>
 

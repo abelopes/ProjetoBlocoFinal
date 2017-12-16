@@ -51,9 +51,14 @@ public class Topico extends Entidade {
         this.texto = texto;
     }
     
-       @Override
+    @Override
     public String toString() {
-        return this.getTexto();
+        return getTexto();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return (obj instanceof Topico) && ((Topico) obj).getId().equals(getId());
     }
 
 }

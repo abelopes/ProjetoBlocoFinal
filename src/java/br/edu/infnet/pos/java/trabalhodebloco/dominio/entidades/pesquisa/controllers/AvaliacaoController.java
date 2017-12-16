@@ -30,8 +30,7 @@ public class AvaliacaoController implements Serializable {
     private DataModel items = null;
     @EJB
     private br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.beans.AvaliacaoFacade ejbAvaliacaoFacade;
-    @EJB
-    private br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.AlunoFacade ejbAlunoFacade;
+
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
@@ -77,17 +76,6 @@ public class AvaliacaoController implements Serializable {
         current = (Avaliacao) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
-    }
-    
-    public void enviarEmail(Integer idModulo) {
-        List<String> emails = ejbAlunoFacade.findAllEmailAlunoByModulo(idModulo);
-        emails.stream().forEach(email -> {
-            try {
-                Email.enviarEmail(email);
-            } catch (Exception ex) {
-                Logger.getLogger(AvaliacaoController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
     }
 
     public String prepareCreate() {
@@ -205,12 +193,12 @@ public class AvaliacaoController implements Serializable {
         return JsfUtil.getSelectItems(ejbAvaliacaoFacade.findAll(), true);
     }
 
-    public Avaliacao getAvaliacao(java.lang.Integer id) {
+    public Avaliacao getAvaliacao(Integer id) {
         return ejbAvaliacaoFacade.find(id);
     }
 
     @FacesConverter(forClass = Avaliacao.class)
-    public static class AvaliacaoControllerConverter implements Converter {
+    public static class CursoControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {

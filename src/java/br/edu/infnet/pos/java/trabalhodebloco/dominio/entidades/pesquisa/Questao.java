@@ -80,5 +80,9 @@ public class Questao extends Entidade {
     public String toString() {
         return this.getTexto();
     }
-
+    
+    @Override
+    public boolean equals(Object obj) {
+        return (obj instanceof Questao) && ((Questao) obj).getId().equals(getId());
+    }
 }

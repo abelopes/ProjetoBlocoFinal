@@ -22,34 +22,35 @@
                     <b:dataTable customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json" value="#{questaoController.items}" var="item" style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
                         <b:column style="width:1%;text-align:left;">
                             <f:facet name="header">
+                                <h:outputText value="#{bundle.ListQuestaoTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </b:column>
+                        <b:column style="width:22%;text-align:left;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListQuestaoTitle_avaliacao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.avaliacao.objetivo}"/>
+                        </b:column>
+                        <b:column style="width:16%;text-align:left;">
+                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListQuestaoTitle_topico}"/>
                             </f:facet>
-                            <h:outputText value="#{item.topico}"/>
+                            <h:outputText value="#{item.topico.texto}"/>
                         </b:column>
-                        <b:column style="width:60%;text-align:left;">
+                        <b:column style="width:43%;text-align:left;">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListQuestaoTitle_texto}"/>
                             </f:facet>
                             <h:outputText value="#{item.texto}"/>
                         </b:column>
-                        <b:column style="width:1%;text-align:left;">
+                        <b:column style="width:2%;text-align:left;">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListQuestaoTitle_tipo}"/>
                             </f:facet>
                             <h:outputText value="#{item.tipo}"/>
                         </b:column>
-                        <b:column style="width:1%;text-align:left;">
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListQuestaoTitle_avaliacao}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.avaliacao}"/>
-                        </b:column>
-                        <b:column style="width:1%;text-align:left;">
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListQuestaoTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </b:column>
+
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>

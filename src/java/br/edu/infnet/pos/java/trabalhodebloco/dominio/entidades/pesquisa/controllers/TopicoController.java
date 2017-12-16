@@ -26,6 +26,7 @@ public class TopicoController implements Serializable {
     private DataModel items = null;
     @EJB
     private br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.beans.TopicoFacade ejbFacade;
+    
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

@@ -15,44 +15,45 @@
                 <b:messages styleClass="msgs" errorStyle="color: red" infoStyle="color: green" warnStyle="color: yellow"/>
             </h:panelGroup>
             <h:form>
-                 <b:dataTable value="#{cursoController.selected}" var="item"  style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
+                <b:dataTable customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json" value="#{cursoController.selected}" var="item"  style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
                     <b:column style="width:1%;text-align:left;">
-                        <f:facet name="header">
-                    <h:outputText value="#{bundle.ViewQuestaoLabel_topico}"/>
-                        </f:facet>
-                    <h:outputText value="#{questaoController.selected.topico}" title="#{bundle.ViewQuestaoTitle_topico}"/>
-                    </b:column>
-                    <b:column style="width:60%;text-align:left;">
-                        <f:facet name="header">
-                    <h:outputText value="#{bundle.ViewQuestaoLabel_texto}"/>
-                        </f:facet>
-                    <h:outputText value="#{questaoController.selected.texto}" title="#{bundle.ViewQuestaoTitle_texto}"/>
-                    </b:column>
-                          <b:column style="width:1%;text-align:left;">
-                        <f:facet name="header">
-                    <h:outputText value="#{bundle.ViewQuestaoLabel_tipo}"/>
-                        </f:facet>
-                    <h:outputText value="#{questaoController.selected.tipo}" title="#{bundle.ViewQuestaoTitle_tipo}"/>
-                          </b:column>
-                         <b:column style="width:1%;text-align:left;">
-                        <f:facet name="header">
-                    <h:outputText value="#{bundle.ViewQuestaoLabel_avaliacao}"/>
-                        </f:facet>
-                    <h:outputText value="#{questaoController.selected.avaliacao}" title="#{bundle.ViewQuestaoTitle_avaliacao}"/>
-                         </b:column>
-                          <b:column style="width:1%;text-align:left;">
-                        <f:facet name="header">
-                    <h:outputText value="#{bundle.ViewQuestaoLabel_id}"/>
-                        </f:facet>
-                    <h:outputText value="#{questaoController.selected.id}" title="#{bundle.ViewQuestaoTitle_id}"/>
-                          </b:column>
-                 </b:dataTable>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListQuestaoTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{questaoController.selected.id}"/>
+                        </b:column>
+                        <b:column style="width:22%;text-align:left;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListQuestaoTitle_avaliacao}"/>
+                            </f:facet>
+                            <h:outputText value="#{questaoController.selected.avaliacao.objetivo}"/>
+                        </b:column>
+                        <b:column style="width:16%;text-align:left;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListQuestaoTitle_topico}"/>
+                            </f:facet>
+                            <h:outputText value="#{questaoController.selected.topico.texto}"/>
+                        </b:column>
+                        <b:column style="width:43%;text-align:left;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListQuestaoTitle_texto}"/>
+                            </f:facet>
+                            <h:outputText value="#{questaoController.selected.texto}"/>
+                        </b:column>
+                        <b:column style="width:2%;text-align:left;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListQuestaoTitle_tipo}"/>
+                            </f:facet>
+                            <h:outputText value="#{questaoController.selected.tipo}"/>
+                        </b:column>
+                    
+                </b:dataTable>
                 <div style="text-align: center; float: right">
-                     <b:commandButton action="#{questaoController.destroyAndView}" value="#{bundle.ViewQuestaoDestroyLink}" class="btn btn-primary"/>
-                <b:button outcome="Edit" value="#{bundle.ViewQuestaoEditLink}" class="btn btn-primary"/>
-                <b:commandButton action="#{questaoController.prepareCreate}" value="#{bundle.ViewQuestaoCreateLink}" class="btn btn-primary"/>
-                <b:commandButton action="#{questaoController.prepareList}" value="#{bundle.ViewQuestaoShowAllLink}" class="btn btn-primary"/>
-                <b:button outcome="/index" value="#{bundle.ViewQuestaoIndexLink}" class="btn btn-primary"/>
+                    <b:commandButton action="#{questaoController.destroyAndView}" value="#{bundle.ViewQuestaoDestroyLink}" class="btn btn-primary"/>
+                    <b:button outcome="Edit" value="#{bundle.ViewQuestaoEditLink}" class="btn btn-primary"/>
+                    <b:commandButton action="#{questaoController.prepareCreate}" value="#{bundle.ViewQuestaoCreateLink}" class="btn btn-primary"/>
+                    <b:commandButton action="#{questaoController.prepareList}" value="#{bundle.ViewQuestaoShowAllLink}" class="btn btn-primary"/>
+                    <b:button outcome="/index" value="#{bundle.ViewQuestaoIndexLink}" class="btn btn-primary"/>
                 </div>
 
             </h:form>

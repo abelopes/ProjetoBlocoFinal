@@ -16,21 +16,24 @@
             </h:panelGroup>
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-4 col-md-offset-4 col-sm-offset-3 col-xs-offset-0">
                 <div style="margin: 0 -450px;height: 100%">
-            <h:form style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative;height: 53rem">
+            <h:form style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative;height: 33rem">
 
-                <h:panelGrid columns="2" style="width: 50%;float:left;height: 100%">
-                    <h:outputText value="#{bundle.ViewAvaliacaoLabel_codigoAlfanumerico}"/>
-                    <b:inputText value="#{avaliacaoController.selected.codigoAlfanumerico}" title="#{bundle.ViewAvaliacaoTitle_codigoAlfanumerico}" readonly="true"/>
-                    <h:outputText value="#{bundle.ViewAvaliacaoLabel_objetivo}"/>
-                    <b:inputText value="#{avaliacaoController.selected.objetivo}" title="#{bundle.ViewAvaliacaoTitle_objetivo}" readonly="true"/>
-                    <h:outputText value="#{bundle.ViewAvaliacaoLabel_fim}"/>
-                    <b:inputText value="#{avaliacaoController.selected.fim}" title="#{bundle.ViewAvaliacaoTitle_fim}" readonly="true"/>
-                    <h:outputText value="#{bundle.ViewAvaliacaoLabel_inicio}"/>
-                    <b:inputText value="#{avaliacaoController.selected.inicio}" title="#{bundle.ViewAvaliacaoTitle_inicio}" readonly="true"/>
-                    <h:outputText value="#{bundle.ViewAvaliacaoLabel_id}"/>
-                    <b:inputText value="#{avaliacaoController.selected.id}" title="#{bundle.ViewAvaliacaoTitle_id}" readonly="true"/>
-                </h:panelGrid>
-                <div style="margin-top: 47rem;float: right"> 
+                <b:panelGrid columns="2" style="width: 50%;float:left;height: 100%">
+                    <h:outputLabel value="#{bundle.CreateAvaliacaoLabel_codigoAlfanumerico}" for="codigoAlfanumerico" />
+                    <b:inputText id="codigoAlfanumerico" value="#{avaliacaoController.selected.codigoAlfanumerico}" title="#{bundle.CreateAvaliacaoTitle_codigoAlfanumerico}" readonly="true"/>
+                    <h:outputLabel value="#{bundle.CreateAvaliacaoLabel_objetivo}" for="objetivo" />
+                    <b:inputTextarea rows="4" id="objetivo" value="#{avaliacaoController.selected.objetivo}" title="#{bundle.CreateAvaliacaoTitle_objetivo}" readonly="true"/>
+                    
+                    <h:outputLabel value="#{bundle.CreateAvaliacaoLabel_inicio}" for="inicio" />
+                    <b:inputText mask="99/99/9999" id="inicio" value="#{avaliacaoController.selected.inicio}" readonly="true">
+                        <f:converter converterId="br.edu.infnet.pos.java.trabalhodebloco.infra.converter.JsfLocalDateConverter" />
+                    </b:inputText>
+                    <h:outputLabel value="#{bundle.CreateAvaliacaoLabel_fim}" for="fim" />
+                    <b:inputText mask="99/99/9999" id="fim" value="#{avaliacaoController.selected.fim}" readonly="true">
+                        <f:converter converterId="br.edu.infnet.pos.java.trabalhodebloco.infra.converter.JsfLocalDateConverter" />
+                    </b:inputText>
+                </b:panelGrid>
+                <div style="margin-top: 27rem;float: right"> 
                     <b:commandButton action="#{avaliacaoController.destroyAndView}" value="#{bundle.ViewAvaliacaoDestroyLink}" class="btn btn-primary"/>
                     <b:button outcome="Edit" value="#{bundle.ViewAvaliacaoEditLink}" class="btn btn-primary"/>
                     <b:commandButton action="#{avaliacaoController.prepareCreate}" value="#{bundle.ViewAvaliacaoCreateLink}" class="btn btn-primary"/>
@@ -39,6 +42,8 @@
                 </div>
 
             </h:form>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 

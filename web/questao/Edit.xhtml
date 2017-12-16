@@ -16,25 +16,25 @@
             </h:panelGroup>
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-4 col-md-offset-4 col-sm-offset-3 col-xs-offset-0">
                 <div style="margin: 0 -450px; text-align:right">
-                    <h:form  style="border: solid 3px #e0e0e0;padding-top:50px;border-radius: 5px;position: relative;max-width:100%;height:auto; width:100%">
+                    <h:form style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative;height: 27rem">
 
-                        <h:panelGrid columns="2" style="width: 50%">
+                        <b:panelGrid columns="2" style="width: 50%;float:left;height: 100%">
                             <h:outputLabel value="#{bundle.EditQuestaoLabel_topico}" for="topico" />
-                            <b:selectOneMenu id="topico" value="#{questaoController.selected.topico}" title="#{bundle.EditQuestaoTitle_topico}" >
+                            <h:selectOneMenu class="form-control" id="topico" value="#{questaoController.selected.topico}" title="#{bundle.EditQuestaoTitle_topico}" >
                                 <f:selectItems value="#{topicoController.itemsAvailableSelectOne}"/>
-                            </b:selectOneMenu>
+                            </h:selectOneMenu>
                             <h:outputLabel value="#{bundle.EditQuestaoLabel_texto}" for="texto" />
                             <b:inputText id="texto" value="#{questaoController.selected.texto}" title="#{bundle.EditQuestaoTitle_texto}" />
                             <h:outputLabel value="#{bundle.EditQuestaoLabel_tipo}" for="tipo" />
-                            <b:inputText id="tipo" value="#{questaoController.selected.tipo}" title="#{bundle.EditQuestaoTitle_tipo}" />
-                            <h:outputLabel value="#{bundle.EditQuestaoLabel_avaliacao}" for="avaliacao" />
-                            <b:selectOneMenu id="avaliacao" value="#{questaoController.selected.avaliacao}" title="#{bundle.EditQuestaoTitle_avaliacao}" >
-                                <f:selectItems value="#{avaliacaoController.itemsAvailableSelectOne}"/>
+                            <b:selectOneMenu id="tipo" value="#{questaoController.selected.tipo}" title="#{bundle.CreateQuestaoTitle_tipo}">
+                                <f:selectItems value="#{questaoController.tipoQuestao}" var="tipoQuestao" itemValue="#{tipoQuestao}" itemLabel="#{tipoQuestao.descricao}" />   
                             </b:selectOneMenu>
-                            <h:outputLabel value="#{bundle.EditQuestaoLabel_id}" for="id" />
-                            <b:inputText id="id" value="#{questaoController.selected.id}" title="#{bundle.EditQuestaoTitle_id}" />
-                        </h:panelGrid>
-                        <div style="margin-top: 40rem">
+                            <h:outputLabel value="#{bundle.EditQuestaoLabel_avaliacao}" for="avaliacao" />
+                            <h:selectOneMenu class="form-control" id="avaliacao" value="#{questaoController.selected.avaliacao}" title="#{bundle.EditQuestaoTitle_avaliacao}" >
+                                <f:selectItems value="#{avaliacaoController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                           </b:panelGrid>
+                        <div style="margin-top: 21rem">
                             <b:commandButton action="#{questaoController.update}" value="#{bundle.EditQuestaoSaveLink}" class="btn btn-primary" />
                             <b:button outcome="View" value="#{bundle.EditQuestaoViewLink}" class="btn btn-primary" />
                             <b:commandButton action="#{questaoController.prepareList}" value="#{bundle.EditQuestaoShowAllLink}" immediate="true" class="btn btn-primary" />

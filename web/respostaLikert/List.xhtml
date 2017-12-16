@@ -20,42 +20,38 @@
                     <h:commandLink action="#{respostaLikertController.previous}" value="#{bundle.Previous} #{respostaLikertController.pagination.pageSize}" rendered="#{respostaLikertController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{respostaLikertController.next}" value="#{bundle.Next} #{respostaLikertController.pagination.pageSize}" rendered="#{respostaLikertController.pagination.hasNextPage}"/>&nbsp;
                     <b:dataTable customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json" value="#{respostaLikertController.items}" var="item" style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative">
-                        <b:column style="width:20%;text-align:left;">
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListRespostaLikertTitle_valor}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.valor}"/>
-                        </b:column>
-                       <b:column style="width:40%;text-align:left;">
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListRespostaLikertTitle_valor}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.valor}"/>
-                        </b:column>
-                        <b:column style="width:1%;text-align:left;">
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListRespostaLikertTitle_questao}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.questao}"/>
-                        </b:column>
-                        <b:column style="width:1%;text-align:left;">
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListRespostaLikertTitle_aluno}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.aluno}"/>
-                        </b:column>
-                        <b:column style="width:1%;text-align:left;">
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListRespostaLikertTitle_avaliacao}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.avaliacao}"/>
-                        </b:column>
                         <b:column style="width:1%;text-align:left;">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListRespostaLikertTitle_id}"/>
                             </f:facet>
                             <h:outputText value="#{item.id}"/>
                         </b:column>
+                        <b:column style="width:20%;text-align:left;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRespostaLikertTitle_valor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.valor}"/>
+                        </b:column>
+                       
+                        <b:column style="width:24%;text-align:left;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRespostaLikertTitle_questao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.questao.texto}"/>
+                        </b:column>
+                        <b:column style="width:18%;text-align:left;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRespostaLikertTitle_aluno}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.aluno.nome}"/>
+                        </b:column>
+                        <b:column style="width:25%;text-align:left;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRespostaLikertTitle_avaliacao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.avaliacao.objetivo}"/>
+                        </b:column>
+                        
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>

@@ -1,6 +1,7 @@
 package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.controllers;
 
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.Questao;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.TipoQuestao;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.controllers.util.JsfUtil;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.controllers.util.PaginationHelper;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.beans.QuestaoFacade;
@@ -231,5 +232,8 @@ public class QuestaoController implements Serializable {
         }
 
     }
-
+    
+    public TipoQuestao[] getTipoQuestao() {
+        return TipoQuestao.values();
+    }
 }

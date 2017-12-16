@@ -1,5 +1,6 @@
 package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.controllers;
 
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.EscalaLikert;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.RespostaLikert;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.controllers.util.JsfUtil;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.controllers.util.PaginationHelper;
@@ -230,6 +231,10 @@ public class RespostaLikertController implements Serializable {
             }
         }
 
+    }
+    
+    public EscalaLikert[] getEscalaLikert() {
+        return EscalaLikert.values();
     }
 
 }

@@ -32,7 +32,7 @@
                             </f:facet>
                             <h:outputText value="#{item.nome}"/>
                         </b:column>
-                        <b:column style="width:42%;text-align:left;">
+                        <b:column style="width:40%;text-align:left;">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListModuloTitle_bloco}"/>
                             </f:facet>
@@ -48,7 +48,9 @@
                             <h:outputText value=" "/>
                             <h:commandLink action="#{moduloController.destroy}" class="fa fa-2x fa-trash"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{moduloController.exportarExcel}" class="fa fa-2x fa-download"/>
+                            <h:commandLink title="Exportar Excel" action="#{moduloController.exportarExcel}" class="fa fa-2x fa-download"/>
+                             <h:outputText value=" "/>
+                             <h:commandLink title="Enviar E-mail" action="#{moduloController.enviarEmail}" class="fa fa-2x fa-send"/>
                         </h:column>
                     </b:dataTable>
                 </h:panelGroup>

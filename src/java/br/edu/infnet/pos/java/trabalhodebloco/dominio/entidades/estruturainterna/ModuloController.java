@@ -1,7 +1,9 @@
 package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna;
 
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.enviodeemail.Email;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.util.JsfUtil;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.util.PaginationHelper;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.controllers.AvaliacaoController;
 import java.io.IOException;
 
 import java.io.Serializable;
@@ -36,7 +38,8 @@ public class ModuloController implements Serializable {
 
     @EJB
     private br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.ModuloFacade ejbFacade;
-
+    @EJB
+    private br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.AlunoFacade ejbAlunoFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
@@ -106,8 +109,8 @@ public class ModuloController implements Serializable {
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
-
-	    public void exportarExcel() {
+    
+    public void exportarExcel() {
         current = (Modulo) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         try {
@@ -251,6 +254,19 @@ public class ModuloController implements Serializable {
             }
         }
 
+    }
+    
+    public void enviarEmail() {
+        current = (Modulo) getItems().getRowData();
+        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        List<String> emails = ejbAlunoFacade.findAllEmailAlunoByModulo(current.getId());
+        emails.stream().forEach(email -> {
+            try {
+                Email.enviarEmail(email);
+            } catch (Exception ex) {
+                Logger.getLogger(ModuloController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
     }
 
 }

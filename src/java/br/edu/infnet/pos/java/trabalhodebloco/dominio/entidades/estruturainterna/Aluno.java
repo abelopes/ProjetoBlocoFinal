@@ -1,5 +1,6 @@
 package br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna;
 
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.Avaliacao;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.Resposta;
 import java.time.LocalDate;
 import java.util.List;
@@ -125,5 +126,9 @@ public class Aluno extends Pessoa {
     public String toString() {
         return this.getNome();
     }
-
+    
+    @Override
+    public boolean equals(Object obj) {
+        return (obj instanceof Aluno) && ((Aluno) obj).getId().equals(getId());
+    }
 }

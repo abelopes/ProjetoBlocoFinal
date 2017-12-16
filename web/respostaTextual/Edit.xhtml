@@ -12,40 +12,37 @@
         </ui:define>
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
-               <b:messages styleClass="msgs" errorStyle="color: red" infoStyle="color: green" warnStyle="color: yellow"/>
+                <b:messages styleClass="msgs" errorStyle="color: red" infoStyle="color: green" warnStyle="color: yellow"/>
             </h:panelGroup>
-          <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-4 col-md-offset-4 col-sm-offset-3 col-xs-offset-0">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-4 col-md-offset-4 col-sm-offset-3 col-xs-offset-0">
                 <div style="margin: 0 -450px; text-align:right">
-                   <h:form  style="border: solid 3px #e0e0e0;padding-top:50px;border-radius: 5px;position: relative;max-width:100%;height:auto; width:100%">
+                    <h:form style="border: solid 3px #e0e0e0;padding: 10px;border-radius: 5px;position: relative;height: 33rem">
+                        <b:panelGrid columns="2"  style="width: 50%;float:left;height: 100%">
+                            <h:outputLabel value="#{bundle.CreateRespostaTextualLabel_valor}" for="valor" />
+                            <b:inputTextarea rows="4" id="valor" value="#{respostaTextualController.selected.valor}" title="#{bundle.CreateRespostaTextualTitle_valor}" />
+                            <h:outputLabel value="#{bundle.CreateRespostaTextualLabel_questao}" for="questao" />
+                            <h:selectOneMenu class="form-control" id="questao" value="#{respostaTextualController.selected.questao}" title="#{bundle.CreateRespostaTextualTitle_questao}" >
+                                <f:selectItems value="#{questaoController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                            <h:outputLabel value="#{bundle.CreateRespostaTextualLabel_aluno}" for="aluno" />
+                            <h:selectOneMenu class="form-control" id="aluno" value="#{respostaTextualController.selected.aluno}" title="#{bundle.CreateRespostaTextualTitle_aluno}" >
+                                <f:selectItems value="#{alunoController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                            <h:outputLabel value="#{bundle.CreateRespostaTextualLabel_avaliacao}" for="avaliacao" />
+                            <h:selectOneMenu class="form-control" id="avaliacao" value="#{respostaTextualController.selected.avaliacao}" title="#{bundle.CreateRespostaTextualTitle_avaliacao}" >
+                                <f:selectItems value="#{avaliacaoController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                        </b:panelGrid>
+                            <div style="margin-top: 26rem">
+                                <b:commandButton action="#{respostaTextualController.update}" value="#{bundle.EditRespostaTextualSaveLink}" class="btn btn-primary" />
+                                <b:button outcome="View" value="#{bundle.EditRespostaTextualViewLink}" class="btn btn-primary" />
+                                <b:commandButton action="#{respostaTextualController.prepareList}" value="#{bundle.EditRespostaTextualShowAllLink}" immediate="true" class="btn btn-primary" />
+                                <b:button outcome="/index" value="#{bundle.EditRespostaTextualIndexLink}" class="btn btn-primary" />
+                            </div>
+                    </h:form>
+                </div>
+            </div>
+                    </ui:define>
+                    </ui:composition>
 
-                     <h:panelGrid columns="2"  style="width: 50%;float:left;height: 100%">
-                    <h:outputLabel value="#{bundle.EditRespostaTextualLabel_valor}" for="valor" />
-                    <h:inputTextarea rows="4" cols="30" id="valor" value="#{respostaTextualController.selected.valor}" title="#{bundle.EditRespostaTextualTitle_valor}" />
-                    <h:outputLabel value="#{bundle.EditRespostaTextualLabel_valor}" for="valor" />
-                    <b:inputText id="valor" value="#{respostaTextualController.selected.valor}" title="#{bundle.EditRespostaTextualTitle_valor}" />
-                    <h:outputLabel value="#{bundle.EditRespostaTextualLabel_questao}" for="questao" />
-                    <b:selectOneMenu id="questao" value="#{respostaTextualController.selected.questao}" title="#{bundle.EditRespostaTextualTitle_questao}" >
-                        <f:selectItems value="#{questaoController.itemsAvailableSelectOne}"/>
-                    </b:selectOneMenu>
-                    <h:outputLabel value="#{bundle.EditRespostaTextualLabel_aluno}" for="aluno" />
-                    <b:selectOneMenu id="aluno" value="#{respostaTextualController.selected.aluno}" title="#{bundle.EditRespostaTextualTitle_aluno}" >
-                        <f:selectItems value="#{alunoController.itemsAvailableSelectOne}"/>
-                    </b:selectOneMenu>
-                    <h:outputLabel value="#{bundle.EditRespostaTextualLabel_avaliacao}" for="avaliacao" />
-                    <b:selectOneMenu id="avaliacao" value="#{respostaTextualController.selected.avaliacao}" title="#{bundle.EditRespostaTextualTitle_avaliacao}" >
-                        <f:selectItems value="#{avaliacaoController.itemsAvailableSelectOne}"/>
-                    </b:selectOneMenu>
-                    <h:outputLabel value="#{bundle.EditRespostaTextualLabel_id}" for="id" />
-                    <b:inputText id="id" value="#{respostaTextualController.selected.id}" title="#{bundle.EditRespostaTextualTitle_id}" />
-                </h:panelGrid>
-                       <div style="margin-top: 40rem">
-                <b:commandButton action="#{respostaTextualController.update}" value="#{bundle.EditRespostaTextualSaveLink}" class="btn btn-primary" />
-                <b:button outcome="View" value="#{bundle.EditRespostaTextualViewLink}" class="btn btn-primary" />
-                <b:commandButton action="#{respostaTextualController.prepareList}" value="#{bundle.EditRespostaTextualShowAllLink}" immediate="true" class="btn btn-primary" />
-                <b:button outcome="/index" value="#{bundle.EditRespostaTextualIndexLink}" class="btn btn-primary" />
-                       </div>
-            </h:form>
-        </ui:define>
-    </ui:composition>
-
-</html>
+                    </html>
