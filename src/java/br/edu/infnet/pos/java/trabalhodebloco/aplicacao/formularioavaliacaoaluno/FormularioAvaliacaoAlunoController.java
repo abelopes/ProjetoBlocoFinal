@@ -85,7 +85,8 @@ public class FormularioAvaliacaoAlunoController {
         avaliacao.setTopicos(new ArrayList<>());
         Topico topico;
         topico = criarTopicoComQuestoesLikert(
-                "Avaliação geral da Pós-Graduação:",
+                avaliacao,
+                "Avaliação geral da Pós-Graduação",
                 "Até agora, o curso está atingindo as minhas expectativas.", "Até agora, eu indicaria o curso para um amigo.",
                 "Até agora, o curso me parece voltado para as necessidades do mercado.",
                 "Até agora, a coordenação pedagógica parece comprometida com a qualidade do curso.",
@@ -94,7 +95,8 @@ public class FormularioAvaliacaoAlunoController {
         );
         avaliacao.getTopicos().add(topico);
         topico = criarTopicoComQuestoesLikert(
-                "Avaliação do professor do módulo:",
+                avaliacao,
+                "Avaliação do professor do módulo",
                 "O professor contribuiu para o meu aprendizado.",
                 "O professor é atencioso e esteve disponível para tirar dúvidas.",
                 "O professor aproveitou bem o tempo em sala de aula.",
@@ -104,37 +106,40 @@ public class FormularioAvaliacaoAlunoController {
         );
         avaliacao.getTopicos().add(topico);
         topico = criarTopicoComQuestoesLikert(
-                "Avaliação do conteúdo e infra-estrutura no módulo:",
+                avaliacao,
+                "Avaliação do conteúdo e infra-estrutura no módulo",
                 "Eu adquiri as competências propostas para o módulo.",
                 "O módulo foi útil para o meu crescimento profissional.",
                 "A carga horária do módulo foi apropriada.",
                 "O acervo da biblioteca atendeu as necessidades desse módulo.",
                 "A configuração do(s) computadore(s) e equipamentos da sala de aula e a qualidade do suporte foi apropriada."
         );
-        topico.getQuestoes().add(criarQuestao(TipoQuestao.TEXTUAL, "Você tem comentários e sugestões?"));
+        topico.getQuestoes().add(criarQuestao(TipoQuestao.TEXTUAL, "Você tem comentários e sugestões?", avaliacao));
         avaliacao.getTopicos().add(topico);
         return avaliacao;
     }
 
-    private Topico criarTopicoComQuestoesLikert(String textoTopico, String... textosQuestoes) {
+    private Topico criarTopicoComQuestoesLikert(Avaliacao avaliacao, String textoTopico, String... textosQuestoes) {
         Topico topico = new Topico();
         topico.setTexto(textoTopico);
         topico.setQuestoes(new ArrayList<>());
+        topico.setAvaliacao(avaliacao);
         for (String textoQuestao : textosQuestoes) {
-            topico.getQuestoes().add(criarQuestao(textoQuestao));
+            topico.getQuestoes().add(criarQuestao(textoQuestao, avaliacao));
         }
         return topico;
     }
 
-    private Questao criarQuestao(TipoQuestao tipo, String texto) {
+    private Questao criarQuestao(TipoQuestao tipo, String texto, Avaliacao avaliacao) {
         Questao questao = new Questao();
         questao.setTipo(tipo);
         questao.setTexto(texto);
+        questao.setAvaliacao(avaliacao);
         return questao;
     }
 
-    private Questao criarQuestao(String texto) {
-        return criarQuestao(TipoQuestao.LIKERT, texto);
+    private Questao criarQuestao(String texto, Avaliacao avaliacao) {
+        return criarQuestao(TipoQuestao.LIKERT, texto, avaliacao);
     }
 
     public Integer getIdAluno() {
@@ -163,10 +168,6 @@ public class FormularioAvaliacaoAlunoController {
         novoAluno.getTurmas().get(0).getModulos().add(new Modulo());
         novoAluno.getTurmas().get(0).getModulos().get(0).setNome("Módulo da Banda de Pagode");
         return novoAluno;
-    }
-
-    void setModulosAluno(ArrayList<Object> arrayList) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public Integer getIdAvaliacao() {
@@ -211,12 +212,12 @@ public class FormularioAvaliacaoAlunoController {
         this.idTurma = idTurma;
         this.turma = turmaFacade.find(idTurma);
     }
-    
+
     public void salvarRespostas() {
         System.out.println();
     }
 
     public Likert[] getValoresLikert() {
         return Likert.values();
-    }    
+    }
 }

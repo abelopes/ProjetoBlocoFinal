@@ -42,14 +42,14 @@ public class AvaliacaoTest extends TesteEntidade {
 
     @Test
     public void deveTerInicio() {
-        final LocalDate dataHoraInicio = LocalDate.now();
+        final LocalDateTime dataHoraInicio = LocalDateTime.now();
         avaliacao.setInicio(dataHoraInicio);
         assertEquals(dataHoraInicio, avaliacao.getInicio());
     }
 
     @Test
     public void deveTerFim() {
-        final LocalDate fim = LocalDate.now();
+        final LocalDateTime fim = LocalDateTime.now();
         avaliacao.setFim(fim);
         assertEquals(fim, avaliacao.getFim());
     }

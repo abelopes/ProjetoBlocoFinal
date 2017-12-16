@@ -76,14 +76,16 @@
                     </div>
                     <c:forEach var="topico" items="#{formularioAvaliacaoAlunoController.avaliacao.topicos}">
                         <div class="row">
-                            <div class="col-sm-6">
-                                <h4 class="text-muted"><h:outputText value="#{topico.texto}" /></h4>
+                            <div class="col-sm-12">
+                                <h4><h:outputText value="#{topico.texto}" /></h4>
                             </div>
                         </div>
                         <c:forEach var="questao" items="#{topico.questoes}">
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <h:outputText value="#{questao.texto}" />
+                                    <p>
+                                        <h:outputText value="#{questao.texto}" />
+                                    </p>
                                 </div>
                                 <c:choose>
                                     <c:when test="#{questao.tipo == 'LIKERT'}">
@@ -91,7 +93,7 @@
                                             <div class="col-sm-1 text-center">
                                                 <div class="radio">
                                                     <label>
-                                                        <input type="radio" name="valorLikert" value="#{valor}" />
+                                                        <input type="radio" name="valorLikert#{questao.id}" value="#{valor}" checked="#{ valor eq 'NAO_SEI_AVALIAR' ? 'checked' : '' }" />
                                                     </label>
                                                 </div>
                                             </div>
@@ -99,7 +101,7 @@
                                     </c:when>    
                                     <c:otherwise>
                                         <div class="col-sm-6 text-center">
-                                            <textarea class="form-control" rows="3"></textarea>
+                                            <textarea class="form-control" rows="6"></textarea>
                                         </div>
                                     </c:otherwise>
                                 </c:choose>
@@ -127,6 +129,16 @@
                         &nbsp;
                     </div>
                 </div>
+
+
+<!--                <div class="row">
+                    <div class="col-sm-12">
+                        <h:commandLink action="#{formularioAvaliacaoAlunoController.criarAvaliacaoExemplo}" value="Criar formulário de exemplo" immediate="true" class="btn btn-primary" />
+                        <h:commandLink action="#{formularioAvaliacaoAlunoController.criarAlunoExemplo}" value="Criar aluno de exemplo" immediate="true" class="btn btn-primary" />
+                    </div>
+                </div>-->
+
+
             </div>
         </h:form>
         <h:outputScript library="jquery" name="jquery-3.2.1.js" />
