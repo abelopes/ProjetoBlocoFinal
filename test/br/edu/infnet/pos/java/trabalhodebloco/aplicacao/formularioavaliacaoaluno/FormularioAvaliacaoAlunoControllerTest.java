@@ -53,7 +53,7 @@ public class FormularioAvaliacaoAlunoControllerTest {
         assertEquals(LocalDateTime.of(2000, Month.SEPTEMBER, 12, 6, 0), avaliacao.getFim());
         assertEquals("Avaliar o curso de especialização em engenharia de software", avaliacao.getObjetivo());
 
-        assertEquals(avaliacao.getTopicos().get(0).getTexto(), "Avaliação geral da Pós-Graduação:");
+        assertEquals(avaliacao.getTopicos().get(0).getTexto(), "Avaliação geral da Pós-Graduação");
 
         assertEquals(avaliacao.getTopicos().get(0).getQuestoes().get(0).getTexto(), "Até agora, o curso está atingindo as minhas expectativas.");
         assertEquals(avaliacao.getTopicos().get(0).getQuestoes().get(0).getTipo(), TipoQuestao.LIKERT);
@@ -73,7 +73,7 @@ public class FormularioAvaliacaoAlunoControllerTest {
         assertEquals(avaliacao.getTopicos().get(0).getQuestoes().get(5).getTexto(), "Até agora, o atendimento de Secretaria que recebi está atingindo as minhas expectativas.");
         assertEquals(avaliacao.getTopicos().get(0).getQuestoes().get(5).getTipo(), TipoQuestao.LIKERT);
 
-        assertEquals(avaliacao.getTopicos().get(1).getTexto(), "Avaliação do professor do módulo:");
+        assertEquals(avaliacao.getTopicos().get(1).getTexto(), "Avaliação do professor do módulo");
 
         assertEquals(avaliacao.getTopicos().get(1).getQuestoes().get(0).getTexto(), "O professor contribuiu para o meu aprendizado.");
         assertEquals(avaliacao.getTopicos().get(1).getQuestoes().get(0).getTipo(), TipoQuestao.LIKERT);
@@ -93,7 +93,7 @@ public class FormularioAvaliacaoAlunoControllerTest {
         assertEquals(avaliacao.getTopicos().get(1).getQuestoes().get(5).getTexto(), "Gostaria de cursar outros módulos com esse professor.");
         assertEquals(avaliacao.getTopicos().get(1).getQuestoes().get(5).getTipo(), TipoQuestao.LIKERT);
 
-        assertEquals(avaliacao.getTopicos().get(2).getTexto(), "Avaliação do conteúdo e infra-estrutura no módulo:");
+        assertEquals(avaliacao.getTopicos().get(2).getTexto(), "Avaliação do conteúdo e infra-estrutura no módulo");
 
         assertEquals(avaliacao.getTopicos().get(2).getQuestoes().get(0).getTexto(), "Eu adquiri as competências propostas para o módulo.");
         assertEquals(avaliacao.getTopicos().get(2).getQuestoes().get(0).getTipo(), TipoQuestao.LIKERT);

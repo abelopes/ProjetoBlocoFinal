@@ -43,5 +43,12 @@ body {
 
 .formulario-avaliacao-questoes h4 {
     padding-top: 1em;
+    color: #999999;
+    font-weight: bold;
     font-style: italic;
+}
+
+.formulario-avaliacao-questoes p {
+    font-size: 1.3em;
+    text-align: right;
 }

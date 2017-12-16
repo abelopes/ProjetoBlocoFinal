@@ -8,7 +8,11 @@ import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.Turma;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.estruturainterna.TurmaFacade;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.Avaliacao;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.EscalaLikert;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.Questao;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.Resposta;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.RespostaLikert;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.RespostaTextual;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.TipoQuestao;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.Topico;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.enums.Sexo;
@@ -19,12 +23,22 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.beans.AvaliacaoFacade;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.beans.QuestaoFacade;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.beans.RespostaLikertFacade;
+import br.edu.infnet.pos.java.trabalhodebloco.dominio.entidades.pesquisa.beans.RespostaTextualFacade;
 import br.edu.infnet.pos.java.trabalhodebloco.dominio.enums.Likert;
+import java.io.Serializable;
+import java.util.Enumeration;
 import java.util.List;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 @Named("formularioAvaliacaoAlunoController")
-@RequestScoped
-public class FormularioAvaliacaoAlunoController {
+@SessionScoped
+public class FormularioAvaliacaoAlunoController implements Serializable {
+
+    private static final long serialVersionUID = 1526459956951895955L;
 
     @EJB
     private AvaliacaoFacade avaliacaoFacade;
@@ -37,6 +51,15 @@ public class FormularioAvaliacaoAlunoController {
 
     @EJB
     private TurmaFacade turmaFacade;
+
+    @EJB
+    private QuestaoFacade questaoFacade;
+
+    @EJB
+    private RespostaLikertFacade respostaLikertFacade;
+
+    @EJB
+    private RespostaTextualFacade respostaTextualFacade;
 
     private Integer idAluno;
     private Aluno aluno;
@@ -84,7 +107,8 @@ public class FormularioAvaliacaoAlunoController {
         avaliacao.setTopicos(new ArrayList<>());
         Topico topico;
         topico = criarTopicoComQuestoesLikert(
-                "Avaliação geral da Pós-Graduação:",
+                avaliacao,
+                "Avaliação geral da Pós-Graduação",
                 "Até agora, o curso está atingindo as minhas expectativas.", "Até agora, eu indicaria o curso para um amigo.",
                 "Até agora, o curso me parece voltado para as necessidades do mercado.",
                 "Até agora, a coordenação pedagógica parece comprometida com a qualidade do curso.",
@@ -93,7 +117,8 @@ public class FormularioAvaliacaoAlunoController {
         );
         avaliacao.getTopicos().add(topico);
         topico = criarTopicoComQuestoesLikert(
-                "Avaliação do professor do módulo:",
+                avaliacao,
+                "Avaliação do professor do módulo",
                 "O professor contribuiu para o meu aprendizado.",
                 "O professor é atencioso e esteve disponível para tirar dúvidas.",
                 "O professor aproveitou bem o tempo em sala de aula.",
@@ -103,37 +128,41 @@ public class FormularioAvaliacaoAlunoController {
         );
         avaliacao.getTopicos().add(topico);
         topico = criarTopicoComQuestoesLikert(
-                "Avaliação do conteúdo e infra-estrutura no módulo:",
+                avaliacao,
+                "Avaliação do conteúdo e infra-estrutura no módulo",
                 "Eu adquiri as competências propostas para o módulo.",
                 "O módulo foi útil para o meu crescimento profissional.",
                 "A carga horária do módulo foi apropriada.",
                 "O acervo da biblioteca atendeu as necessidades desse módulo.",
                 "A configuração do(s) computadore(s) e equipamentos da sala de aula e a qualidade do suporte foi apropriada."
         );
-        topico.getQuestoes().add(criarQuestao(TipoQuestao.TEXTUAL, "Você tem comentários e sugestões?"));
+        topico.getQuestoes().add(criarQuestao(TipoQuestao.TEXTUAL, "Você tem comentários e sugestões?", avaliacao, topico));
         avaliacao.getTopicos().add(topico);
         return avaliacao;
     }
 
-    private Topico criarTopicoComQuestoesLikert(String textoTopico, String... textosQuestoes) {
+    private Topico criarTopicoComQuestoesLikert(Avaliacao avaliacao, String textoTopico, String... textosQuestoes) {
         Topico topico = new Topico();
         topico.setTexto(textoTopico);
         topico.setQuestoes(new ArrayList<>());
+        topico.setAvaliacao(avaliacao);
         for (String textoQuestao : textosQuestoes) {
-            topico.getQuestoes().add(criarQuestao(textoQuestao));
+            topico.getQuestoes().add(criarQuestao(textoQuestao, avaliacao, topico));
         }
         return topico;
     }
 
-    private Questao criarQuestao(TipoQuestao tipo, String texto) {
+    private Questao criarQuestao(TipoQuestao tipo, String texto, Avaliacao avaliacao, Topico topico) {
         Questao questao = new Questao();
         questao.setTipo(tipo);
         questao.setTexto(texto);
+        questao.setAvaliacao(avaliacao);
+        questao.setTopico(topico);
         return questao;
     }
 
-    private Questao criarQuestao(String texto) {
-        return criarQuestao(TipoQuestao.LIKERT, texto);
+    private Questao criarQuestao(String texto, Avaliacao avaliacao, Topico topico) {
+        return criarQuestao(TipoQuestao.LIKERT, texto, avaliacao, topico);
     }
 
     public Integer getIdAluno() {
@@ -162,10 +191,6 @@ public class FormularioAvaliacaoAlunoController {
         novoAluno.getTurmas().get(0).getModulos().add(new Modulo());
         novoAluno.getTurmas().get(0).getModulos().get(0).setNome("Módulo da Banda de Pagode");
         return novoAluno;
-    }
-
-    void setModulosAluno(ArrayList<Object> arrayList) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public Integer getIdAvaliacao() {
@@ -210,12 +235,76 @@ public class FormularioAvaliacaoAlunoController {
         this.idTurma = idTurma;
         this.turma = turmaFacade.find(idTurma);
     }
-    
-    public void salvarRespostas() {
-        System.out.println();
+
+    private List<Resposta> capturarRespostasEnviadas() {
+        List<Resposta> respostasRecebidas = new ArrayList<>();
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        Enumeration<String> names = request.getParameterNames();
+        while (names.hasMoreElements()) {
+            String nameHtmlField = names.nextElement();
+            Integer idQuestao = -1;
+            EscalaLikert valorLikert;
+            String valorTextual;
+            if (((nameHtmlField.length() >= 14)
+                    && (nameHtmlField.substring(0, 14).equals("respostaLikert")))
+                    || ((nameHtmlField.length() >= 15)
+                    && (nameHtmlField.substring(0, 15).equals("respostaTextual")))) {
+                if (nameHtmlField.substring(0, 14).equals("respostaLikert")) {
+                    valorLikert = EscalaLikert.valueOf(request.getParameter(nameHtmlField));
+                    idQuestao = Integer.valueOf(nameHtmlField.substring(21, nameHtmlField.length()));
+                    RespostaLikert respostaLikert = new RespostaLikert();
+                    respostaLikert.setValor(valorLikert);
+                    Questao questao = new Questao();
+                    questao.setId(idQuestao);
+                    respostaLikert.setQuestao(questao);
+                    respostasRecebidas.add(respostaLikert);
+                } else {
+                    if (nameHtmlField.substring(0, 15).equals("respostaTextual")) {
+                        valorTextual = request.getParameter(nameHtmlField);
+                        idQuestao = Integer.valueOf(nameHtmlField.substring(22, nameHtmlField.length()));
+                        RespostaTextual respostaTextual = new RespostaTextual();
+                        respostaTextual.setValor(valorTextual);
+                        Questao questao = new Questao();
+                        questao.setId(idQuestao);
+                        respostaTextual.setQuestao(questao);
+                        respostasRecebidas.add(respostaTextual);
+                    }
+                }
+            }
+        }
+        return respostasRecebidas;
     }
 
-    public Likert[] getValoresLikert() {
-        return Likert.values();
-    }    
+    private void carregarAtributosResposta(List<Resposta> respostasRecebidas) {
+        respostasRecebidas.forEach(resposta -> {
+            resposta.setAluno(alunoFacade.find(aluno.getId()));
+            resposta.setAvaliacao(avaliacaoFacade.find(avaliacao.getId()));
+            resposta.setModulo(moduloFacade.find(modulo.getId()));
+            resposta.setQuestao(questaoFacade.find(resposta.getModulo().getId()));
+            resposta.setTurma(turmaFacade.find(turma.getId()));
+        });
+    }
+
+    private void registrarRespostasEmBanco(List<Resposta> respostasRecebidas) {
+        respostasRecebidas.forEach(resposta -> {
+            if (resposta instanceof RespostaLikert) {
+                respostaLikertFacade.create((RespostaLikert) resposta);
+            } else {
+                if (resposta instanceof RespostaTextual) {
+                    respostaTextualFacade.create((RespostaTextual) resposta);
+                }
+            }
+        });
+    }
+
+    public void salvarRespostas() {
+        List<Resposta> respostasRecebidas = capturarRespostasEnviadas();
+        carregarAtributosResposta(respostasRecebidas);
+        registrarRespostasEmBanco(respostasRecebidas);
+    }
+
+    public EscalaLikert[] getValoresLikert() {
+        return EscalaLikert.values();
+    }
+
 }
