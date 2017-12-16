@@ -93,7 +93,7 @@
                                             <div class="col-sm-1 text-center">
                                                 <div class="radio">
                                                     <label>
-                                                        <input type="radio" name="valorLikert#{questao.id}" value="#{valor}" checked="#{ valor eq 'NAO_SEI_AVALIAR' ? 'checked' : '' }" />
+                                                        <input type="radio" name="respostaLikertQuestao#{questao.id}" value="#{valor}" checked="#{ valor eq 'NAO_SEI_AVALIAR' ? 'checked' : '' }" />
                                                     </label>
                                                 </div>
                                             </div>
@@ -101,7 +101,7 @@
                                     </c:when>    
                                     <c:otherwise>
                                         <div class="col-sm-6 text-center">
-                                            <textarea class="form-control" rows="6"></textarea>
+                                            <textarea class="form-control" rows="6" name="respostaTextualQuestao#{questao.id}"></textarea>
                                         </div>
                                     </c:otherwise>
                                 </c:choose>
@@ -128,17 +128,7 @@
                     <div class="col-sm-12">
                         &nbsp;
                     </div>
-                </div>
-
-
-<!--                <div class="row">
-                    <div class="col-sm-12">
-                        <h:commandLink action="#{formularioAvaliacaoAlunoController.criarAvaliacaoExemplo}" value="Criar formulário de exemplo" immediate="true" class="btn btn-primary" />
-                        <h:commandLink action="#{formularioAvaliacaoAlunoController.criarAlunoExemplo}" value="Criar aluno de exemplo" immediate="true" class="btn btn-primary" />
-                    </div>
-                </div>-->
-
-
+                </div>   
             </div>
         </h:form>
         <h:outputScript library="jquery" name="jquery-3.2.1.js" />
